@@ -141,47 +141,48 @@ Furthermore, harmonics are eigenfunctions of LTI systems, and the \emph{frequenc
 \end{equation}
 
 \section{$\pi$-pulsed EPR}
+The mechanisms of \emph{EPR (Electron Paramegnetic Resonance)}, also called \emph{ESR (Electron Spin Resonance)}, work analogous to the mechanisms of \emph{NMR (Nuclear Magnetic Resonance)}. In diamagnetic materials, all electrons are spin-paired, making the magnetic dipole vanish, and enabling the system to be accessible by NMR, and according to \cite[Chap. 4, p. 107]{nmr-ox}, NMR technique offer two further ``advantages'' in comparison with EPR: First, relaxation time of spin electrons is very short compared with nuclei; second the nuclear spin Hamiltonian offers a broader diversity of interactions giving insight to the system's properties. Nevertheless, EPR experiments are only suitable to investigate systems with unpaired electrons, which exhibit a non-zero electron spin. The basic idea is to perturb a spin system's equilibrium by a small pulsed oscillating magnetic field and record the emitted radiation during the relaxation process. 
+
+When we place a spin sytem inside a static magnetic field $\vec{B}_0 = B_0 \hat{z}$ and let it settle to equilibrium, due to Zeeman effect more electron spins are goint to align parallel to $\vec{B}_0$ than antiparallel, resulting in a net magnetization of the system. The pulse $\vec{B}_1 = B_1 \hat{x} e^{i(\vec{k}\cdot\vec{r}-\omega_1 t} \cdot u(t_0-t)$ linearly polarized in x-direction will tilt the electron spins and disturb the equilibrium in a way we are going to examine in the following:
+
+\subsection{Spin Electron Hamiltonian}
+The Hamiltonian of an unpaired spin electron will exhibit several perturbation terms of different nature:
+\begin{equation}
+ \mathcal{H} = \mathcal{H}_Z + \mathcal{H}_{HF} + \mathcal{H}_{CS} + \mathcal{H}_J + \mathcal{H}_D
+\end{equation}
+\begin{enumerate}
+  \item Zeeman contribution $\mathcal{H}_Z$
+  \item Hyperfine interaction $\mathcal{H}_{HF}$
+\end{enumerate}
+
+
+
 
 \section{Spinach}
-The Matlab library \emph{Spinach} supplies efficient methods for large-scale spin dynamics simulations. It consists of the \emph{kernel} with the implementation of general spin dynamics simulation techniques and the \emph{user-land} with a collection of different experiements to perform. Basically, the user prepares the description of a spin system, which is then translated by the kernel into the most efficient basis sets, superoperators, etc. The user-land decides how to deal with those objects, whether to apply a pre-established experiment, or whether to perform the kernel's simulation procedures manually. Though Spinach is able to simulate numerous kinds of experiments, in this work we are going to restrict ourselves to standard EPR experiments. For the $\pi$-pulsed EPR, the user-land readily provides the method \verb pulse_acquire
+The Matlab library \emph{Spinach} supplies efficient methods for large-scale spin dynamics simulations. It consists of the \emph{kernel} with the implementation of general spin dynamics simulation techniques and the \emph{user-land} with a collection of different experiements to perform. Basically, the user prepares the description of a spin system, which is then translated by the kernel into the most efficient basis sets, superoperators, etc. The user-land decides how to deal with those objects, whether to apply a pre-established experiment, or whether to perform the kernel's simulation procedures manually. Though Spinach is able to simulate numerous kinds of experiments, in this work we are going to restrict ourselves to standard EPR experiments. For the $\pi$-pulsed EPR, the user-land readily provides the method \verb|pulse_acquire|
 
 
 
 \FloatBarrier
 \begin{thebibliography}{9}
-\bibitem{griffiths}
-  David J. Griffiths,
-  \emph{Introduction to Quantum Mechanics}.
-  Pearson,
-  2nd Edition,
-  2005.
-\bibitem{MaK}
- T. Mayer-Kuckuk,
- \emph{Atomphysik}.
- Teubner,
- 4th Edition,
- 1994.
-\bibitem{Woo}
- G. K. Woodgate,
- \emph{Elementare Struktur der Atome}.
- R. Oldenbourg,
- 1975.
-\bibitem{BaW}
- Max Born, Emil Wolf,
- \emph{Principles of Optics}.
- Pergamon Press,
- 4th Edition,
- 1975.
-\bibitem{wikiBohr}
- \url{http://en.wikipedia.org/wiki/Bohr_model}
-\bibitem{wikiRydberg}
- \url{http://en.wikipedia.org/wiki/Rydberg_formula}
-\bibitem{wikiTerm}
- \url{http://en.wikipedia.org/wiki/Term_symbol}
-\bibitem{silvana}
-Silvana Tiedemann, Frauke Beyer, Tobias Guggenberger,
-\emph{Experiment B9/A15 Zeeman effect}.
-2011
+\bibitem{spinach}
+  Dr. Ilya Kuprov,,
+  \emph{Spin Dynamics, Lecture 1 - 10}.
+  University of Oxford,
+  2011.
+
+\bibitem{spinach}
+  H.J. Hogben, M. Krzystyniak, G.T.P. Charnock, P.J. Hore, Ilya Kuprov,
+  \emph{Spinach - A software library for simulation of spin dynamics in large spin systems}.
+  Journal of Magnetic Resonance,
+  208 (2011) 179-194.
+
+\bibitem{nmr-ox}
+  Paul T. Callaghan,
+  \emph{Translational Dynamics & Magnetic Resonance. Principles of Pulsed Gradient Spin Echo NMR}
+  Oxford University Press,
+  2011.
+
 \end{thebibliography}
 
 \end{document}
