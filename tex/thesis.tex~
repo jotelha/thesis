@@ -1,0 +1,187 @@
+\documentclass[11.5pt,a4paper]{article}
+
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{0.4cm}
+\setlength{\headsep}{0.8cm}
+\setlength{\footskip}{1cm}
+\setlength{\textwidth}{17cm}
+\setlength{\textheight}{25cm}
+\setlength{\voffset}{-1.5cm}
+\setlength{\hoffset}{-0.5cm}
+\setlength{\oddsidemargin}{0cm}
+\setlength{\evensidemargin}{0cm}
+
+\usepackage{graphicx} % inclusion des figures
+\usepackage{amsmath} % collection de symboles math�matiques
+\usepackage{amssymb} % collection de symboles math�matiques
+\usepackage{subfigure} % 2 Bilder nebeneinander
+\usepackage{placeins} %FloatBarrier
+
+%\usepackage[applemac]{inputenc} % utilisation directe des caract�res accentu�s sur mac
+%\usepackage[latin1]{inputenc}   % utilisation directe des caract�res accentu�s sur pc
+\usepackage[ansinew]{inputenc}	 % klappt unter windows
+
+\usepackage[german,ngerman, english]{babel} %% Deutsch als Hauptsprache
+%\usepackage{epstopdf} % wandelt eps-dateien in pdf-datein um
+\usepackage[T1]{fontenc} % codage moderne des caract�res sous Latex
+
+\usepackage{tabularx} % Tabellen mit variabler Spaltenbreite
+
+\usepackage{color} % gestion de diff�rentes couleurs
+\definecolor{linkcolor}{rgb}{0,0,0.6} % d�finition de la couleur des liens pdf
+\usepackage[ pdftex,colorlinks=true, pdfstartview=FitV,
+linkcolor= linkcolor, citecolor= linkcolor, urlcolor= linkcolor,
+hyperindex=true, hyperfigures=false]{hyperref} % fichiers pdf 'intelligents', avec des liens entre les r�f�rences, etc.
+
+\usepackage{fancyhdr} % Wahl der Kopf- und Fu�zeile
+\pagestyle{headings} %zeigt Seitennummer und Abschnittstitel an
+
+\usepackage[center]{caption}
+
+
+%\pagestyle{fancy} %manuelle Wahl der Kopf- und Fu�zeile
+%\fancyhead[L]{\scriptsize \textsc{Electrical properties of a Carbon Nanotube device under extreme conditions}}
+%\fancyhead[R]{\scriptsize \textsc{Mario Bomers}}
+%\fancyfoot[C]{ \thepage}
+
+\usepackage[normalem]{ulem}
+\usepackage{moreverb}
+\usepackage{color}
+\usepackage{listings}
+
+
+
+
+\begin{document}
+
+\setlength{\parindent}{0pt} %kein Einzug bei neuen Abschnitten
+
+%-------------------------------	Deckblatt		-----------------------------
+
+\thispagestyle{empty}
+
+\includegraphics[height=2cm]{FULogo.jpg}
+\hfill %\hfill wird das "a" am linken Seitenrand, "b" am rechten Seitenrand angeordnet ("a" \hfill "b")
+\parbox[b]{0.5\textwidth}{{\large Bachelorarbeit Juli 2012\\}}
+
+\vspace{2cm}
+
+\begin{center}
+
+\rule[11pt]{15cm}{0.5pt}
+
+{ \textbf {\Large Large Scale Parallel Simulation of EPR Lineshape Spectra}}
+
+\rule{15cm}{0.5pt}
+
+\vspace{1cm}
+
+\parbox{15cm}{\small
+\textbf{Abstract}: This experiment's aim is to measure the Zeeman effect's influence on the spectrum of a mercury light source exposed to magnetic field. Mercury's green $546nm$ and yellow $577nm$  spectral lines split into nine different components each, attributable to the \emph{anomalous Zeeman effect}. Applying a quantum-mechanical theory originally designed for hydrogen-like atoms, we predict the spectral wavelength shifts of the much heavier element mercury and show experimentally the validity of our predictions within a certain tolerance level. }
+
+\vspace{0.5cm}
+
+\end{center}
+
+\vspace{1cm}
+
+\large{
+
+{\bf Group:}  Johannes H\"ormann, Mario Bomers, Finn M\"uller-Hansen}
+\vspace{0.3cm}
+
+{\bf Tutor:} Dr. M. Corso
+
+\vspace{1cm}
+
+%\begin{figure}[h!]
+%	\centering
+%	\includegraphics[width=0.6\textwidth]{screenshot1-546nm.jpg}
+%	\caption{Fabry-Perot fringes of 546nm line, no magnetic influence}
+%	\label{fringes-546nm}
+%\end{figure}
+
+\newpage
+\tableofcontents
+
+\vfill
+\hfill \today 
+
+%------------------------------------------------------------
+
+\newpage
+
+\section{Basics}
+What happens during EPR from a quite general point of view? We excite a certain system with an electromagnetic signal and measure the system's response. In other words, the system $\Phi$ uses the time-resolved input $x(t)$ to generate output $y(t)$:
+\begin{equation}
+	y(x) = \Phi\{x(t)\}
+\end{equation}
+If we assume the system to be linear
+\begin{equation}
+ 	\Phi\{\alpha x_1(t) + \beta x_2(t)\} = \alpha y_1(t) + \beta y_2(t)
+\end{equation}
+and time-invariant
+\begin{equation}
+	\Phi\{x(t-t_0)\} = y(t-t_0)
+\end{equation}
+we can expand the input function in a series of some orthonormal basis set $g_k(t)$, or in some integral transform in the continuous limit with basis $g(\tau,t)$ and define the system completely by its set of responses to the basis functions:
+\begin{align}
+	x(t) & = \sum_k \chi_k g_k(t) = \int_{-\infty}^{\infty} \chi(\tau) g(\tau,t) d\tau \\
+	\Rightarrow \Phi{x(t)} & = \sum_k \chi_k \Phi\{g_k(t)\} = \int_{-\infty}^{\infty} \chi(\tau) \Phi\{g(\tau,t)\} d\tau
+\end{align}
+Using the definition of the Dirac delta function and applying our LTI (linear time-invariant) system
+\begin{align}
+	x(t) & =  \int_{-\infty}^{\infty} x(\tau) \delta(\tau-t) d\tau \\
+	\Rightarrow 	\Phi\{x(t)\} & =  \int_{-\infty}^{\infty} x(\tau) \Phi\{\delta(\tau-t)\} d\tau = \int_{-\infty}^{\infty} x(\tau) h(\tau-t) d\tau = x(t) * h(t)
+\end{align}
+we find the system's output to be the convolution of the input wit its \emph{pulse response} or \emph{free induction decay (FID)} $h(t) = \Phi\{\delta(t)\}$. 
+Furthermore, harmonics are eigenfunctions of LTI systems, and the \emph{frequency response} or \emph{spectrum} $H_(\omega)$ is just the Fourier transform of the system's FID:
+\begin{equation}
+	\Phi\{e^{i\omega t}\} = \int_{-\infty}^{\infty} e^{i\omega t} h(\tau-t) d\tau =  e^{i\omega t} \int_{-\infty}^{\infty} e^{i\omega (\tau-t)} h(\tau-t) d\tau =  e^{i\omega t} \int_{-\infty}^{\infty} e^{i\omega (\tau)} h(\tau) d\tau = H(\omega) e^{i \omega t}
+\end{equation}
+
+\section{$\pi$-pulsed EPR}
+
+\section{Spinach}
+The Matlab library \emph{Spinach} supplies efficient methods for large-scale spin dynamics simulations. It consists of the \emph{kernel} with the implementation of general spin dynamics simulation techniques and the \emph{user-land} with a collection of different experiements to perform. Basically, the user prepares the description of a spin system, which is then translated by the kernel into the most efficient basis sets, superoperators, etc. The user-land decides how to deal with those objects, whether to apply a pre-established experiment, or whether to perform the kernel's simulation procedures manually. Though Spinach is able to simulate numerous kinds of experiments, in this work we are going to restrict ourselves to standard EPR experiments. For the $\pi$-pulsed EPR, the user-land readily provides the method \verb pulse_acquire
+
+
+
+\FloatBarrier
+\begin{thebibliography}{9}
+\bibitem{griffiths}
+  David J. Griffiths,
+  \emph{Introduction to Quantum Mechanics}.
+  Pearson,
+  2nd Edition,
+  2005.
+\bibitem{MaK}
+ T. Mayer-Kuckuk,
+ \emph{Atomphysik}.
+ Teubner,
+ 4th Edition,
+ 1994.
+\bibitem{Woo}
+ G. K. Woodgate,
+ \emph{Elementare Struktur der Atome}.
+ R. Oldenbourg,
+ 1975.
+\bibitem{BaW}
+ Max Born, Emil Wolf,
+ \emph{Principles of Optics}.
+ Pergamon Press,
+ 4th Edition,
+ 1975.
+\bibitem{wikiBohr}
+ \url{http://en.wikipedia.org/wiki/Bohr_model}
+\bibitem{wikiRydberg}
+ \url{http://en.wikipedia.org/wiki/Rydberg_formula}
+\bibitem{wikiTerm}
+ \url{http://en.wikipedia.org/wiki/Term_symbol}
+\bibitem{silvana}
+Silvana Tiedemann, Frauke Beyer, Tobias Guggenberger,
+\emph{Experiment B9/A15 Zeeman effect}.
+2011
+\end{thebibliography}
+
+\end{document}

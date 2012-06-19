@@ -1,0 +1,292 @@
+Adding user `jotelha' to group `rdma' ...
+Adding user jotelha to group rdma
+Done.
+Node file: /var/spool/torque/aux//38846.torque.physik.fu-berlin.de
+Starting SMPD on n032 n033 n034 n035 n036 n037 n038 n039 n040 n041  ...
+ssh n032 "/opt/matlab2012apptrial/bin/mw_smpd" -s -phrase MATLAB -port 28846
+ssh n033 "/opt/matlab2012apptrial/bin/mw_smpd" -s -phrase MATLAB -port 28846
+ssh n034 "/opt/matlab2012apptrial/bin/mw_smpd" -s -phrase MATLAB -port 28846
+ssh n035 "/opt/matlab2012apptrial/bin/mw_smpd" -s -phrase MATLAB -port 28846
+ssh n036 "/opt/matlab2012apptrial/bin/mw_smpd" -s -phrase MATLAB -port 28846
+ssh n037 "/opt/matlab2012apptrial/bin/mw_smpd" -s -phrase MATLAB -port 28846
+ssh n038 "/opt/matlab2012apptrial/bin/mw_smpd" -s -phrase MATLAB -port 28846
+ssh n039 "/opt/matlab2012apptrial/bin/mw_smpd" -s -phrase MATLAB -port 28846
+ssh n040 "/opt/matlab2012apptrial/bin/mw_smpd" -s -phrase MATLAB -port 28846
+ssh n041 "/opt/matlab2012apptrial/bin/mw_smpd" -s -phrase MATLAB -port 28846
+All SMPDs launched
+"/opt/matlab2012apptrial/bin/mw_mpiexec" -phrase MATLAB -port 28846 -l -n 20 -machinefile /var/spool/torque/aux//38846.torque.physik.fu-berlin.de -genvlist MDCE_DECODE_FUNCTION,MDCE_STORAGE_LOCATION,MDCE_STORAGE_CONSTRUCTOR,MDCE_JOB_LOCATION,MDCE_DEBUG,MDCE_SCHED_TYPE "/opt/matlab2012apptrial/bin/worker" -parallel
+[17]                            < M A T L A B (R) >
+[17]                  Copyright 1984-2012 The MathWorks, Inc.
+[17]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[17]                              February 9, 2012
+[17]    ----------------------------------------------------
+[17]	Your MATLAB license will expire in 03 days.
+[17]	Please contact your system administrator or
+[17]	MathWorks to renew this license.
+[17]    ----------------------------------------------------
+[16]                            < M A T L A B (R) >
+[16]                  Copyright 1984-2012 The MathWorks, Inc.
+[16]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[16]                              February 9, 2012
+[16]    ----------------------------------------------------
+[16]	Your MATLAB license will expire in 03 days.
+[16]	Please contact your system administrator or
+[16]	MathWorks to renew this license.
+[16]    ----------------------------------------------------
+[5]                            < M A T L A B (R) >
+[5]                  Copyright 1984-2012 The MathWorks, Inc.
+[5]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[5]                              February 9, 2012
+[5]    ----------------------------------------------------
+[5]	Your MATLAB license will expire in 03 days.
+[5]	Please contact your system administrator or
+[5]	MathWorks to renew this license.
+[5]    ----------------------------------------------------
+[8]                            < M A T L A B (R) >
+[8]                  Copyright 1984-2012 The MathWorks, Inc.
+[8]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[8]                              February 9, 2012
+[8]    ----------------------------------------------------
+[8]	Your MATLAB license will expire in 03 days.
+[8]	Please contact your system administrator or
+[8]	MathWorks to renew this license.
+[8]    ----------------------------------------------------
+[15]                            < M A T L A B (R) >
+[15]                  Copyright 1984-2012 The MathWorks, Inc.
+[15]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[15]                              February 9, 2012
+[15]    ----------------------------------------------------
+[15]	Your MATLAB license will expire in 03 days.
+[15]	Please contact your system administrator or
+[15]	MathWorks to renew this license.
+[15]    ----------------------------------------------------
+[14]                            < M A T L A B (R) >
+[14]                  Copyright 1984-2012 The MathWorks, Inc.
+[14]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[14]                              February 9, 2012
+[14]    ----------------------------------------------------
+[14]	Your MATLAB license will expire in 03 days.
+[14]	Please contact your system administrator or
+[14]	MathWorks to renew this license.
+[14]    ----------------------------------------------------
+[4]                            < M A T L A B (R) >
+[4]                  Copyright 1984-2012 The MathWorks, Inc.
+[4]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[4]                              February 9, 2012
+[4]    ----------------------------------------------------
+[4]	Your MATLAB license will expire in 03 days.
+[4]	Please contact your system administrator or
+[4]	MathWorks to renew this license.
+[4]    ----------------------------------------------------
+[0]                            < M A T L A B (R) >
+[0]                  Copyright 1984-2012 The MathWorks, Inc.
+[0]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[0]                              February 9, 2012
+[0]    ----------------------------------------------------
+[0]	Your MATLAB license will expire in 03 days.
+[0]	Please contact your system administrator or
+[0]	MathWorks to renew this license.
+[0]    ----------------------------------------------------
+[7]                            < M A T L A B (R) >
+[7]                  Copyright 1984-2012 The MathWorks, Inc.
+[7]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[7]                              February 9, 2012
+[7]    ----------------------------------------------------
+[7]	Your MATLAB license will expire in 03 days.
+[7]	Please contact your system administrator or
+[7]	MathWorks to renew this license.
+[7]    ----------------------------------------------------
+[6]                            < M A T L A B (R) >
+[6]                  Copyright 1984-2012 The MathWorks, Inc.
+[6]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[6]                              February 9, 2012
+[6]    ----------------------------------------------------
+[6]	Your MATLAB license will expire in 03 days.
+[6]	Please contact your system administrator or
+[6]	MathWorks to renew this license.
+[6]    ----------------------------------------------------
+[9]                            < M A T L A B (R) >
+[9]                  Copyright 1984-2012 The MathWorks, Inc.
+[9]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[9]                              February 9, 2012
+[9]    ----------------------------------------------------
+[9]	Your MATLAB license will expire in 03 days.
+[9]	Please contact your system administrator or
+[9]	MathWorks to renew this license.
+[9]    ----------------------------------------------------
+[1]                            < M A T L A B (R) >
+[1]                  Copyright 1984-2012 The MathWorks, Inc.
+[1]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[1]                              February 9, 2012
+[1]    ----------------------------------------------------
+[1]	Your MATLAB license will expire in 03 days.
+[1]	Please contact your system administrator or
+[1]	MathWorks to renew this license.
+[1]    ----------------------------------------------------
+[19]                            < M A T L A B (R) >
+[19]                  Copyright 1984-2012 The MathWorks, Inc.
+[19]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[19]                              February 9, 2012
+[19]    ----------------------------------------------------
+[19]	Your MATLAB license will expire in 03 days.
+[19]	Please contact your system administrator or
+[19]	MathWorks to renew this license.
+[19]    ----------------------------------------------------
+[18]                            < M A T L A B (R) >
+[18]                  Copyright 1984-2012 The MathWorks, Inc.
+[18]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[18]                              February 9, 2012
+[18]    ----------------------------------------------------
+[18]	Your MATLAB license will expire in 03 days.
+[18]	Please contact your system administrator or
+[18]	MathWorks to renew this license.
+[18]    ----------------------------------------------------
+[11]                            < M A T L A B (R) >
+[11]                  Copyright 1984-2012 The MathWorks, Inc.
+[11]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[11]                              February 9, 2012
+[11]    ----------------------------------------------------
+[11]	Your MATLAB license will expire in 03 days.
+[11]	Please contact your system administrator or
+[11]	MathWorks to renew this license.
+[11]    ----------------------------------------------------
+[10]                            < M A T L A B (R) >
+[10]                  Copyright 1984-2012 The MathWorks, Inc.
+[10]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[10]                              February 9, 2012
+[10]    ----------------------------------------------------
+[10]	Your MATLAB license will expire in 03 days.
+[10]	Please contact your system administrator or
+[10]	MathWorks to renew this license.
+[10]    ----------------------------------------------------
+[14] 
+[16] 
+[14]To get started, type one of these: helpwin, helpdesk, or demo.
+[16]To get started, type one of these: helpwin, helpdesk, or demo.
+[16]For product information, visit www.mathworks.com.
+[14]For product information, visit www.mathworks.com.
+[14] 
+[16] 
+[17] 
+[15] 
+[15]To get started, type one of these: helpwin, helpdesk, or demo.
+[17]To get started, type one of these: helpwin, helpdesk, or demo.
+[15]For product information, visit www.mathworks.com.
+[15] 
+[17]For product information, visit www.mathworks.com.
+[17] 
+[4] 
+[5] 
+[6] 
+[7] 
+[9] 
+[8] 
+[4]To get started, type one of these: helpwin, helpdesk, or demo.
+[5]To get started, type one of these: helpwin, helpdesk, or demo.
+[7]To get started, type one of these: helpwin, helpdesk, or demo.
+[6]To get started, type one of these: helpwin, helpdesk, or demo.
+[4]For product information, visit www.mathworks.com.
+[5]For product information, visit www.mathworks.com.
+[4] 
+[5] 
+[9]To get started, type one of these: helpwin, helpdesk, or demo.
+[8]To get started, type one of these: helpwin, helpdesk, or demo.
+[7]For product information, visit www.mathworks.com.
+[6]For product information, visit www.mathworks.com.
+[7] 
+[6] 
+[9]For product information, visit www.mathworks.com.
+[8]For product information, visit www.mathworks.com.
+[9] 
+[8] 
+[19] 
+[19]To get started, type one of these: helpwin, helpdesk, or demo.
+[19]For product information, visit www.mathworks.com.
+[19] 
+[18] 
+[18]To get started, type one of these: helpwin, helpdesk, or demo.
+[18]For product information, visit www.mathworks.com.
+[18] 
+[3]                            < M A T L A B (R) >
+[3]                  Copyright 1984-2012 The MathWorks, Inc.
+[3]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[3]                              February 9, 2012
+[3]    ----------------------------------------------------
+[3]	Your MATLAB license will expire in 03 days.
+[3]	Please contact your system administrator or
+[3]	MathWorks to renew this license.
+[3]    ----------------------------------------------------
+[2]                            < M A T L A B (R) >
+[2]                  Copyright 1984-2012 The MathWorks, Inc.
+[2]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[2]                              February 9, 2012
+[2]    ----------------------------------------------------
+[2]	Your MATLAB license will expire in 03 days.
+[2]	Please contact your system administrator or
+[2]	MathWorks to renew this license.
+[2]    ----------------------------------------------------
+[1] 
+[0] 
+[1]To get started, type one of these: helpwin, helpdesk, or demo.
+[0]To get started, type one of these: helpwin, helpdesk, or demo.
+[1]For product information, visit www.mathworks.com.
+[0]For product information, visit www.mathworks.com.
+[1] 
+[0] 
+[10] 
+[11] 
+[10]To get started, type one of these: helpwin, helpdesk, or demo.
+[10]For product information, visit www.mathworks.com.
+[10] 
+[11]To get started, type one of these: helpwin, helpdesk, or demo.
+[11]For product information, visit www.mathworks.com.
+[11] 
+[3] 
+[3]To get started, type one of these: helpwin, helpdesk, or demo.
+[2] 
+[3]For product information, visit www.mathworks.com.
+[3] 
+[2]To get started, type one of these: helpwin, helpdesk, or demo.
+[2]For product information, visit www.mathworks.com.
+[2] 
+[13]                            < M A T L A B (R) >
+[13]                  Copyright 1984-2012 The MathWorks, Inc.
+[13]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[13]                              February 9, 2012
+[13]    ----------------------------------------------------
+[13]	Your MATLAB license will expire in 03 days.
+[13]	Please contact your system administrator or
+[13]	MathWorks to renew this license.
+[13]    ----------------------------------------------------
+[12]                            < M A T L A B (R) >
+[12]                  Copyright 1984-2012 The MathWorks, Inc.
+[12]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[12]                              February 9, 2012
+[12]    ----------------------------------------------------
+[12]	Your MATLAB license will expire in 03 days.
+[12]	Please contact your system administrator or
+[12]	MathWorks to renew this license.
+[12]    ----------------------------------------------------
+[13] 
+[12] 
+[13]To get started, type one of these: helpwin, helpdesk, or demo.
+[13]For product information, visit www.mathworks.com.
+[12]To get started, type one of these: helpwin, helpdesk, or demo.
+[13] 
+[12]For product information, visit www.mathworks.com.
+[12] 
+[0]Sending a stop signal to all the labs...
+[0]2012-05-24 15:04:34 | About to exit MATLAB normally
+
+Stopping SMPD on  n032 n033 n034 n035 n036 n037 n038 n039 n040 n041 ...
+ssh n032 "/opt/matlab2012apptrial/bin/mw_smpd" -shutdown -phrase MATLAB -port 28846
+ssh n033 "/opt/matlab2012apptrial/bin/mw_smpd" -shutdown -phrase MATLAB -port 28846
+ssh n034 "/opt/matlab2012apptrial/bin/mw_smpd" -shutdown -phrase MATLAB -port 28846
+ssh n035 "/opt/matlab2012apptrial/bin/mw_smpd" -shutdown -phrase MATLAB -port 28846
+ssh n036 "/opt/matlab2012apptrial/bin/mw_smpd" -shutdown -phrase MATLAB -port 28846
+ssh n037 "/opt/matlab2012apptrial/bin/mw_smpd" -shutdown -phrase MATLAB -port 28846
+ssh n038 "/opt/matlab2012apptrial/bin/mw_smpd" -shutdown -phrase MATLAB -port 28846
+ssh n039 "/opt/matlab2012apptrial/bin/mw_smpd" -shutdown -phrase MATLAB -port 28846
+ssh n040 "/opt/matlab2012apptrial/bin/mw_smpd" -shutdown -phrase MATLAB -port 28846
+ssh n041 "/opt/matlab2012apptrial/bin/mw_smpd" -shutdown -phrase MATLAB -port 28846
+Exiting with code: 0

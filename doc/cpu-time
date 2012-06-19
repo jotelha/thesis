@@ -1,0 +1,6 @@
+Was this job started by a TM-aware parallel startup mechanism such as
+OSC's mpiexec or the built-in launchers in LAM and OpenMPI, or using so
+rsh/ssh-based method?  TORQUE can only do CPU time accounting for
+processes that are children of pbs_mom; anything started using a
+rsh/ssh-based scheme isn't going to show up in the PBS accounting logs.
+ 

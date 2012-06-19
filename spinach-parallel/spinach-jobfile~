@@ -1,0 +1,27 @@
+#!/bin/bash
+#PBS -N f1500
+##PBS -q highmem
+#PBS -l nodes=1:ppn=1
+#PBS -l mem=80000MB
+#PBS -l walltime=24:00:00
+#PBS -l file=10000M
+#PBS -m ea -M elgabart@zedat.fu-berlin.de
+
+
+cd $PBS_O_WORKDIR
+
+flag=f1500
+
+if [ ! -f ./seq ];  then echo "01" > seq ; fi
+export seq=`cat seq`
+awk 'BEGIN{printf "%2.2d\n",ENVIRON["seq"]+1}' > seq
+
+infile=${flag}.m
+outfile=${flag}.${seq}.log
+
+cat $infile >> $outfile
+
+matlab -nojvm -nosplash -r "run('./${infile}');" >> $outfile
+
+mv ./OUTPUTFILENAME.dat ./${outfile/.log/_spectrum.dat}
+sed -i "s/ \-/  /g" ./${outfile/.log/_spectrum.dat}

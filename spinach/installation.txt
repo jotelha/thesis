@@ -1,0 +1,62 @@
+SPINACH INSTALLATION INSTRUCTIONS
+
+1. Minimum version of Matlab is R2011a - 64 bit Matlab is preferred with at least 
+   4GB of free RAM. The workstations that Spinach was developed on had 12GB of RAM
+   and 64GB swap files on PCI-Express solid state disks.
+
+2. Add the following directories (including subdirectories) to the Matlab path
+   (Menu/File/Set Path):
+
+       <spinach root>/kernel
+       <spinach root>/etc
+       <spinach root>/exp
+
+   You may have to allow write access to \toolbox\local\pathdef.m file in your Matlab 
+   directory in order to be able to save the updated path file.
+
+3. The best way to get started is to look through the code in the \examples directory. 
+   Detailed documentation, including published papers, is available in the \docs directory.
+   It is essential that you understand the factors that influence the choice of the basis
+   set in Spinach.
+
+
+
+
+
+
+
+
+
+
+
+
+
+=== EXPERT MATTERS ===
+
+1. Sandia Labs' Tensor Toolbox is required for the DMRG/MPS module. It can be downloaded
+   from http://csmr.ca.sandia.gov/~tgkolda/TensorToolbox/
+
+2. Clebsch-Gordan coefficients with L ranks in excess of 2,000 require a bigger Java heap
+   size than Matlab's default. The following page
+         http://www.mathworks.co.uk/support/solutions/en/data/1-18I2C/index.html
+   has the instructi8ons on how to increase the Java heap.
+
+3. To set up a Matlab cluster on Amazon EC2 cloud, follow these instructions:
+
+        1. Start a single 8-core Windows x64 instance without the Amazon firewall.
+        2. Change the Administrator password to the one you prefer.
+        3. Install Matlab 2011a or later with Distributed Computing Server option.
+        4. Run addMatlabToWindowsFirewall.bat file as Administrator.
+        5. Switch off Windows firewall.
+        6. Run 'mdce install', then 'mdce start' as Administrator.
+        7. Stop the mdce service and set it to "Manual" in the service settings.
+        8. Set up Spinach and set the paths in Matlab.
+        9. Shut down the instance and make an AMI.
+       10. Spawn several instances from the AMI, pick a head node and log into it.
+       11. Run admincenter.bat, feed it the node addresses and start the mdce services.
+       12. Create a JobManager in AdminCenter, start the workers.
+       13. From a client instance, connect to the JobManager.
+
+   Please remember that technical support queries on this ought to be directed to MathWorks,
+   not us -- they certainly did not make it easy.
+

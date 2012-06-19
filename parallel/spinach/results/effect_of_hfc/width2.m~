@@ -1,0 +1,81 @@
+% W-band pulsed powder ESR spectrum of nitroxide radical.
+%
+% ilya.kuprov@oerc.ox.ac.uk
+
+function width1()
+
+% Set the simulation parameters
+sys.magnet=3.37;
+sys.regime='powder';
+bas.mode='ESR-1';
+sys.tols.grid_rank=131
+
+
+% Interactions
+sys.isotopes={'E','14N'};
+inter.zeeman.matrix=cell(2,1);
+inter.zeeman.matrix{1,1}=[2.0034837 -0.0008625 -0.0002207;-0.0010275 2.004688 -0.0002825;0.0008243 0.000105 2.0064031];
+inter.coupling.matrix=cell(2,2);
+inter.coupling.matrix{1,2}=1e6*[68.1032 17.1309 -14.5741;17.1309 41.8806 -8.4046;-14.5741 -8.4046 40.653]; % 95.904722
+% inter.coupling.matrix{1,3}=1e6*[0.9156 -2.4062 5.9457;-2.4062 -3.663 -3.0412;5.9457 -3.0412 1.9124]; % 10.894643
+% inter.coupling.matrix{1,4}=1e6*[-0.0811 0.1407 -4.6033;0.1407 -4.1659 0.5301;-4.6033 0.5301 1.8585]; % 7.9873443  
+% inter.coupling.matrix{1,5}=1e6*[-2.4624 2.4218 -0.886;2.4218 3.4145 -3.1199;-0.886 -3.1199 -2.0449]; % 7.3940256
+% inter.coupling.matrix{1,6}=1e6*[-1.7275 -0.2073 -2.4641;-0.2073 -2.5883 0.7704;-2.4641 0.7704 4.2186]; % 6.3950524
+% inter.coupling.matrix{1,7}=1e6*[2.9243 1.0854 3.0356;1.0854 -2.2045 0.4162;3.0356 0.4162 -0.7627]; % 5.9266709
+% inter.coupling.matrix{1,8}=1e6*[0.7872 2.2688 -1.7268;2.2688 0.2311 -1.3054;-1.7268 -1.3054 -0.9001];%  4.5989121
+% inter.coupling.matrix{1,9}=1e6*[2.8179 -0.3819 -1.8712;-0.3819 -1.9027 0.0703;-1.8712 0.0703 -0.4658]; % 4.3683127
+% inter.coupling.matrix{1,10}=1e6*[-1.3381 -0.6955 -1.006;-0.6955 -0.1325 2.2283;-1.006 2.2283 1.4798]; % 4.1133964
+% inter.coupling.matrix{1,11}=1e6*[0.3789 2.5387 0.2618;2.5387 1.0548 0.2291;0.2618 0.2291 -1.4809]; % 4.0720119
+% inter.coupling.matrix{1,12}=1e6*[-1.0861 1.1901 -1.0182;1.1901 0.5772 -1.8583;-1.0182 -1.8583 0.4457]; % 3.6775152
+% inter.coupling.matrix{1,13}=1e6*[1.7291 0.1094 -1.38;0.1094 0.2917 -0.0184;-1.38 -0.0184 1.7804]; % 3.1746045	  
+% inter.coupling.matrix{1,14}=1e6*[2.1569 -0.3571 -0.6988;-0.3571 -1.2006 0.074;-0.6988 0.074 -0.9789]; % 2.8800241  
+% inter.coupling.matrix{1,15}=1e6*[2.1556 -0.3912 0.3304;-0.3912 -1.1296 -0.0296;0.3304 -0.0296 -1.0223]; % 2.7374916
+% inter.coupling.matrix{1,16}=1e6*[-1.257 -0.2589 0.0502;-0.2589 1.8313 -0.3772;0.0502 -0.3772 -1.2719]; % 2.6410408
+% inter.coupling.matrix{1,17}=1e6*[-0.4476 1.4205 -0.403;1.4205 0.8951 -0.6172;-0.403 -0.6172 -0.4539]; % 2.5159303  
+% inter.coupling.matrix{1,18}=1e6*[-0.7096 0.3609 0.842;0.3609 -0.6348 0.9719;0.842 0.9719 1.3466]; % 2.5074767  
+% inter.coupling.matrix{1,19}=1e6*[0.6064 -1.1647 -0.9592;-1.1647 -0.3758 0.735;-0.9592 0.735 -0.3134]; % 2.4981588  
+% inter.coupling.matrix{1,20}=1e6*[-0.9032 0.1196 -0.1611;0.1196 -0.4099 -1.2443;-0.1611 -1.2443 1.3238]; % 2.4317307
+% inter.coupling.matrix{1,21}=1e6*[-0.2017 0.8267 0.9727;0.8267 -0.0959 1.0341;0.9727 1.0341 0.3071]; % 2.3541606
+% inter.coupling.matrix{1,22}=1e6*[-0.8 0.4248 0.5657;0.4248 -0.4776 0.9747;0.5657 0.9747 1.049]; % 2.2067003	      
+% inter.coupling.matrix{1,23}=1e6*[-0.849 -0.7005 0.1289;-0.7005 1.3749 -0.5415;0.1289 -0.5415 -0.7544]; % 2.1866289 
+
+
+
+%inter.coupling.scalar=cell(2,2);
+%inter.coupling.scalar{1,2}=1e6*27.4502;
+
+
+% Set the sequence parameters
+parameters.offset=0;
+parameters.sweep=1e9;
+parameters.npoints=1024;
+parameters.zerofill=2048;
+parameters.spins='E';
+parameters.axis_units='Gauss';
+parameters.derivative=0;
+
+% Run Spinach
+spin_system=create(sys,inter);
+spin_system=basis(spin_system,bas);
+fid=pulse_acquire(spin_system,parameters);
+
+% Apodization
+fid=apodization(fid,'crisp-1d');
+
+% Perform Fourier transform
+spectrum=fftshift(fft(fid,parameters.zerofill));
+
+
+
+% export the spectrum
+%export_1d(spin_system,real(spectrum),parameters);
+%spectrum=real(spectrum);
+
+%Compute the derivative if necessary
+if isfield(parameters,'derivative')
+spectrum=fft(ifft(spectrum).*fftdiff(parameters.derivative,length(spectrum),1)');
+end
+
+ax=axis_1d(spin_system,parameters);
+data = cat(2, transpose(ax), real(spectrum));
+save('OUTPUTFILENAME.dat','data', '-ASCII');

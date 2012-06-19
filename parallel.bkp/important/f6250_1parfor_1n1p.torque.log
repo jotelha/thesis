@@ -1,0 +1,40 @@
+Adding user `jotelha' to group `rdma' ...
+Adding user jotelha to group rdma
+Done.
+Node file: /var/spool/torque/aux//37709.torque.physik.fu-berlin.de
+Starting SMPD on n080  ...
+ssh n080 "/opt/matlab2012apptrial/bin/mw_smpd" -s -phrase MATLAB -port 27709
+All SMPDs launched
+"/opt/matlab2012apptrial/bin/mw_mpiexec" -phrase MATLAB -port 27709 -l -n 2 -machinefile /var/spool/torque/aux//37709.torque.physik.fu-berlin.de -genvlist MDCE_DECODE_FUNCTION,MDCE_STORAGE_LOCATION,MDCE_STORAGE_CONSTRUCTOR,MDCE_JOB_LOCATION,MDCE_DEBUG,MDCE_SCHED_TYPE "/opt/matlab2012apptrial/bin/worker" -parallel
+[1]                            < M A T L A B (R) >
+[1]                  Copyright 1984-2012 The MathWorks, Inc.
+[1]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[1]                              February 9, 2012
+[1]    ----------------------------------------------------
+[1]	Your MATLAB license will expire in 13 days.
+[1]	Please contact your system administrator or
+[1]	MathWorks to renew this license.
+[1]    ----------------------------------------------------
+[0]                            < M A T L A B (R) >
+[0]                  Copyright 1984-2012 The MathWorks, Inc.
+[0]                    R2012a (7.14.0.739) 64-bit (glnxa64)
+[0]                              February 9, 2012
+[0]    ----------------------------------------------------
+[0]	Your MATLAB license will expire in 13 days.
+[0]	Please contact your system administrator or
+[0]	MathWorks to renew this license.
+[0]    ----------------------------------------------------
+[0] 
+[0]To get started, type one of these: helpwin, helpdesk, or demo.
+[0]For product information, visit www.mathworks.com.
+[0] 
+[1] 
+[1]To get started, type one of these: helpwin, helpdesk, or demo.
+[1]For product information, visit www.mathworks.com.
+[1] 
+[0]Sending a stop signal to all the labs...
+[0]2012-05-14 21:29:36 | About to exit MATLAB normally
+
+Stopping SMPD on  n080 ...
+ssh n080 "/opt/matlab2012apptrial/bin/mw_smpd" -shutdown -phrase MATLAB -port 27709
+Exiting with code: 0

@@ -1,0 +1,37 @@
+
+job = 
+
+ Job ID 71 Information
+ =====================
+
+                 Type: independent
+             Username: jotelha
+                State: finished
+           SubmitTime: Wed May 16 17:55:35 CEST 2012
+            StartTime: Wed May 16 17:55:40 CEST 2012
+     Running Duration: 0 days 0h 34m 6s
+
+ - Data Dependencies
+
+        AttachedFiles: /home/jotelha/parallel/jlh_f6250_19spins_1parfor.m
+      AdditionalPaths: /home/jotelha/parallel/
+                       /home/jotelha/parallel/spinach/etc
+                       /home/jotelha/parallel/spinach/etc/data_processing
+                       /home/jotelha/parallel/spinach/etc/wave
+                       /home/jotelha/parallel/spinach/exp
+                       /home/jotelha/parallel/spinach/exp/grids
+                       /home/jotelha/parallel/spinach/kernel
+                       /home/jotelha/parallel/spinach/kernel/cache
+                       /home/jotelha/parallel/spinach/kernel/dmrg
+                       /home/jotelha/parallel/spinach/kernel/hilbert_space
+                       /home/jotelha/parallel/spinach/kernel/optimal_control
+                       /home/jotelha/parallel/spinach/kernel/pulse_shapes
+                       /home/jotelha/parallel/spinach/kernel/utilities
+
+ - Associated Task(s)
+
+       Number Pending: 0
+       Number Running: 0
+      Number Finished: 1
+    Task ID of Errors: []
+

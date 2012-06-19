@@ -1,0 +1,11 @@
+#!/bin/bash 
+#PBS -N jlh_10spins_split_20120605_192754 
+#PBS -q batch 
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=01:00:00 
+#PBS -m bea -M jotelha@zedat.fu-berlin.de 
+#PBS -e jlh_10spins_split_20120605_192754
+#PBS -o jlh_10spins_split_20120605_192754
+cd $PBS_O_WORKDIR
+
+/net/opt/bin/matlab -nodesktop -nosplash -r "jlh_sum_results('jlh_10spins_split_20120605_192754/jlh_10spins_split_20120605_192754.mat'); quit;" &> jlh_10spins_split_20120605_192754/jlh_10spins_split_20120605_192754.log

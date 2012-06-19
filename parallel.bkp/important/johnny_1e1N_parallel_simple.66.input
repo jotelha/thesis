@@ -1,0 +1,66 @@
+% W-band pulsed powder ESR spectrum of nitroxide radical.
+%
+% ilya.kuprov@oerc.ox.ac.uk
+
+function johnny_1e1N_parallel_simple()
+
+% Set the simulation parameters
+sys.magnet=3.356;
+sys.regime='powder';
+bas.mode='ESR-2';
+sys.tols.grid_rank=131;
+
+
+% Interactions
+sys.isotopes={'E','14N'};
+inter.zeeman.matrix=cell(2,1);
+inter.zeeman.matrix{1,1}=[2.0064953    0.0000748 0.0000187; 0.0001123    2.0057462    0.0000510; 0.0000024    0.0000522    2.0023775];
+inter.coupling.matrix=cell(2,2);
+inter.coupling.matrix{1,2}=1e6*[1.9000       0.0730 -0.4967; 0.0730       1.9759      -0.8768; -0.4967      -0.8768      77.1529];
+%N-S distance 1.80 A, from N-S bond scan using orca
+
+%inter.coupling.scalar=cell(2,2);
+%inter.coupling.scalar{1,2}=1e6*27.4502;
+
+
+% Set the sequence parameters
+parameters.offset=10;
+parameters.sweep=1e9;
+parameters.npoints=1024;
+parameters.zerofill=2048;
+parameters.spins='E';
+parameters.axis_units='Gauss';
+parameters.derivative=0;
+
+% Run Spinach
+spin_system=create(sys,inter);
+spin_system=basis(spin_system,bas);
+
+%jlh - keep track of execution time
+bigTic = tic;
+fid=pulse_acquire(spin_system,parameters);
+timeSpent = toc(bigTic);
+timeSpentMsg = sprintf('pulse_acquire computation time: %f.4 s', timeSpent);
+report(spin_system, timeSpentMsg);
+
+% Apodization
+fid=apodization(fid,'crisp-1d');
+
+% Perform Fourier transform
+spectrum=fftshift(fft(fid,parameters.zerofill));
+
+
+
+% export the spectrum
+%export_1d(spin_system,real(spectrum),parameters);
+%spectrum=real(spectrum);
+
+%Compute the derivative if necessary
+if isfield(parameters,'derivative')
+spectrum=fft(ifft(spectrum).*fftdiff(parameters.derivative,length(spectrum),1)');
+end
+
+ax=axis_1d(spin_system,parameters);
+data = cat(2, transpose(ax), real(spectrum));
+save('johnny_1e1N_parallel_simple.dat','data', '-ASCII');
+end

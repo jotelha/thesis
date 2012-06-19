@@ -1,0 +1,65 @@
+% W-band pulsed powder ESR spectrum of nitroxide radical.
+%
+% ilya.kuprov@oerc.ox.ac.uk
+
+function jlh_10spins_split()
+
+%jlh - set simulation name
+title = 'jlh_10spins_split';
+right_now = datestr(now,'yyyymmdd_HHMMSS');
+realtitle = [title '_' right_now];
+
+% Set the simulation parameters
+sys.magnet=3.356;
+sys.regime='powder';
+bas.mode='ESR-1';
+sys.tols.grid_rank=101;
+  
+% Interactions
+sys.isotopes={'E','14N','1H','1H','1H','1H','1H','1H','1H','1H','1H','1H','1H','1H','1H'};
+inter.zeeman.matrix=cell(15,1);
+inter.zeeman.matrix{1,1}=[ 2.0056023 -0.0013775 -0.0004019; -0.0008185 2.0038816 0.0002087; -0.0002747 0.0001729 2.0062982];
+inter.coupling.matrix=cell(15,15);
+inter.coupling.matrix{1,2}=1e6*[29.4479  3.9997 -0.4979;   3.9997  76.1445 -14.8367;  -0.4979 -14.8367  38.4285];  %92.815191
+inter.coupling.matrix{1,3}=1e6*[-1.2922  2.0819 -1.9943;  2.0819  -1.407 -1.7023; -1.9943 -1.7023 -1.5011];  %5.3217912
+inter.coupling.matrix{1,4}=1e6*[-2.1111   0.739 -0.0751;   0.739  3.8103 -1.3748; -0.0751 -1.3748 -1.5906];  %5.137004
+inter.coupling.matrix{1,5}=1e6*[ -1.772 -0.1817 -1.7567; -0.1817 -2.5424   0.492; -1.7567  0.492 0.9214];  %4.144262
+inter.coupling.matrix{1,6}=1e6*[  1.453 -1.6574  -0.691; -1.6574 -1.688   0.39; -0.691   0.39 -2.267];  %4.1052349
+inter.coupling.matrix{1,7}=1e6*[-0.4378 -1.2795  1.3683; -1.2795  0.0115 -1.4988;  1.3683 -1.4988   0.357];  %3.4395906
+inter.coupling.matrix{1,8}=1e6*[-0.8329 -1.9203  0.4803; -1.9203  0.9226 -0.7035;  0.4803 -0.7035  0.0564];  %3.2209314
+inter.coupling.matrix{1,9}=1e6*[ 0.1198 -0.4979 -1.5462; -0.4979 -0.6431  1.0926; -1.5462 1.0926 0.6069];  %2.9087943
+inter.coupling.matrix{1,10}=1e6*[ 1.2327 -1.1946  -0.287; -1.1946 -0.4618  0.2179;  -0.287  0.2179 -1.0748];  %2.4498654
+inter.coupling.matrix{1,11}=1e6*[-0.6407 -0.0092  -0.052; -0.0092 1.5847 1.1497;  -0.052  1.1497 -0.6067];  %2.4370172
+inter.coupling.matrix{1,12}=1e6*[-0.8816 0.0498 0.0312;  0.0498 -0.5831 -1.0426;  0.0312 -1.0426  1.5633];  %2.3962612
+inter.coupling.matrix{1,13}=1e6*[-0.5175  0.3339 -0.6189;  0.3339 -0.8542 -0.7846; -0.6189 -0.7846  1.4066];  %2.2795251
+inter.coupling.matrix{1,14}=1e6*[-1.0053 -0.1625 -0.0388; -0.1625 1.7132 0.4065; -0.0388  0.4065 -0.9114];  %2.2721444
+inter.coupling.matrix{1,15}=1e6*[-0.0486  0.319 0.7399;   0.319 -1.1112   0.583; 0.7399  0.583 1.3422];  %2.2398286
+%inter.coupling.matrix{1,16}=1e6*[-0.1554 -0.3144  1.2117; -0.3144 -0.7463 -0.5347;  1.2117 -0.5347  0.8143];  %2.2248897
+%inter.coupling.matrix{1,17}=1e6*[ 0.6438  1.0374 -0.8099;  1.0374 -0.1784 -0.3011; -0.8099 -0.3011 -0.6231];  %2.1166376
+%inter.coupling.matrix{1,18}=1e6*[  0.03 0.6319  1.064; 0.6319 -0.417 0.7269;  1.064 0.7269 0.3062];  %2.0947797
+%inter.coupling.matrix{1,19}=1e6*[-0.3962 1.0036 0.3097; 1.0036 1.0096 0.5029;  0.3097  0.5029 -0.6686];  %2.0821536
+%inter.coupling.matrix{1,20}=1e6*[-0.7073 0.3297  0.411;  0.3297 -0.0163  1.1153;  0.411 1.1153 0.6509];  %1.9917942
+
+
+% Set the sequence parameters
+parameters.offset=0;
+parameters.sweep=1e9;
+parameters.npoints=512;
+parameters.zerofill=1024;
+parameters.spins='E';
+parameters.axis_units='Gauss';
+parameters.derivative=0;
+
+% jlh - parallel extension
+parameters.nodes = 16;
+parameters.ppn = 1;
+parameters.title = realtitle;
+
+% Run Spinach
+spin_system=create(sys,inter);
+spin_system=basis(spin_system,bas);
+
+%jlh - keep track of execution time
+
+jlh_master_pulse_acquire(spin_system,parameters);
+end

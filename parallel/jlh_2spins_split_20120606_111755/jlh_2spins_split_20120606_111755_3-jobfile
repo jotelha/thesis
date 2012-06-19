@@ -1,0 +1,12 @@
+#!/bin/bash 
+#PBS -N jlh_2spins_split_20120606_111755_3 
+#PBS -q batch 
+#PBS -l nodes=1:ppn=2 
+#PBS -l walltime=20:00:00 
+#PBS -m bea -M jotelha@zedat.fu-berlin.de 
+
+#PBS -e jlh_2spins_split_20120606_111755
+#PBS -o jlh_2spins_split_20120606_111755
+cd $PBS_O_WORKDIR
+
+/net/opt/bin/matlab -nodesktop -nosplash -r "jlh_outsourced_pulse_acquire(3874,5810,'jlh_2spins_split_20120606_111755/jlh_2spins_split_20120606_111755.mat','jlh_2spins_split_20120606_111755/jlh_2spins_split_20120606_111755_3.mat'); quit;" &>jlh_2spins_split_20120606_111755/jlh_2spins_split_20120606_111755_3.log

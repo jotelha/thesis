@@ -1,0 +1,22 @@
+spinsys {
+   channles  29Si 27Al
+   nuclei    27Al 27Al 29Si 29Si
+   
+   shift 1 -13.1p -13.7p 0.27 95 34 63
+   shift 2 0.1p -20p 0.14 65 14 83
+   shift 3 10p 55p 0.7 5 0 50
+   shift 4 -2.9p 18.321p 0.49 159.3 101.6 32.1
+
+  quadrupole 1 2 3.28e6 0.19 0 0 0 
+  quadrupole 2 2 0.60e6 0.99 0 54.7 0
+
+  dipole 1 3 512 120 0 0
+  dipole 1 2 -1940 0 0 0  
+  dipole 4 3 -341 178 11 262
+
+
+  jcoupling 3 4 -15 0 0 0 0 0
+  jcoupling 3 2 150 254 0.11 0 33 12
+
+
+}

@@ -1,0 +1,21 @@
+Warning: No display specified.  You will not be able to display graphics on the screen.
+Warning: No window system found.  Java option 'MWT' ignored
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2012 The MathWorks, Inc.
+                    R2012a (7.14.0.739) 64-bit (glnxa64)
+                              February 9, 2012
+
+{Warning: Name is nonexistent or not a directory:
+/net/opt/matlab2012a/toolbox/shared/eml/eml.} 
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+{Error using banner (line 50)
+banner: unknown banner.
+
+Error in jlh_sum_results (line 4)
+    banner(spin_system,'outsourced_pulse_acquire_banner');
+} 
+>> 

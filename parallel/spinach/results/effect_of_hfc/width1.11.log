@@ -1,0 +1,280 @@
+% W-band pulsed powder ESR spectrum of nitroxide radical.
+%
+% ilya.kuprov@oerc.ox.ac.uk
+
+function width1()
+
+% Set the simulation parameters
+sys.magnet=3.37;
+sys.regime='powder';
+bas.mode='ESR-1';
+sys.tols.grid_rank=131
+
+
+% Interactions
+sys.isotopes={'E','14N'};
+inter.zeeman.matrix=cell(2,1);
+inter.zeeman.matrix{1,1}=[2.0034837 -0.0008625 -0.0002207;-0.0010275 2.004688 -0.0002825;0.0008243 0.000105 2.0064031];
+inter.coupling.matrix=cell(2,2);
+inter.coupling.matrix{1,2}=1e6*[68.1032 17.1309 -14.5741;17.1309 41.8806 -8.4046;-14.5741 -8.4046 40.653]; % 95.904722
+% inter.coupling.matrix{1,3}=1e6*[0.9156 -2.4062 5.9457;-2.4062 -3.663 -3.0412;5.9457 -3.0412 1.9124]; % 10.894643
+% inter.coupling.matrix{1,4}=1e6*[-0.0811 0.1407 -4.6033;0.1407 -4.1659 0.5301;-4.6033 0.5301 1.8585]; % 7.9873443  
+% inter.coupling.matrix{1,5}=1e6*[-2.4624 2.4218 -0.886;2.4218 3.4145 -3.1199;-0.886 -3.1199 -2.0449]; % 7.3940256
+% inter.coupling.matrix{1,6}=1e6*[-1.7275 -0.2073 -2.4641;-0.2073 -2.5883 0.7704;-2.4641 0.7704 4.2186]; % 6.3950524
+% inter.coupling.matrix{1,7}=1e6*[2.9243 1.0854 3.0356;1.0854 -2.2045 0.4162;3.0356 0.4162 -0.7627]; % 5.9266709
+% inter.coupling.matrix{1,8}=1e6*[0.7872 2.2688 -1.7268;2.2688 0.2311 -1.3054;-1.7268 -1.3054 -0.9001];%  4.5989121
+% inter.coupling.matrix{1,9}=1e6*[2.8179 -0.3819 -1.8712;-0.3819 -1.9027 0.0703;-1.8712 0.0703 -0.4658]; % 4.3683127
+% inter.coupling.matrix{1,10}=1e6*[-1.3381 -0.6955 -1.006;-0.6955 -0.1325 2.2283;-1.006 2.2283 1.4798]; % 4.1133964
+% inter.coupling.matrix{1,11}=1e6*[0.3789 2.5387 0.2618;2.5387 1.0548 0.2291;0.2618 0.2291 -1.4809]; % 4.0720119
+% inter.coupling.matrix{1,12}=1e6*[-1.0861 1.1901 -1.0182;1.1901 0.5772 -1.8583;-1.0182 -1.8583 0.4457]; % 3.6775152
+% inter.coupling.matrix{1,13}=1e6*[1.7291 0.1094 -1.38;0.1094 0.2917 -0.0184;-1.38 -0.0184 1.7804]; % 3.1746045	  
+% inter.coupling.matrix{1,14}=1e6*[2.1569 -0.3571 -0.6988;-0.3571 -1.2006 0.074;-0.6988 0.074 -0.9789]; % 2.8800241  
+% inter.coupling.matrix{1,15}=1e6*[2.1556 -0.3912 0.3304;-0.3912 -1.1296 -0.0296;0.3304 -0.0296 -1.0223]; % 2.7374916
+% inter.coupling.matrix{1,16}=1e6*[-1.257 -0.2589 0.0502;-0.2589 1.8313 -0.3772;0.0502 -0.3772 -1.2719]; % 2.6410408
+% inter.coupling.matrix{1,17}=1e6*[-0.4476 1.4205 -0.403;1.4205 0.8951 -0.6172;-0.403 -0.6172 -0.4539]; % 2.5159303  
+% inter.coupling.matrix{1,18}=1e6*[-0.7096 0.3609 0.842;0.3609 -0.6348 0.9719;0.842 0.9719 1.3466]; % 2.5074767  
+% inter.coupling.matrix{1,19}=1e6*[0.6064 -1.1647 -0.9592;-1.1647 -0.3758 0.735;-0.9592 0.735 -0.3134]; % 2.4981588  
+% inter.coupling.matrix{1,20}=1e6*[-0.9032 0.1196 -0.1611;0.1196 -0.4099 -1.2443;-0.1611 -1.2443 1.3238]; % 2.4317307
+% inter.coupling.matrix{1,21}=1e6*[-0.2017 0.8267 0.9727;0.8267 -0.0959 1.0341;0.9727 1.0341 0.3071]; % 2.3541606
+% inter.coupling.matrix{1,22}=1e6*[-0.8 0.4248 0.5657;0.4248 -0.4776 0.9747;0.5657 0.9747 1.049]; % 2.2067003	      
+% inter.coupling.matrix{1,23}=1e6*[-0.849 -0.7005 0.1289;-0.7005 1.3749 -0.5415;0.1289 -0.5415 -0.7544]; % 2.1866289 
+
+
+
+%inter.coupling.scalar=cell(2,2);
+%inter.coupling.scalar{1,2}=1e6*27.4502;
+
+
+% Set the sequence parameters
+parameters.offset=0;
+parameters.sweep=1e9;
+parameters.npoints=1024;
+parameters.zerofill=2048;
+parameters.spins='E';
+parameters.axis_units='Gauss';
+parameters.derivative=0;
+
+% Run Spinach
+spin_system=create(sys,inter);
+spin_system=basis(spin_system,bas);
+fid=pulse_acquire(spin_system,parameters);
+
+% Apodization
+fid=apodization(fid,'crisp-1d');
+
+% Perform Fourier transform
+spectrum=fftshift(fft(fid,parameters.zerofill));
+
+
+
+% export the spectrum
+%export_1d(spin_system,real(spectrum),parameters);
+%spectrum=real(spectrum);
+
+%Compute the derivative if necessary
+if isfield(parameters,'derivative')
+spectrum=fft(ifft(spectrum).*fftdiff(parameters.derivative,length(spectrum),1)');
+end
+
+ax=axis_1d(spin_system,parameters);
+data = cat(2, transpose(ax), real(spectrum));
+save('OUTPUTFILENAME.dat','data', '-ASCII');
+Warning: No display specified.  You will not be able to display graphics on the screen.
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2011 The MathWorks, Inc.
+                    R2011b (7.13.0.564) 64-bit (glnxa64)
+                              August 13, 2011
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+
+sys = 
+
+    magnet: 3.3700
+    regime: 'powder'
+      tols: [1x1 struct]
+
+create: Spinach root directory determined to be /home/elgabart/spinach_serial
+ 
+===========================================
+=                                         =
+=            SPINACH 1.1.1054             =
+=                                         =
+=       Ilya Kuprov, Hannah Hogben,       =
+=    Luke Edwards, Matthew Krzystyniak    =
+=       Peter Hore, Gareth Charnock       =
+=                                         =
+=        Oxford e-Research Centre         =
+=          University of Oxford           =
+=                                         =
+=         GNU Public License v2.5         =
+=                                         =
+===========================================
+ 
+tolerances: Liouvillian zero tolerance                                          1.00000000e-07       (safe default)
+tolerances: relaxation superoperator zero tolerance                             1.00000000e-07       (safe default)
+tolerances: sparse matrix exponentiation method                                 taylor               (safe default)
+tolerances: exponential propagator zero tolerance                               1.00000000e-08       (safe default)
+tolerances: norm tolerance for series terms of exponential propagator           1.00000000e-09       (safe default)
+tolerances: zero tolerance for series terms of exponential propagator           1.00000000e-10       (safe default)
+tolerances: final zero tolerance in the derivative propagator                   1.00000000e-08       (safe default)
+tolerances: norm tolerance for the series terms of the derivative propagator    1.00000000e-09       (safe default)
+tolerances: zero tolerance for the series terms of the derivative propagator    1.00000000e-10       (safe default)
+tolerances: subspace dimension for Krylov propagator                            30                   (safe default)
+tolerances: Krylov propagation to be used for nnz(L) above                      50000                (safe default)
+tolerances: ZTE zero track tolerance                                            1.00000000e-24       (safe default)
+tolerances: ZTE sample length                                                   16                   (safe default)
+tolerances: ZTE off for state vector densities in excess of                     0.5                  (safe default)
+tolerances: proximity cut-off distance (Angstrom)                               4.00000000e+00       (safe default)
+tolerances: interaction cutoff tolerance                                        1.00000000e-05       (safe default)
+tolerances: basis hush tolerance                                                256                  (safe default)
+tolerances: interaction tensor symmetry tolerance                               1.00000000e-05       (safe default)
+tolerances: path tracing tolerance                                              1.00000000e-07       (safe default)
+tolerances: path drop tolerance                                                 1.00000000e-10       (safe default)
+tolerances: irrep population tolerance                                          1.00000000e-10       (safe default)
+tolerances: sparse algebra to be used for matrix dimension above                200                  (safe default)
+tolerances: sparse algebra to be used for matrix density below                  0.25                 (safe default)
+tolerances: relative accuracy of the elements of Redfield superoperator         1.00000000e-04       (safe default)
+tolerances: Lebedev grid rank                                                   131                  (user-specified)
+tolerances: propagator differentiation algorithm                                hausdorff            (safe default)
+tolerances: Hausdorff series order for propagator gradients                     Inf                  (safe default)
+tolerances: norm estimation tolerance                                           0.0005               (safe default)
+tolerances: Planck constant (hbar)                                              1.05457163e-34      
+tolerances: Boltzmann constant (k)                                              1.38065030e-23      
+tolerances: free electron g-factor                                              2.00231930e+00      
+ 
+===========================================
+=                                         =
+=               SPIN SYSTEM               =
+=                                         =
+===========================================
+ 
+create: SOLID REGIME, full coupling tensors will be used to infer spin system connectivity.
+create: 2 spins in the simulation.
+create: magnetic induction of 3.37 Tesla (143.49 MHz proton frequency, -94.444 GHz electron frequency).
+create: summary of non-zero Zeeman interactions (ppm for nuclei, g-tensor for electrons)
+========================================================================================================================
+   Spin  2S+1             Eigenvalues ( A | B | C )                    Eigenvectors ( A | B | C )           Isotropic   
+------------------------------------------------------------------------------------------------------------------------
+ symmetrize: WARNING - significant asymmetry detected in a coupling tensor.
+ symmetrize: WARNING - symmetric part norm: 2.0065
+ symmetrize: WARNING - anti-symmetric part norm: 0.00056334
+ symmetrize: WARNING - the tensor has been symmetrized.
+1   E     2     +2.00295e+00   +2.00517e+00   +2.00646e+00   +8.780e-01   -4.581e-01   +1.390e-01   +2.00486e+00
+                                                                +4.743e-01   +8.716e-01   -1.236e-01
+                                                                -6.456e-02   +1.744e-01   +9.826e-01
+========================================================================================================================
+ symmetrize: WARNING - significant asymmetry detected in a coupling tensor.
+ symmetrize: WARNING - symmetric part norm: 1226239411.5351
+ symmetrize: WARNING - anti-symmetric part norm: 166952012.3811
+ symmetrize: WARNING - the tensor has been symmetrized.
+create: summary of non-zero Zeeman interactions (angular frequencies)
+========================================================================================================================
+   Spin  2S+1             Eigenvalues ( A | B | C )                    Eigenvectors ( A | B | C )           Isotropic   
+------------------------------------------------------------------------------------------------------------------------
+1   E     2     -1.87196e+08   -8.43914e+08   -1.22624e+09   -8.780e-01   +4.581e-01   +1.390e-01   -7.52450e+08
+                                                                -4.743e-01   -8.716e-01   -1.236e-01
+                                                                +6.456e-02   -1.744e-01   +9.826e-01
+========================================================================================================================
+create: WARNING - no coordinates given, point dipolar interactions assumed to be zero.
+create: summary of spin-spin couplings (angular frequencies)
+========================================================================================================
+L   S          Eigenvalues ( A | B | C )                 Eigenvectors ( A | B | C )          Isotropic  
+--------------------------------------------------------------------------------------------------------
+1   2   +2.053e+08   +2.185e+08   +5.227e+08   +1.649e-01   +5.322e-01   -8.304e-01   +3.155e+08
+                                                  -8.144e-01   -4.015e-01   -4.190e-01
+                                                  -5.564e-01   +7.453e-01   +3.673e-01
+========================================================================================================
+create: spin temperature: 0 Kelvin.
+create: relaxation theory: none.
+create: rotational correlation time(s): 0 seconds.
+create: terms to keep in the relaxation superoperator: kite.
+create: action to take on dynamic frequency shifts: ignore.
+create: equilibrium state to relax towards: zero.
+create: non-specific relaxation rate: 0 Hz.
+create: connectivity matrix density 100%
+create: proximity matrix density 50%
+ 
+===========================================
+=                                         =
+=                BASIS SET                =
+=                                         =
+===========================================
+ 
+basis: ESR-1 basis set - complete on electrons, {E,Lz} on nuclei.
+basis: final basis set summary (L,M quantum numbers in irreducible spherical tensor products).
+N        1       2
+1      (0,0)   (0,0)   
+2      (0,0)   (1,0)   
+3      (0,0)   (2,0)   
+4      (1,1)   (0,0)   
+5      (1,1)   (1,0)   
+6      (1,1)   (2,0)   
+7      (1,0)   (0,0)   
+8      (1,0)   (1,0)   
+9      (1,0)   (2,0)   
+10     (1,-1)  (0,0)   
+11     (1,-1)  (1,0)   
+12     (1,-1)  (2,0)   
+ 
+basis: state space dimension 12 (33.3333% of the full state space).
+basis: no symmetry information available.
+ 
+===========================================
+=                                         =
+=              PULSE SEQUENCE             =
+=                                         =
+===========================================
+ 
+pulse_acquire: computing pulse_acquire...
+ sequence_report: sweep width: 1000000000 Hz
+ sequence_report: number of points: 1024
+ sequence_report: zerofilled to: 2048
+ sequence_report: offset: 0 Hz
+ secularity: rotating frame assumptions set to "nmr".
+ equilibrium: computing the thermal equilibrium state...
+ equilibrium: using the isotropic part of the Hamiltonian...
+  secularity: rotating frame assumptions set to "keep_all".
+  h_superop: full isotropic Zeeman term for spin 1...
+             Lz x -94563849917.7387 Hz
+  h_superop: full isotropic Zeeman term for spin 2...
+             Lz x 10371869.6925 Hz
+  h_superop: strong isotropic coupling term for spins 1,2...
+             (LxSx+LySy+LzSz) x 50212266.6667 Hz
+ equilibrium: WARNING - high temperature approximation.
+pulse_acquire: building anisotropic Liouvillian...
+ h_superop: offset isotropic Zeeman term for spin 1...
+            Lz x -119756121.5664 Hz
+ h_superop: secular anisotropic Zeeman term for spin 1...
+            PHI( 2) +2.84018e+07-4.45731e+07i Hz
+            PHI( 1) +1.42351e+07+4.18610e+06i Hz
+            PHI( 0) -8.92419e+07 Hz
+            PHI(-1) -1.42351e+07+4.18610e+06i Hz
+            PHI(-2) +2.84018e+07+4.45731e+07i Hz
+ h_superop: weak isotropic coupling term for spins 1,2...
+            LzSz x 50212266.6667 Hz
+ h_superop: weak anisotropic coupling term for spins 1,2...
+            PHI( 2) +1.31113e+07-1.71309e+07i Hz
+            PHI( 1) +1.45741e+07-8.40460e+06i Hz
+            PHI( 0) -1.17077e+07 Hz
+            PHI(-1) -1.45741e+07-8.40460e+06i Hz
+            PHI(-2) +1.31113e+07+1.71309e+07i Hz
+pulse_acquire: applying the offset...
+ evolution: coils have been normalized.
+ evolution: using coil state as destination filter...
+ evolution: trying to reduce the problem dimension...
+  reduce: no symmetry information available.
+  reduce: subspace #1, attempting zero track elimination...
+   zte: dropping states with amplitudes below 1e-24 within the first 1.0089e-08 seconds of the trajectory.
+   zte: 16 steps taken, 6.3057e-10 seconds each.
+   zte: old active space dimension 69720
+   zte: new active space dimension 17431
+  reduce: path-tracing subspace #1...
+   path_trace: found 1 independent subspace(s) of dimension 1
+   path_trace: found 5810 independent subspace(s) of dimension 3
+  reduce: dropped 1 empty subspaces with a total dimension of 1
+ evolution: propagating the system...
+>> 

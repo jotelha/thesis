@@ -1,0 +1,41 @@
+
+job = 
+
+ Job ID 73 Information
+ =====================
+
+                 Type: pool
+             Username: jotelha
+                State: finished
+           SubmitTime: Wed May 16 18:16:07 CEST 2012
+            StartTime: Thu May 17 13:08:47 CEST 2012
+     Running Duration: 5 days 120h -7194m 17s
+
+ - Data Dependencies
+
+        AttachedFiles: /home/jotelha/parallel/jlh_f6250_19spins.m
+      AdditionalPaths: /home/jotelha/parallel/
+                       /home/jotelha/parallel/spinach/etc
+                       /home/jotelha/parallel/spinach/etc/data_processing
+                       /home/jotelha/parallel/spinach/etc/wave
+                       /home/jotelha/parallel/spinach/exp
+                       /home/jotelha/parallel/spinach/exp/grids
+                       /home/jotelha/parallel/spinach/kernel
+                       /home/jotelha/parallel/spinach/kernel/cache
+                       /home/jotelha/parallel/spinach/kernel/dmrg
+                       /home/jotelha/parallel/spinach/kernel/hilbert_space
+                       /home/jotelha/parallel/spinach/kernel/optimal_control
+                       /home/jotelha/parallel/spinach/kernel/pulse_shapes
+                       /home/jotelha/parallel/spinach/kernel/utilities
+
+ - Associated Task(s)
+
+       Number Pending: 0
+       Number Running: 0
+      Number Finished: 20
+    Task ID of Errors: []
+
+ - CJSCommunicatingJob Specific Properties
+
+      NumWorkersRange: [20 20]
+

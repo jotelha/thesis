@@ -1,0 +1,56 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2012 The MathWorks, Inc.
+                    R2012a (7.14.0.739) 64-bit (glnxa64)
+                              February 9, 2012
+
+    ----------------------------------------------------
+	Your MATLAB license will expire in 17 days.
+	Please contact your system administrator or
+	MathWorks to renew this license.
+    ----------------------------------------------------
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+
+job = 
+
+ Job ID 57 Information
+ =====================
+
+                 Type: pool
+             Username: jotelha
+                State: finished
+           SubmitTime: Tue May 15 20:58:03 CEST 2012
+            StartTime: Tue May 15 21:01:24 CEST 2012
+     Running Duration: 0 days 0h 0m 31s
+
+ - Data Dependencies
+
+        AttachedFiles: /home/jotelha/parallel/johnny_1e1N_parallel_simple.m
+      AdditionalPaths: /home/jotelha/parallel/
+                       /home/jotelha/parallel/spinach/etc
+                       /home/jotelha/parallel/spinach/etc/data_processing
+                       /home/jotelha/parallel/spinach/etc/wave
+                       /home/jotelha/parallel/spinach/exp
+                       /home/jotelha/parallel/spinach/exp/grids
+                       /home/jotelha/parallel/spinach/kernel
+                       /home/jotelha/parallel/spinach/kernel/cache
+                       /home/jotelha/parallel/spinach/kernel/dmrg
+                       /home/jotelha/parallel/spinach/kernel/hilbert_space
+                       /home/jotelha/parallel/spinach/kernel/optimal_control
+                       /home/jotelha/parallel/spinach/kernel/pulse_shapes
+                       /home/jotelha/parallel/spinach/kernel/utilities
+
+ - Associated Task(s)
+
+       Number Pending: 0
+       Number Running: 0
+      Number Finished: 8
+    Task ID of Errors: []
+
+ - CJSCommunicatingJob Specific Properties
+
+      NumWorkersRange: [8 8]
+

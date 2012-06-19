@@ -1,0 +1,43 @@
+Warning: Error caught during construction of remote parfor code.
+The parfor construct will now be run locally rather than
+on the remote matlabpool. The most likely cause of this is
+an inability to send over input arguments because of a
+serialization error. The error report from the caught error is:
+Error using <a href="matlab:helpUtils.errorDocCallback('distcompserialize')" style="font-weight:bold">distcompserialize</a>
+Error during serialization
+
+Error in <a href="matlab:helpUtils.errorDocCallback('distcomp.remoteparfor', '/opt/matlab2012apptrial/toolbox/distcomp/@distcomp/@remoteparfor/remoteparfor.m', 41)" style="font-weight:bold">distcomp.remoteparfor</a> (<a href="matlab: 
+opentoline('/opt/matlab2012apptrial/toolbox/distcomp/@distcomp/@remoteparfor/remoteparfor.m',41,0)">line 41</a>)
+    obj.SerializedInitData =
+    distcompMakeByteBufferHandle(distcompserialize(varargin));
+
+Error in <a href="matlab:helpUtils.errorDocCallback('parallel_function', '/opt/matlab2012apptrial/toolbox/matlab/lang/parallel_function.m', 437)" style="font-weight:bold">parallel_function</a> (<a href="matlab: opentoline('/opt/matlab
+2012apptrial/toolbox/matlab/lang/parallel_function.m',437,0)">line 437</a>)
+        P = distcomp.remoteparfor(W, @make_channel, parfor_C);
+
+Error in <a href="matlab:helpUtils.errorDocCallback('jlh_1parfor_pulse_acquire', '/home/jotelha/parallel/spinach/exp/jlh_1parfor_pulse_acquire.m', 143)" style="font-weight:bold">jlh_1parfor_pulse_acquire</a> (<a href="matlab: opentoli
+ne('/home/jotelha/parallel/spinach/exp/jlh_1parfor_pulse_acquire.m',143,0)">line 143</a>)
+            parfor n=1:1 %grid_size jlh only 16 repetitions
+
+Error in <a href="matlab:helpUtils.errorDocCallback('jlh_f6250_1parfor', '/home/jotelha/parallel/jlh_f6250_1parfor.m', 51)" style="font-weight:bold">jlh_f6250_1parfor</a> (<a href="matlab: opentoline('/home/jotelha/parallel/jlh_f6250_
+1parfor.m',51,0)">line 51</a>)
+fid=jlh_1parfor_pulse_acquire(spin_system,parameters);
+
+Error in <a href="matlab:helpUtils.errorDocCallback('parallel.internal.cluster.executeFunction', '/opt/matlab2012apptrial/toolbox/distcomp/cluster/+parallel/+internal/+cluster/executeFunction.m', 40)" style="font-weight:bold">parallel.internal.cluster.executeFunction</a> (<a href="matlab: opentoline('/opt/matlab2012apptrial/toolbox/distcomp/cluster/+parallel/+internal/+cluster/executeFunction.m',40,0)">line 40</a>)
+    feval(fcn, fcnArgsIn{:});
+
+Error in <a href="matlab:helpUtils.errorDocCallback('dctEvaluateFunction>iEvaluateWithNoErrors', '/opt/matlab2012apptrial/toolbox/distcomp/private/dctEvaluateFunction.m', 23)" style="font-weight:bold">dctEvaluateFunction>iEvaluateWithNoErrors</a> (<a href="matlab: opentoline('/opt/matlab2012apptrial/toolbox/distcomp/private/dctEvaluateFunction.m',23,0)">line 23</a>)
+        feval(fcn, args{:});
+
+Error in <a href="matlab:helpUtils.errorDocCallback('dctEvaluateFunction', '/opt/matlab2012apptrial/toolbox/distcomp/private/dctEvaluateFunction.m', 7)" style="font-weight:bold">dctEvaluateFunction</a> (<a href="matlab: opentoline('/opt/matlab2012apptrial/toolbox/distcomp/private/dctEvaluateFunction.m',7,0)">line 7</a>)
+[textOut, out, errOut] = evalc('iEvaluateWithNoErrors(fcn, nOut, args)');
+
+
+
+The error message indicates that perhaps you're trying to send too much data into the body of the PARFOR loop. For example, the following fails with that message for me:
+    largeArray = zeros(3e9,1,'uint8');
+    parfor ii=1:2
+        disp(size(largeArray))
+    end
+because largeArray is too large. The limit for sending a whole array into a PARFOR loop is around 2Gb, so it's highly likely that you're hitting the same problem.
+How to work around this limit depends very much on the structure of your code... 

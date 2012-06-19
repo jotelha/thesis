@@ -1,0 +1,12 @@
+#!/bin/bash 
+#PBS -N jlh_2spins_split_20120606_111755 
+#PBS -q batch 
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=01:00:00 
+#PBS -m bea -M jotelha@zedat.fu-berlin.de 
+#PBS -e jlh_2spins_split_20120606_111755
+#PBS -o jlh_2spins_split_20120606_111755
+#PBS -W depend=afterok:40700.torque.physik.fu-berlin.de:40701.torque.physik.fu-berlin.de:40702.torque.physik.fu-berlin.de
+cd $PBS_O_WORKDIR
+
+/net/opt/bin/matlab -nodesktop -nosplash -r "jlh_sum_results('jlh_2spins_split_20120606_111755/jlh_2spins_split_20120606_111755.mat'); quit;" &> jlh_2spins_split_20120606_111755/jlh_2spins_split_20120606_111755.log
