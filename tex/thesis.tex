@@ -148,14 +148,46 @@ When we place a spin sytem inside a static magnetic field $\vec{B}_0 = B_0 \hat{
 \subsection{Spin Electron Hamiltonian}
 The Hamiltonian of an unpaired spin electron will exhibit several perturbation terms of different nature:
 \begin{equation}
- \mathcal{H} = \mathcal{H}_Z + \mathcal{H}_{HF} + \mathcal{H}_{CS} + \mathcal{H}_J + \mathcal{H}_D
+ \mathcal{H} = \mathcal{H}_Z + \mathcal{H}_{HF} + \mathcal{H}_D
 \end{equation}
 \begin{enumerate}
-  \item Zeeman contribution $\mathcal{H}_Z$
-  \item Hyperfine interaction $\mathcal{H}_{HF}$
+  \item \uline{Zeeman contribution} $\mathcal{H}_Z = - \vec{\mu} \cdot \vec{B}_0 = -\hbar B_0 (\gamma_L \mathbf{L}_z + \gamma_S \mathbf{S}_z)$
+
+  The static magnetic field $\vec{B}_0 = B_0 \hat{z}$ acts a torque on the electron's magnetic dipole moment $\mu$, linearly dependant on its angular momentum and spin. Thus the \emph{Zeeman effect} lifts the spin degeneracy of energy levels, reducing the energy of spins aligned parallel to the magnetic field (-), and increasing the energy of spins aligned antiparallel (+) by the correction term
+  \begin{equation}
+   E^1\pm = \pm \mu_B \gamma_J B_0 m_J 
+  \end{equation}
+  resulting from algebraic acrobatics with the Hamiltonian above \cite[insert]{griffiths}
+  Boltzmann statistics yields the relation for the equilibrium occupancy of states
+  \begin{equation}
+    \frac{N_+}{N_-} = e^{- \frac{\Delta E}{k_B T}}
+  \end{equation}
+
+
+  \item \uline{Hyperfine interaction} $\mathcal{H}_{HF} = $
+  \item \uline{Magnetic dipole interaction} $\mathcal{H}_{D} = $
 \end{enumerate}
 
 \subsection{Rotating Frame}
+Suppose we are changing from the lab frame to a frame, which is rotating anticlockwise with angular velocity $\omega_1$ around the z-Axis. The unit vectors of that rotating frame are:
+\begin{equation}
+ \hat{x}' = \begin{pmatrix} \cos(\omega_1 t) \\ \sin(\omega_1 t) \\ 0 \end{pmatrix} \quad
+ \hat{x}' = \begin{pmatrix} - \sin(\omega_1 t) \\  \cos(\omega_1 t)\\ 0 \end{pmatrix} \quad
+ \hat{z}' = \hat{z}
+\end{equation}
+with the conversion 
+\begin{align}
+ \vec{r}' & = x'\hat{x}' + y'\hat{y}' + z'\hat{z}' \\
+	  & = \left[x \cos(\omega_1 t)+ y \sin(\omega_1 t) \right] \hat{x}' + \left[- x \sin(\omega_1 t)+ y \cos(\omega_1 t) \right] + z \hat{z} \\
+	  & = R \vec{r} \quad \text{with} \quad R = 
+	    \begin{bmatrix} 
+	      \cos(\omega_1 t)	& -\sin(\omega_1 t) & 0	\\
+	      \sin(\omega_1 t)	& \cos(\omega_1 t) & 0 \\
+	      0 & 0 & 1
+	    \end{bmatrix}
+\end{align}
+
+
 
 
 
@@ -167,7 +199,7 @@ The Matlab library \emph{Spinach} supplies efficient methods for large-scale spi
 \FloatBarrier
 \begin{thebibliography}{9}
 \bibitem{spinach}
-  Dr. Ilya Kuprov,,
+  Dr. Ilya Kuprov,
   \emph{Spin Dynamics, Lecture 1 - 10}.
   University of Oxford,
   2011.
@@ -178,9 +210,16 @@ The Matlab library \emph{Spinach} supplies efficient methods for large-scale spi
   Journal of Magnetic Resonance,
   208 (2011) 179-194.
 
+\bibitem{griffiths}
+  David J. Griffiths,
+  \emph{Introduction to Quantum Mechanics}.
+  Pearson, 
+  2nd Edition, 
+  2005.
+
 \bibitem{nmr-ox}
   Paul T. Callaghan,
-  \emph{Translational Dynamics & Magnetic Resonance. Principles of Pulsed Gradient Spin Echo NMR}
+  \emph{Translational Dynamics \& Magnetic Resonance. Principles of Pulsed Gradient Spin Echo NMR}.
   Oxford University Press,
   2011.
 
