@@ -140,6 +140,166 @@ Furthermore, harmonics are eigenfunctions of LTI systems, and the \emph{frequenc
 	\Phi\{e^{i\omega t}\} = \int_{-\infty}^{\infty} e^{i\omega t} h(\tau-t) d\tau =  e^{i\omega t} \int_{-\infty}^{\infty} e^{i\omega (\tau-t)} h(\tau-t) d\tau =  e^{i\omega t} \int_{-\infty}^{\infty} e^{i\omega (\tau)} h(\tau) d\tau = H(\omega) e^{i \omega t}
 \end{equation}
 
+
+\subsection{Matrix Formalism}
+\subsubsection{Matrix Exponentials}
+In the following we shall make use of matrix exponentials to express rotation operators. The defintion of the exponential
+\begin{equation}
+ e^x = \sum_{k=0}^\infty \frac{x^k}{k!} = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + ...
+\end{equation}
+can be easily applied to square matrices, eg.:
+\begin{equation}
+ e^{i \phi A } = I + i \phi A - \frac{(\phi A)^2}{2!} - i \frac{(\phi A)^3}{3!} + \frac{(\phi A)^4}{4!} + i \frac{(\phi A)^5}{5!} - ...
+\end{equation}
+Only if the operators $A$ and $B$ commute, the classical identities
+\begin{align}
+ Ae^{iB} = e^{iB}A \\
+  e^{i(A+B)} = e^{iA}e^{iB}
+\end{align}
+hold.
+
+\subsubsection{Diagonizable Matrix}
+An $n \times n$ matrix $A$ is said to be diagonizable if the exists an invertible matrix $P$ such that
+\begin{equation}
+ P^{-1} A P = \begin{pmatrix} 
+		\lambda_1 & & & \\
+		& \lambda_2 & & \\
+		& & \text{...} & \\
+		& & & \lambda_n
+              \end{pmatrix} = D
+\end{equation}
+If so, then 
+\begin{equation}
+ A P = P \begin{pmatrix} 
+		\lambda_1 & & & \\
+		& \lambda_2 & & \\
+		& & \text{...} & \\
+		& & & \lambda_n
+              \end{pmatrix} = P D
+\end{equation}
+and by writing P composed by its column vectors $P = ( \vec{\alpha}_1 \vec{\alpha}_2 ... \vec{\alpha}_n)$ we find for every $i = 1,2,...,n$
+\begin{equation}
+ A \vec{\alpha}_i = \lambda_i \vec{\alpha_i}
+\end{equation}
+Obviously $P$ is made up by the eigenvectors of $A$, while the entries of its diagonalized form $D$ are its eigenvalues. Furthermore, for an $n \times n$ matrix $A$ to possess exactly $n$ distintc eigenvalues is a sufficient condition for diagonalizabilty.
+
+Diagonizable matrices are of interest because once diagonalized their powers can be computet in a very efficient manner:
+\begin{align*}
+ A^k & = (P D P^{-1})^k = ( P D P^{-1}) \cdot ( P D P^{-1}) \cdot ... \cdot (P D P^{-1}) \\
+    & = P D (P^{-1} P) D (P^{-1} P) \cdot ... \cdot (P^{-1} P) D P^{-1} \\
+    & = P D^k P^{-1}
+\end{align*}
+while the power of a diagonal matrix is just
+\begin{equation}
+ D^k = \begin{pmatrix} 
+		\lambda_1 & & & \\
+		& \lambda_2 & & \\
+		& & \text{...} & \\
+		& & & \lambda_n
+              \end{pmatrix}^k = 
+	\begin{pmatrix} 
+		\lambda_1^k & & & \\
+		& \lambda_2^k & & \\
+		& & \text{...}^k & \\
+		& & & \lambda_n^k
+              \end{pmatrix}
+\end{equation}
+Also matrix exponentials can be computed in this way, since they can be expanded as power series such as above.
+
+
+\subsection{Spin Formalism}
+Though the basic mechanisms of EPR can be understood on the basis of a semi classical approach, a quantum mechanical approach is necessary to account for many more subtle features. According to \cite[Chap. 3]{nmr-ox}, the four basic concepts of the quantum mechanics involved to describe spin behaviour are:
+\subsubsection{Quantum States}
+Any allowed spin state $| \Psi \rangle$ can be written as a linear superposition of an orthogonal basis set of an Hilbert vector space spanned by all allowed \emph{azimuthal quantum number} states $| m \rangle$:
+\begin{equation}
+ | \Psi \rangle = \sum_m a_m | m \rangle
+\end{equation}
+where the amplitudes are complex $a_m = |a_m| e^{i\phi_m}$ with phase $\phi_m$ and magnitude $|a_m|$.
+\subsubsection{Eigenvalues}
+All measurements to be done on a spin system yield eigenvalues of a linear operator associated with the particular measurement. Measuring the spin component of a system in one of the basis states along the z-axis $S_z$ thus yields
+\begin{equation}
+  S_z |m\rangle = m |m\rangle
+\end{equation}
+The orthogonal basis can be normalized by requiring the inner product of basis vectors to be
+\begin{equation}
+ \langle m|m'\rangle = \delta_{m m'}
+\end{equation}
+This requirement automatically defines the corresponding \emph{bras} for the \emph{ket} states. For a system of $S=\frac{1}{2}$ and thus $m=\pm \frac{1}{2}$ we have
+\begin{align} 
+ |\tfrac{1}{2}\rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad |-\tfrac{1}{2}\rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}\\
+ \langle\tfrac{1}{2}| = \begin{bmatrix} 1 & 0 \end{bmatrix}, \quad \langle-\tfrac{1}{2}| = \begin{bmatrix} 0 & 1 \end{bmatrix} 
+\end{align}
+yielding the operator for the spin z-component observable 
+\begin{equation}
+ S_z = \begin{bmatrix} \tfrac{1}{2} & 0 \\ 0 & -\tfrac{1}{2} \end{bmatrix}
+\end{equation}
+
+\subsubsection{Measurement}
+If a spin system exists in the eigenstate $|m\rangle$ of $S_z$, then the measurement of $S_z$ will yield
+\begin{equation}
+ \langle m | S_z | m \rangle = m
+\end{equation}
+The measurement on a general superposition will yield
+\begin{align}
+ \langle \Psi | S_z | \Psi \rangle & = \sum_{m,m'} a_m^* a_{m'} \langle m' | S_z | m \rangle\\
+  & = \sum_{m,m'} a_m^* a_{m'} m \langle m' | m \rangle\\
+  & = \sum_{m} |a_{m}|^2  m
+\end{align}
+due to the orthormality of the basis set.
+
+\subsubsection{Dynamics}
+In case of a statinary Hamiltonian, the Schr\"odinger equation 
+\begin{equation}
+  i \frac{\partial}{\partial t} | \Psi(t) \rangle = \mathcal{H} |\Psi(t) \rangle
+\end{equation}
+has the solution
+\begin{equation}
+  |\Psi(t)\rangle = U(t) | \Psi(0) \rangle
+\end{equation}
+where 
+\begin{equation}
+ U(t) = e^{-i \mathcal{H} t}
+\end{equation}
+is called the \emph{evolution operator}.
+
+In case of a time-dependent, but piecewise-constant Hamiltonian the solution has the form
+\begin{equation}
+ |\Psi(t)\rangle = \left[ \prod_k e^{-i\mathcal{H}_k \Delta t_k} \right] |\Psi(0)\rangle
+\end{equation}
+
+\subsection{Rotation Formalism}
+A magnetic field $B_0$ applied along the z-axis causes a magnetic moment to precess around the z-axis at the Larmor frequency $\omega_0$. Since the electron's magnetic moment is proportional to its angular momentum $\vec{\mu} = \gamma \vec{J}$ with the \emph{Land\'e g-factor} $\gamma$, the interaction energy $E = - \vec{\mu} \cdot \vec{B}$ and thus the Hamiltonian, the evolution operator and the Schr\"odinger equation's solution can be expressed as
+\begin{equation}
+  \mathcal{H} = - \gamma B_0 J_z, \quad U(t) = e^{i \gamma B_0 t J_z}, \quad \Psi(t) = e^{i \gamma B_0 t J_z} \Psi(0) = e^{i \omega_0 t J_z} \Psi(0) \quad \text{with} \quad \omega_0 = \gamma B_0
+\end{equation}
+Analogous to the classical approach, the time dependent solution must be a rotation of the initial state by angle $phi = -\omega_0 t$, and we can identify 
+\begin{equation}
+ R_z(\phi) = e^{-i\phi J_z}
+\end{equation}
+as an rotation operator around the z-axis. $\phi > 0$ results in an \emph{active} rotation of the state in ``positive'', anticlockwise direction, whereas $\phi < 0$ results in  a rotation in ``negative'', clockwise direction. Likewise we can speak of $\phi > 0$ causing a \emph{passive} rotation of the reference frame in negative, clockwise direction, whereas $phi < 0$ rotates the reference frame in positive, anticlockwise direction.
+
+\subsubsection{Rotating Frame}
+Suppose we are changing from the lab frame to a frame which is rotating anticlockwise with angular velocity $\omega_1$ around the z-Axis. 
+The passive clockwise rotation by $\omega_1 t$ converting from rotating frame to inertial frame is realized by the operator $R_z(\omega_1 t) = e^{-i \omega_1 t I_z}$, while an passive anticklockwise transition from lab frame to rotating frame is realized by the operator $R_z(-\omega_1 t) =  e^{i \omega_1 t I_z}$. Thus we can apply any operator $A$ we know in the inertial frame, packed in a sandwich of rotational operators $R(-\omega_1 t) A R(\omega_1 t)$, to receive the value of an observable in the rotating frame. Let's convert the Hamiltonian to our rotating frame:
+\begin{equation}
+ \mathcal{H}_\text{rot} = e^{i \omega_1 t I_z} \mathcal{H} e^{-i \omega_1 t I_z}
+\end{equation}
+We transform the Schr\"odinger equation for wave $|\Phi(t)\rangle$ to the rotating frame with the rotated wave function $|\Phi'(t)\rangle$:
+\begin{align} 
+  i\frac{\partial}{\partial t} |\Phi'(t)\rangle   & = \mathcal{H} |\Phi'(t)\rangle  \\
+  \Rightarrow i \frac{\partial}{\partial t} \left(e^{-i \omega_1 t I_z} |\Phi'(t)\rangle \right) & = \left( e^{-i \omega_1 t I_z} \mathcal{H}_\text{rot} e^{i \omega_1 t I_z} \right) \left( e^{-i \omega_1 t I_z} |\Phi'(t)\rangle \right)
+  %\Leftrightarrow 
+\end{align}
+%GRAPHICS%
+Differentiating the equation's left hand side and rearranging yields
+\begin{align}
+ i\frac{\partial}{\partial t} |\Phi'(t)\rangle & = (\mathcal{H}_\text{rot} - \omega_1 I_z) |\Phi'(t)\rangle \\
+  & = \mathcal{H}' |\Phi'(t)\rangle \quad \text{with} \quad \mathcal{H}' = e^{i \omega_1 t I_z} \mathcal{H} e^{-i \omega_1 t I_z} - \omega_1 I_z
+  \label{eq-rotating-hamiltonian}
+\end{align}
+
+
+
 \section{$\pi$-pulsed EPR}
 The mechanisms of \emph{EPR (Electron Paramegnetic Resonance)}, also called \emph{ESR (Electron Spin Resonance)}, work analogous to the mechanisms of \emph{NMR (Nuclear Magnetic Resonance)}. In diamagnetic materials, all electrons are spin-paired, making the magnetic dipole vanish, and enabling the system to be accessible by NMR, and according to \cite[Chap. 4, p. 107]{nmr-ox}, NMR technique offer two further ``advantages'' in comparison with EPR: First, relaxation time of spin electrons is very short compared with nuclei; second the nuclear spin Hamiltonian offers a broader diversity of interactions giving insight to the system's properties. Nevertheless, EPR experiments are only suitable to investigate systems with unpaired electrons, which exhibit a non-zero electron spin. The basic idea is to perturb a spin system's equilibrium by a small pulsed oscillating magnetic field and record the emitted radiation during the relaxation process. 
 
@@ -148,40 +308,83 @@ When we place a spin sytem inside a static magnetic field $\vec{B}_0 = B_0 \hat{
 \subsection{Spin Electron Hamiltonian}
 The Hamiltonian of an unpaired spin electron will exhibit several perturbation terms of different nature:
 \begin{equation}
- \mathcal{H} = \mathcal{H}_Z + \mathcal{H}_{HF} + \mathcal{H}_D
+ \mathcal{H} = \left[\mathcal{H}_{EZ} + \mathcal{H}_{ECS} + \mathcal{H}_{LS}\right] + \left[\mathcal{H}_{HF}\right] + \left[\mathcal{H}_{NZ} + \mathcal{H}_{NCS} + \text{weaker interactions}\right]
 \end{equation}
 \begin{enumerate}
-  \item \uline{Zeeman contribution} $\mathcal{H}_Z = - \vec{\mu} \cdot \vec{B}_0 = -\hbar B_0 (\gamma_L \mathbf{L}_z + \gamma_S \mathbf{S}_z)$
+  \item \uline{Electron Zeeman contribution} $\mathcal{H}_{EZ} = - \vec{\mu} \cdot \vec{B}_0 = -\hbar B_0 (\gamma_L \mathbf{L}_z + \gamma_S \mathbf{S}_z)$
 
   The static magnetic field $\vec{B}_0 = B_0 \hat{z}$ acts a torque on the electron's magnetic dipole moment $\mu$, linearly dependant on its angular momentum and spin. Thus the \emph{Zeeman effect} lifts the spin degeneracy of energy levels, reducing the energy of spins aligned parallel to the magnetic field (-), and increasing the energy of spins aligned antiparallel (+) by the correction term
   \begin{equation}
-   E^1\pm = \pm \mu_B \gamma_J B_0 m_J 
+   E^1_\pm = \pm \mu_B \gamma_J B_0 m_J 
   \end{equation}
-  resulting from algebraic acrobatics with the Hamiltonian above \cite[insert]{griffiths}
+  resulting from algebraic acrobatics with the Hamiltonian above \cite[insert]{griffiths}.
   Boltzmann statistics yields the relation for the equilibrium occupancy of states
   \begin{equation}
     \frac{N_+}{N_-} = e^{- \frac{\Delta E}{k_B T}}
   \end{equation}
 
+  \item \uline{Electron Chemical shift} $\mathcal{H}_{ECS} = \gamma_S \hbar \mathbf{S} \cdot \sigma_S(t) \cdot \vec{B}_0$
+  
+  The moving electron clouds change the effective magnetic field $\vec{B}_\text{eff}$ ``seen'' by the every electron spin. This ``shielding'' behaviour is desctribed by the \emph{chemical shift tensor} $\sigma_S(t)$:
+  \begin{equation}
+    \vec{B}_\text{eff}(t) = - \sigma_S(t) \cdot \vec{B}_0
+  \end{equation}
 
-  \item \uline{Hyperfine interaction} $\mathcal{H}_{HF} = $
-  \item \uline{Magnetic dipole interaction} $\mathcal{H}_{D} = $
+  \item \uline{Spin-orbit coupling} $\mathcal{H}_{LS} = \lambda \mathbf{L}\cdot \mathbf{S}$
+
+  The electron's motion around the nucleus creates a magnetic field, with which the electron's spin will interact. 
+  Together with the Zeeman interaction, those to Hamiltonian contributions are due to the influence of a magnetic field. Furthermore, the externam Zeeman field causes $\vec{L}$ to change, thus also influencing the spin-orbit interaction.
+
+  \item \uline{Hyperfine interaction} $\mathcal{H}_{HF} = \frac{\gamma_I \gamma_S \hbar^2}{r^3} \left[ \frac{3 (\mathbf{I} \cdot \vec{r}(t) ) (\mathbf{S} \cdot \vec{r}(t) )}{r^2} - \mathbf{I} \cdot \mathbf{S} \right]$
+   
+  The nucleus interacts with the orbiting electron due to the electron's induced magnetic field acting on the nuclear magnetic dipole moment. 
+
+  \item \uline{Nuclear Zeeman contribution} $\mathcal{H}_{NZ} = -\hbar B_0 \gamma_I \mathbf{I}_z$
+  
+  Just like the electron, the nucleus posseses intrinsic spin and thus a nuclear magnetic moment, enabling it to interact with an external magnetic field.
+
+  \item \uline{Nuclear chemical shift} $\mathcal{H}_{NCS} = \gamma_I \hbar \mathbf{I} \cdot \sigma_I(t) \cdot \vec{B}_0$
+  
+  Of course, the shielding by the electron clouds also applies to the nuclei's spins $\mathbf{I}$.
+  \begin{equation}
+    \vec{B}_\text{eff}(t) = - \sigma_I(t) \cdot \vec{B}_0
+  \end{equation}
+
+  \item \uline{Other weaker interactions} like coupling of the nuclear quadrupole moment to the electron's electromagnetic field and the magnetic coupling of electrons with each other or nuclei with each other are neglected in this work.
+
+\subsection{g-tensor and A-tensor}
+  In the spin Hamiltonian above different interactions have been grouped with square brackets into three packages. The latter package $\left[\mathcal{H}_{NZ} + \mathcal{H}_{NCS} + \text{weaker interactions}\right]$ simply marks interactions which we are allowed to neglect in the case of high field EPR. When the external magnetic field $\vec{B}_0$ becomes sufficiently strong, their contribution diminishes in comparison with the interactions depending on $\vec{B}_0$.
+
+  The former package $\left[\mathcal{H}_{EZ} + \mathcal{H}_{ECS} + \mathcal{H}_{LS}\right]$ marks major interactions linear in spin. In EPR the overall behaviour of those interactions is summarized in the \emph{g-tensor}:
+  \begin{equation}
+    \mathcal{H}_\text{linear} = \mu_B \mathbf{S} \cdot g \cdot \vec{B}_0
+  \end{equation}
+
+  The second package only including the hyperfine interaction characterizes the term bilinear in spin: the coupling between one spin and another. Though not evident from the sketch above, but those interactions are anisotropic in general and thus summarized by the A-tensor in the case of EPR:
+  \begin{equation}
+    \mathcal{H}_\text{bilinear} = \mathbf{S} \cdot A \cdot \mathbf{I}
+  \end{equation}
+
+  Those interaction tensors are diagonizable matrices
+
 \end{enumerate}
 
-\subsection{Rotating Frame}
-Suppose we are changing from the lab frame to a frame, which is rotating anticlockwise with angular velocity $\omega_1$ around the z-Axis. The unit vectors of that rotating frame are:
+\subsection{Resonant frequency field}
+Suppose we observe the equilibrium system due to Zeeman interaction $\mathcal{H} = - \gamma B_0 I_z$ from a rotating frame. According to equation (\ref{eq-rotating-hamiltonian})
 \begin{equation}
- \hat{x}' = \begin{pmatrix} \cos(\omega_1 t) \\ \sin(\omega_1 t) \\ 0 \end{pmatrix} \quad
- \hat{x}' = \begin{pmatrix} - \sin(\omega_1 t) \\  \cos(\omega_1 t)\\ 0 \end{pmatrix} \quad
- \hat{z}' = \hat{z}
+  \mathcal{H'} = -\gamma(B_0 + \frac{\omega_1}{\gamma}) I_z
 \end{equation}
-with the conversion 
-\begin{align}
- \vec{r}' & = x'\hat{x}' + y'\hat{y}' + z'\hat{z}' \\
-	  & = \left[x \cos(\omega_1 t)+ y \sin(\omega_1 t) \right] \hat{x}' + \left[- x \sin(\omega_1 t)+ y \cos(\omega_1 t) \right] + z \hat{z}
-\end{align}
+the rotating frame introduces another term acting like an additional magnetic field. By choosing the angular velocity to equal the Zeeman effect's Larmor frequency $\omega_1 = -\gamma B_0$ we can make the net magnetic field vanish in the rotating frame. This is easy to imagine: The rotating frame just follows the system's Larmor precession, letting it appear stationary.
 
-
+Now switching on the pulse $B_1$ in x-direction modifies the lab frame Hamiltonian\footnote{see \cite[Chap. 4.2.2 The resonant radiofrequency field, p.111f]{nmr-ox}}
+\begin{equation}
+ \mathcal{H} = - \gamma B_0 I_z - 2 \gamma B_1 \cos(\omega_1 t) I_x
+\end{equation}
+and the rotating frame Hamiltonian
+\begin{equation}
+  \mathcal{H}' = - \gamma ( B_0 + \frac{\omega_1}{\gamma}I_z) - \gamma B_1 I_x
+\end{equation}
+At resonant frequency the field in z-direction vanishes and the field component in x-direction causes a simple precession of the system's spin around the magnetic field axis at frequency $\omega_2 = - \gamma B_1$ in the rotating frame. Choosing an appropriate duration of the pulse $\omega_2 t_p = \pi$, the equilibrium magnetisation of the sample will be inverted, since the system's spins are all tilted by $180^\circ$ around the x-axis. 
 
 
 
