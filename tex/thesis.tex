@@ -47,8 +47,40 @@ hyperindex=true, hyperfigures=false]{hyperref} % fichiers pdf 'intelligents', av
 \usepackage[normalem]{ulem}
 \usepackage{moreverb}
 \usepackage{color}
-\usepackage{listings}
+\usepackage{listings} %code listings
+\usepackage{verbatim} %multiline comments
+\usepackage{color}
+ 
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
 
+\lstset{ %
+  language=Matlab,                % the language of the code
+  basicstyle=\footnotesize,           % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  %captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  %title=\lstname,                   % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},          % keyword style
+  commentstyle=\color{dkgreen},       % comment style
+  stringstyle=\color{mauve},         % string literal style
+  escapeinside={\%*}{*)},            % if you want to add LaTeX within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
+}
 
 
 
@@ -77,7 +109,7 @@ hyperindex=true, hyperfigures=false]{hyperref} % fichiers pdf 'intelligents', av
 \vspace{1cm}
 
 \parbox{15cm}{\small
-\textbf{Abstract}: }
+\textbf{Abstract}: \emph{Electron Paramagnetic Resonance} is a spectroscopy method to examine systems of unpaired electron spins. \emph{Spinach}\footnote{written by Theoretical Spin Dynamics Group, University of Southampton, \url{www.spindynamics.org}} is a Matlab library to simulate different kinds of spin system experiemnts, including EPR. The aim of this work is to make use of Spinach and adopt parallel computing methods on Linux clusters to accelerate the calculation of EPR lineshape spectra.  }
 
 \vspace{0.5cm}
 
@@ -112,6 +144,10 @@ hyperindex=true, hyperfigures=false]{hyperref} % fichiers pdf 'intelligents', av
 \newpage
 
 \section{Basics}
+First of all, we are going to introduce several theoretical concepts necessary to understand the mechanisms of EPR and numerical spectra computation.
+
+\subsection{Fourier Transorm}
+%\begin{comment}
 What happens during EPR from a quite general point of view? We excite a certain system with an electromagnetic signal and measure the system's response. In other words, the system $\Phi$ uses the time-resolved input $x(t)$ to generate output $y(t)$:
 \begin{equation}
 	y(x) = \Phi\{x(t)\}
@@ -139,24 +175,9 @@ Furthermore, harmonics are eigenfunctions of LTI systems, and the \emph{frequenc
 \begin{equation}
 	\Phi\{e^{i\omega t}\} = \int_{-\infty}^{\infty} e^{i\omega t} h(\tau-t) d\tau =  e^{i\omega t} \int_{-\infty}^{\infty} e^{i\omega (\tau-t)} h(\tau-t) d\tau =  e^{i\omega t} \int_{-\infty}^{\infty} e^{i\omega (\tau)} h(\tau) d\tau = H(\omega) e^{i \omega t}
 \end{equation}
-
+%\end{comment}
 
 \subsection{Matrix Formalism}
-\subsubsection{Matrix Exponentials}
-In the following we shall make use of matrix exponentials to express rotation operators. The defintion of the exponential
-\begin{equation}
- e^x = \sum_{k=0}^\infty \frac{x^k}{k!} = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + ...
-\end{equation}
-can be easily applied to square matrices, eg.:
-\begin{equation}
- e^{i \phi A } = I + i \phi A - \frac{(\phi A)^2}{2!} - i \frac{(\phi A)^3}{3!} + \frac{(\phi A)^4}{4!} + i \frac{(\phi A)^5}{5!} - ...
-\end{equation}
-Only if the operators $A$ and $B$ commute, the classical identities
-\begin{align}
- Ae^{iB} = e^{iB}A \\
-  e^{i(A+B)} = e^{iA}e^{iB}
-\end{align}
-hold.
 
 \subsubsection{Diagonizable Matrix}
 An $n \times n$ matrix $A$ is said to be diagonizable if the exists an invertible matrix $P$ such that
@@ -204,7 +225,23 @@ while the power of a diagonal matrix is just
 		& & & \lambda_n^k
               \end{pmatrix}
 \end{equation}
-Also matrix exponentials can be computed in this way, since they can be expanded as power series such as above.
+Also matrix exponentials can be computed in this way, since they can be expanded as power series such as below:
+
+\subsubsection{Matrix Exponentials}
+In the following we shall make use of matrix exponentials to express evolution and rotation operators. The defintion of the exponential
+\begin{equation}
+ e^x = \sum_{k=0}^\infty \frac{x^k}{k!} = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + ...
+\end{equation}
+can be easily applied to square matrices, eg.:
+\begin{equation}
+ e^{i \phi A } = I + i \phi A - \frac{(\phi A)^2}{2!} - i \frac{(\phi A)^3}{3!} + \frac{(\phi A)^4}{4!} + i \frac{(\phi A)^5}{5!} - ...
+\end{equation}
+Only if the operators $A$ and $B$ commute, the classical identities
+\begin{align}
+ Ae^{iB} = e^{iB}A \\
+  e^{i(A+B)} = e^{iA}e^{iB}
+\end{align}
+hold.
 
 
 \subsection{Spin Formalism}
@@ -212,7 +249,8 @@ Though the basic mechanisms of EPR can be understood on the basis of a semi clas
 \subsubsection{Quantum States}
 Any allowed spin state $| \Psi \rangle$ can be written as a linear superposition of an orthogonal basis set of an Hilbert vector space spanned by all allowed \emph{azimuthal quantum number} states $| m \rangle$:
 \begin{equation}
- | \Psi \rangle = \sum_m a_m | m \rangle
+ | \Psi \rangle = \sum_m a_m | m \rangle 
+\label{eq-orthonormal-basis}
 \end{equation}
 where the amplitudes are complex $a_m = |a_m| e^{i\phi_m}$ with phase $\phi_m$ and magnitude $|a_m|$.
 \subsubsection{Eigenvalues}
@@ -247,8 +285,67 @@ The measurement on a general superposition will yield
 \end{align}
 due to the orthormality of the basis set.
 
+\subsubsection{Density operator and spin ensembles}
+%Slichter S. 157ff
+Due to equation (\ref{eq-orthonormal-basis}) the expectation value of an observable $A$ can be expressed as 
+\begin{equation}
+ \langle A \rangle = \langle \psi | A | \psi \rangle = \sum_{m,n} c_m^* c_n \langle m | A | n \rangle
+  \label{eq-observable-representation}
+\end{equation}
+Now, when the expectation value of a certain observable is required, we are always interested in the product $c_m^* c_n$ rather than the distinct $c_n$, thus we can think of a matrix representation of those probabilities and define an operator $P$ with
+\begin{equation}
+ \langle n | P | m \rangle = c_n c_m^*
+\end{equation}
+Equation (\ref{eq-observable-representation}) becomes
+\begin{equation}
+ \langle A \rangle = \sum_{m,n} \langle n | P | m \rangle \langle m | A | n \rangle
+  \label{eq-P-A-representation}
+\end{equation}
+Since $|m\rangle$ form an orthonormal basis set, the results of $A$ and $P$ acting on a basis vector can be expanded in the basis:
+\begin{align}
+ P|m\rangle & = \sum_p a_p |p\rangle = \sum_p \langle p | P | m \rangle | p \rangle\\
+ A|n\rangle & = \sum_m a_m |m\rangle = \sum_m \langle m | A | n \rangle | m \rangle\\
+ \Rightarrow P A |n\rangle & = \sum_m P|m\rangle \langle m | A | n \rangle \\
+  & = \sum_{m,p} |p\rangle \langle p | P | m \rangle \langle m | A | n \rangle \\
+  \Rightarrow \langle n | P A | n \rangle & = \sum_{m,p} \langle n|p\rangle \langle p | P | m \rangle \langle m | A | n \rangle \\
+  & = \sum_{m,p} \delta_{np} \langle p | P | m \rangle \langle m | A | n \rangle \\
+  & = \sum_{m} \langle n | P | m \rangle \langle m | A | n \rangle
+\end{align}
+Comparing with equation (\ref{eq-P-A-representation}) we find
+\begin{equation}
+ \langle A \rangle = \sum_n \langle n | P A | n \rangle = Tr(P A) = Tr(A P)
+ \label{eq-A-P-trace}
+\end{equation}
+where $Tr$ is the trace -- the total sum of the matrix' diagonal elements.
+
+%Slichter S. 159, Callaghan S. 78
+In EPR we pulse a powder sample. Theoretically this means a measurement on an ensemble of many spin systems with many (most generally different) spin states $|\psi\rangle$ instead of determining the state of a single system. The observable averaged about the whole statistical ensemble is written as
+\begin{align}
+ \overline{\langle A \rangle} & = \overline{\langle \psi | A | \psi \rangle} \\
+  & = \sum_\psi p_\psi \langle \psi | A | \psi \rangle \\ 
+  & = \sum_\psi p_\psi \left( \sum_{m,n} c_m^* c_n \langle m | A | n \rangle \right) \\
+  & = \sum_{m,n} \left( \sum_\psi p_\psi c_m^* c_n \right) \langle m | A | n \rangle \\
+  & = \sum_{m,n} \overline{c_m^* c_n} \langle m | A | n \rangle
+  \label{eq-ensemble-representation}
+\end{align}
+where $p_\psi$ is an appropriate statistical averaging weight chosen according to the occupancy of $|\psi\rangle$. On this basis we introduce the \emph{density matrix operator}
+\begin{equation} 
+ \langle n | \rho | m \rangle = \overline{c_m^* c_n} = \overline{\langle n | P | m \rangle}
+\end{equation}
+whereby equation (\ref{eq-ensemble-representation}) can be expressed in analogy to equation (\ref{eq-A-P-trace}) as
+\begin{equation}
+ \overline{\langle A \rangle} = \sum_{n,m} \langle n | \rho | m \rangle \langle m | A | n \rangle = \sum_{n} \langle n | \rho A | n \rangle = Tr(\rho A) = Tr(A \rho)
+\end{equation}
+
+ 
+
+
+
+
+
+
 \subsubsection{Dynamics}
-In case of a statinary Hamiltonian, the Schr\"odinger equation 
+In case of a stationary Hamiltonian, the Schr\"odinger equation 
 \begin{equation}
   i \frac{\partial}{\partial t} | \Psi(t) \rangle = \mathcal{H} |\Psi(t) \rangle
 \end{equation}
@@ -297,6 +394,8 @@ Differentiating the equation's left hand side and rearranging yields
   & = \mathcal{H}' |\Phi'(t)\rangle \quad \text{with} \quad \mathcal{H}' = e^{i \omega_1 t I_z} \mathcal{H} e^{-i \omega_1 t I_z} - \omega_1 I_z
   \label{eq-rotating-hamiltonian}
 \end{align}
+
+\subsection{Spin Ensembles}
 
 
 
@@ -374,8 +473,6 @@ The Hamiltonian of an unpaired spin electron will exhibit several perturbation t
 where $I$ is the identity matrix.
 
 
-
-
 \subsection{Resonant frequency field}
 Suppose we observe the equilibrium system due to Zeeman interaction $\mathcal{H} = - \gamma B_0 I_z$ from a rotating frame. According to equation (\ref{eq-rotating-hamiltonian})
 \begin{equation}
@@ -396,7 +493,126 @@ At resonant frequency the field in z-direction vanishes and the field component 
 
 
 \section{Spinach}
-The Matlab library \emph{Spinach} supplies efficient methods for large-scale spin dynamics simulations. It consists of the \emph{kernel} with the implementation of general spin dynamics simulation techniques and the \emph{user-land} with a collection of different experiements to perform. Basically, the user prepares the description of a spin system, which is then translated by the kernel into the most efficient basis sets, superoperators, etc. The user-land decides how to deal with those objects, whether to apply a pre-established experiment, or whether to perform the kernel's simulation procedures manually. Though Spinach is able to simulate numerous kinds of experiments, in this work we are going to restrict ourselves to standard EPR experiments. For the $\pi$-pulsed EPR, the user-land readily provides the method \verb|pulse_acquire|
+The Matlab library \emph{Spinach} supplies efficient methods for large-scale spin dynamics simulations. It consists of the \emph{kernel} with the implementation of general spin dynamics simulation techniques and the \emph{user-land} with a collection of different experiements to perform. Basically, the user prepares the description of a spin system, which is then translated by the kernel into the most efficient basis sets, superoperators, etc. The user-land decides how to deal with those objects, whether to apply a pre-established experiment, or whether to perform the kernel's simulation procedures manually. Though Spinach is able to simulate numerous kinds of experiments, in this work we are going to restrict ourselves to standard EPR experiments. For the $\pi$-pulsed EPR, the user-land readily provides the method \verb|pulse_acquire|. 
+
+In the following the preparation of input data and computation flow are summarized, such that the idea where to implement parallelization becomes obvious.
+
+\subsection{A Spinach EPR Simulation}
+\subsubsection{Typical input file}
+This file prepares a typical spin system and conducts a $\pi$-pulsed EPR experiment on it. The data structure \verb$sys$ contains information about the spin system and the experimental setup, \verb$inter$ represents the linear and bilinear interactions of the spins, \verb$bas$ specifies the state basis set to be used and \verb$parameters$ specifies the enquired simulation results. 
+\begin{lstlisting}
+function jlh_3spins()
+
+% Set the simulation parameters
+sys.magnet=3.356;
+sys.regime='powder';
+bas.mode='ESR-1';
+sys.tols.grid_rank=101;
+\end{lstlisting} 
+Specifies $B_0 = 3.356 T$ and tells Spinach to average the spectrum over uniformly distributed orientations in a ``powder''. The mode ``ESR-1'' generates a complete state space for all electrons, but reduces the state space for all nuclei in a certain way to be efficient enough and still yield reasonable EPR results. The grid rank $101$ chooses a certain Lebedev grid of orientations to average about.
+\begin{lstlisting}[firstnumber=last]
+% Interactions
+sys.isotopes={'E','14N', '1H'};
+inter.zeeman.matrix=cell(3,1);
+inter.zeeman.matrix{1,1}=[ 2.0056023 -0.0013775 -0.0004019; -0.0008185 2.0038816 0.0002087; -0.0002747 0.0001729 2.0062982];
+inter.coupling.matrix=cell(3,3);
+inter.coupling.matrix{1,2}=1e6*[29.4479  3.9997 -0.4979;   3.9997  76.1445 -14.8367;  -0.4979 -14.8367  38.4285];  %92.815191
+inter.coupling.matrix{1,3}=1e6*[-1.2922  2.0819 -1.9943;  2.0819  -1.407 -1.7023; -1.9943 -1.7023 -1.5011];  %5.3217912
+\end{lstlisting}
+Advises Spinach to prepare a spin system of an unpaired electron, a nitrogen nucleus and a proton spin. The Zeeman matrix states the $3\times 3$ g-Tensor, while the coupling matrices state the $3\times 3$ A-tensors accounting for the hyperfine interactions between electron spin and all other spins.
+\begin{lstlisting}[firstnumber=last]
+% Set the sequence parameters
+parameters.offset=0;
+parameters.sweep=1e9;
+parameters.npoints=512;
+parameters.zerofill=1024;
+parameters.spins='E';
+parameters.axis_units='Gauss';
+parameters.derivative=0;
+\end{lstlisting}
+Sets parameters for the experiment to simulate: \verb$npoints$ determines the number of time steps in the simulation, \verb$sweep$ chooses the spectral window's width, and thus the duration of one time step, $zerofill$ sets the FID zero-filling and \verb$spins$ selects the spins to be pulsed and detected -- the electron spin in our case.
+\begin{lstlisting}[firstnumber=last]
+% Run Spinach
+spin_system=create(sys,inter);
+spin_system=basis(spin_system,bas);
+fid=pulse_acquire(spin_system,parameters);
+\end{lstlisting}
+The first kernel functions to be called are \verb$create(sys,inter)$ and \verb$basis(spin_system,bas)$. Former returns the data structure \verb$spin_system$, which can be handed to the kernel lateron to reference to our spin system, e.g. to fetch the Liouvillian in question.
+\verb$pulse_acquire(spin_system, parameters)$ finally conducts the $\pi$-pulsed EPR and returns the time-resolved FID.
+\begin{lstlisting}[firstnumber=last]
+% Apodization
+fid=apodization(fid,'crisp-1d');
+
+% Perform Fourier transform
+spectrum=fftshift(fft(fid,parameters.zerofill));
+
+% ...
+
+end
+\end{lstlisting}
+The ``crisp'' apodization modulates the FID by a declining cosine window function in the interval $[0,\tfrac{\pi}{2}]$
+\begin{equation}
+ \text{FID}'(t) = \text{FID}(t) \cdot \cos^8 \left( \frac{\pi}{2} \cdot \frac{t}{L_\text{FID}} \right)
+\end{equation}
+Line 31 finally performs Fast Fourier Transform to generate the frequency domain spectrum.
+
+\subsubsection{pulse\_acquire}
+
+\begin{lstlisting}
+function fid=pulse_acquire(spin_system,parameters,L,rho)
+
+%...
+
+% Compute the digitization parameters.
+timestep=1/parameters.sweep;
+
+% Generate the basic operators
+Lp=operator(spin_system,'L+',parameters.spins);
+Ly=(Lp-Lp')/2i;
+
+% Set the secularity assumptions
+spin_system=secularity(spin_system,'nmr');
+\end{lstlisting}
+The function \verb$operator$ prepares the raising operator $L_+$ and then constructs
+\begin{equation}
+  L_y = \frac{1}{2i} ( L_+ - L_- ) = \frac{1}{2i} ( L_+ - L_+^\dagger )
+\end{equation}
+The apostrophe in the Matlab code marks the complex conjugate transposition $L_+^\dagger$ of $L_+$. The relation above can be easily found by realizing that the raising and the lowering operator form a Hermitian conjugate pair $L_- = L_+^\dagger$
+%\begin{align}
+% L_+ = L_x + i L_y, \quad L_+^\dagger = L_x^\dagger - i L_y^\dagger \\
+%  \frac{L_+ - L_+^\dagger}{2i} = \frac{L_y + L_y\dagger}{2}
+%\end{align}
+
+
+\begin{lstlisting}[firstnumber=last]
+% ...
+[Iso,Q]=h_superop(spin_system);
+% ...
+
+% Get the spherical averaging grid
+grid=load([spin_system.sys.root_dir spin_system.sys.slash 'exp' ...
+				    spin_system.sys.slash 'grids' ...
+				    spin_system.sys.slash 'lebedev_rank_' num2str(spin_system.tols.grid_rank) '.dat'],'ASCII');
+grid_size=size(grid,1); phi=pi*grid(:,1)/180; theta=pi*grid(:,2)/180; weight=grid(:,3);
+
+% Get the orientation array
+L_aniso=orientation(Q,[phi theta zeros(size(theta))]);
+L=blkdiag(L_aniso{:})+kron(speye(grid_size),Iso);
+L=clean_up(spin_system,L,spin_system.tols.liouv_zero);
+
+% Get the initial and the detection states
+rho=kron(ones(grid_size,1),rho);
+coil=kron(weight,state(spin_system,'L+',parameters.spins));
+
+% Apply the pulse
+rho=step(spin_system,kron(speye(grid_size),Ly),rho,pi/2);
+
+% ...
+
+fid=evolution(spin_system,L,coil,rho,timestep,parameters.npoints-1,'observable');
+
+end
+\end{lstlisting}
 
 
 
