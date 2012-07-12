@@ -303,30 +303,64 @@ Equation (\ref{eq-observable-representation}) becomes
 \end{equation}
 Since $|m\rangle$ form an orthonormal basis set, the results of $A$ and $P$ acting on a basis vector can be expanded in the basis:
 \begin{align}
- P|m\rangle & = \sum_p a_p |p\rangle = \sum_p \langle p | P | m \rangle | p \rangle\\
+ P|m\rangle & = \sum_l a_l |l\rangle = \sum_l \langle l | P | m \rangle | l \rangle\\
  A|n\rangle & = \sum_m a_m |m\rangle = \sum_m \langle m | A | n \rangle | m \rangle\\
  \Rightarrow P A |n\rangle & = \sum_m P|m\rangle \langle m | A | n \rangle \\
-  & = \sum_{m,p} |p\rangle \langle p | P | m \rangle \langle m | A | n \rangle \\
-  \Rightarrow \langle n | P A | n \rangle & = \sum_{m,p} \langle n|p\rangle \langle p | P | m \rangle \langle m | A | n \rangle \\
-  & = \sum_{m,p} \delta_{np} \langle p | P | m \rangle \langle m | A | n \rangle \\
+  & = \sum_{l,m} |l\rangle \langle l | P | m \rangle \langle m | A | n \rangle \\
+  \Rightarrow \langle n | P A | n \rangle & = \sum_{l,m} \langle n|l\rangle \langle l | P | m \rangle \langle m | A | n \rangle \\
+  & = \sum_{l,m} \delta_{ln} \langle l | P | m \rangle \langle m | A | n \rangle \\
   & = \sum_{m} \langle n | P | m \rangle \langle m | A | n \rangle
 \end{align}
 Comparing with equation (\ref{eq-P-A-representation}) we find
 \begin{equation}
  \langle A \rangle = \sum_n \langle n | P A | n \rangle = Tr(P A) = Tr(A P)
+ \label{eq-A-P-trace}
 \end{equation}
 where $Tr$ is the trace -- the total sum of the matrix' diagonal elements.
 
 %Slichter S. 159, Callaghan S. 78
 In EPR we pulse a powder sample. Theoretically this means a measurement on an ensemble of many spin systems with many (most generally different) spin states $|\psi\rangle$ instead of determining the state of a single system. The observable averaged about the whole statistical ensemble is written as
 \begin{align}
- \overline{\langle A \rangle} & = \overline{\langle \psi | A | \psi \rangle}
-  & = \
+ \overline{\langle A \rangle} & = \overline{\langle \psi | A | \psi \rangle} \\
+  & = \sum_\psi p_\psi \langle \psi | A | \psi \rangle \\ 
+  & = \sum_\psi p_\psi \left( \sum_{m,n} c_m^* c_n \langle m | A | n \rangle \right) \\
+  & = \sum_{m,n} \left( \sum_\psi p_\psi c_m^* c_n \right) \langle m | A | n \rangle \\
+  & = \sum_{m,n} \overline{c_m^* c_n} \langle m | A | n \rangle
+  \label{eq-ensemble-representation}
+\end{align}
+where $p_\psi$ is an appropriate statistical averaging weight chosen according to the occupancy of $|\psi\rangle$. On this basis we introduce the \emph{density matrix operator}
+\begin{equation} 
+ \langle n | \rho | m \rangle = \overline{c_m^* c_n} = \overline{\langle n | P | m \rangle}
+\end{equation}
+whereby equation (\ref{eq-ensemble-representation}) can be expressed in analogy to equation (\ref{eq-A-P-trace}) as
+\begin{equation}
+ \overline{\langle A \rangle} = \sum_{n,m} \langle n | \rho | m \rangle \langle m | A | n \rangle = \sum_{n} \langle n | \rho A | n \rangle = Tr(\rho A) = Tr(A \rho)
+\end{equation}
+Another beautiful expression for the density matrix can be derived by noticing that
+\begin{align}
+ \langle n |\psi \rangle \langle \psi | m \rangle & = \langle n | \left( \sum_{n'} c_{n'} |n' \rangle \right) \left( \sum_{m'} c_{m'}^* \langle m' | \right) | m \rangle \\ & = \sum_{n',m'} c_{n'} c_{m'}^* \langle n | n' \rangle \langle m' | m \rangle = \langle n | P | m \rangle \\
+  \Rightarrow |\psi\rangle\langle\psi| & = P \quad; \quad \overline{|\psi\rangle\langle\psi|}  = \rho
+\label{eq-density-matrix}
 \end{align}
 
-
-
-
+\subsubsection{Liouville equation}
+% Kuprov L9
+Under comparison with the general Schr\"odinger equation and its complex conjugate below
+\begin{align}
+ \langle \psi | \frac{\partial}{\partial t} |\psi\rangle  & = -i \langle \psi | \mathcal{H} |\psi\rangle \\
+  \left( \frac{\partial}{\partial t} \langle \psi | \right)  |\psi\rangle
+   & = \sum_{m,n} \frac{\partial c_m^*}{\partial t} c_n \langle m | n \rangle 
+   =  \sum_{m} \frac{\partial c_m^*}{\partial t} c_m \\
+   & = \left( \sum_{m} c_m^* \frac{\partial c_m}{\partial t}\right)^*
+   = \left( \langle \psi | \frac{\partial}{\partial t} |\psi\rangle \right)^* = i \langle \psi |\mathcal{H} |\psi\rangle
+\end{align}
+the density matrix' equation of motion can be derived by differentiating equation (\ref{eq-density-matrix}) with respect to time:
+\begin{align}
+ \frac{\partial}{\partial t} \rho & = \left( \frac{\partial}{\partial t} | \psi \rangle \right) \langle \psi | + | \psi \rangle \left( \frac{\partial}{\partial t} \langle \psi | \right)  \\
+  & = - i \mathcal{H} |\psi\rangle\langle\psi| + i |\psi\rangle\langle\psi| \mathcal{H}  \\
+  & = -i ( \mathcal{H} \rho - \rho \mathcal{H} ) = -i [ \mathcal{H}, \rho ] 
+  \label{eq-liouville}
+\end{align}
 
 
 \subsubsection{Dynamics}
@@ -341,6 +375,7 @@ has the solution
 where 
 \begin{equation}
  U(t) = e^{-i \mathcal{H} t}
+  \label{eq-evolution}
 \end{equation}
 is called the \emph{evolution operator}.
 
@@ -348,6 +383,12 @@ In case of a time-dependent, but piecewise-constant Hamiltonian the solution has
 \begin{equation}
  |\Psi(t)\rangle = \left[ \prod_k e^{-i\mathcal{H}_k \Delta t_k} \right] |\Psi(0)\rangle
 \end{equation}
+
+\begin{comment}
+\subsection{Spherical Tensors}
+All operators are square matrices, which might or might not exhibit symmetric features. It will prove handy to express those \emph{tensors} as a composition of a symmetric, \emph{isotropic} part and the \emph{anisotropic} deviation from perfect spherical symmetry. A totally isotropic tensor has only one eigenvalue and can be reduced to a scalar. 
+\end{comment}
+
 
 \subsection{Rotation Formalism}
 A magnetic field $B_0$ applied along the z-axis causes a magnetic moment to precess around the z-axis at the Larmor frequency $\omega_0$. Since the electron's magnetic moment is proportional to its angular momentum $\vec{\mu} = \gamma \vec{J}$ with the \emph{Land\'e g-factor} $\gamma$, the interaction energy $E = - \vec{\mu} \cdot \vec{B}$ and thus the Hamiltonian, the evolution operator and the Schr\"odinger equation's solution can be expressed as
@@ -357,6 +398,7 @@ A magnetic field $B_0$ applied along the z-axis causes a magnetic moment to prec
 Analogous to the classical approach, the time dependent solution must be a rotation of the initial state by angle $phi = -\omega_0 t$, and we can identify 
 \begin{equation}
  R_z(\phi) = e^{-i\phi J_z}
+\label{eq-z-rotation}
 \end{equation}
 as an rotation operator around the z-axis. $\phi > 0$ results in an \emph{active} rotation of the state in ``positive'', anticlockwise direction, whereas $\phi < 0$ results in  a rotation in ``negative'', clockwise direction. Likewise we can speak of $\phi > 0$ causing a \emph{passive} rotation of the reference frame in negative, clockwise direction, whereas $phi < 0$ rotates the reference frame in positive, anticlockwise direction.
 
@@ -380,17 +422,14 @@ Differentiating the equation's left hand side and rearranging yields
   \label{eq-rotating-hamiltonian}
 \end{align}
 
-\subsection{Spin Ensembles}
 
-
-
-\section{$\pi$-pulsed EPR}
+\section{$\tfrac{\pi}{2}$-pulsed EPR}
 The mechanisms of \emph{EPR (Electron Paramegnetic Resonance)}, also called \emph{ESR (Electron Spin Resonance)}, work analogous to the mechanisms of \emph{NMR (Nuclear Magnetic Resonance)}. In diamagnetic materials, all electrons are spin-paired, making the magnetic dipole vanish, and enabling the system to be accessible by NMR, and according to \cite[Chap. 4, p. 107]{nmr-ox}, NMR technique offer two further ``advantages'' in comparison with EPR: First, relaxation time of spin electrons is very short compared with nuclei; second the nuclear spin Hamiltonian offers a broader diversity of interactions giving insight to the system's properties. Nevertheless, EPR experiments are only suitable to investigate systems with unpaired electrons, which exhibit a non-zero electron spin. The basic idea is to perturb a spin system's equilibrium by a small pulsed oscillating magnetic field and record the emitted radiation during the relaxation process. 
 
 When we place a spin sytem inside a static magnetic field $\vec{B}_0 = B_0 \hat{z}$ and let it settle to equilibrium, due to Zeeman effect more electron spins are goint to align parallel to $\vec{B}_0$ than antiparallel, resulting in a net magnetization of the system. The pulse $\vec{B}_1 = B_1 \hat{x} e^{i(\vec{k}\cdot\vec{r}-\omega_1 t} \cdot u(t_0-t)$ linearly polarized in x-direction will tilt the electron spins and disturb the equilibrium in a way we are going to examine in the following:
 
-\subsection{Spin Electron Hamiltonian}
-The Hamiltonian of an unpaired spin electron will exhibit several perturbation terms of different nature:
+\subsection{Spin System Hamiltonian}
+The Hamiltonian of an unpaired spin electron system will exhibit several perturbation terms of different nature:
 \begin{equation}
  \mathcal{H} = \left[\mathcal{H}_{EZ} + \mathcal{H}_{ECS} + \mathcal{H}_{LS}\right] + \left[\mathcal{H}_{HF}\right] + \left[\mathcal{H}_{NZ} + \mathcal{H}_{NCS} + \text{weaker interactions}\right]
 \end{equation}
@@ -473,12 +512,23 @@ and the rotating frame Hamiltonian
 \begin{equation}
   \mathcal{H}' = - \gamma ( B_0 + \frac{\omega_1}{\gamma}I_z) - \gamma B_1 I_x
 \end{equation}
-At resonant frequency the field in z-direction vanishes and the field component in x-direction causes a simple precession of the system's spin around the magnetic field axis at frequency $\omega_2 = - \gamma B_1$ in the rotating frame. Choosing an appropriate duration of the pulse $\omega_2 t_p = \pi$, the equilibrium magnetisation of the sample will be inverted, since the system's spins are all tilted by $180^\circ$ around the x-axis. 
+At resonant frequency the field in z-direction vanishes and the field component in x-direction causes a simple precession of the system's spin around the magnetic field axis at frequency $\omega_2 = - \gamma B_1$ in the rotating frame. Choosing an appropriate duration of the pulse $\omega_2 t_p = \tfrac{\pi}{2}$, the equilibrium magnetisation of the sample will be disturbed, since the system's spins are all tilted by $90^\circ$ around the x-axis. 
 
 
 
 \section{Spinach}
-The Matlab library \emph{Spinach} supplies efficient methods for large-scale spin dynamics simulations. It consists of the \emph{kernel} with the implementation of general spin dynamics simulation techniques and the \emph{user-land} with a collection of different experiements to perform. Basically, the user prepares the description of a spin system, which is then translated by the kernel into the most efficient basis sets, superoperators, etc. The user-land decides how to deal with those objects, whether to apply a pre-established experiment, or whether to perform the kernel's simulation procedures manually. Though Spinach is able to simulate numerous kinds of experiments, in this work we are going to restrict ourselves to standard EPR experiments. For the $\pi$-pulsed EPR, the user-land readily provides the method \verb|pulse_acquire|. 
+The Matlab library \emph{Spinach} supplies efficient methods for large-scale spin dynamics simulations. It consists of the \emph{kernel} with the implementation of general spin dynamics simulation techniques and the \emph{user-land} with a collection of different experiements to perform. Basically, the user prepares the description of a spin system, which is then translated by the kernel into the most efficient basis sets, superoperators, etc. The user-land decides how to deal with those objects, whether to apply a pre-established experiment, or whether to perform the kernel's simulation procedures manually. Though Spinach is able to simulate numerous kinds of experiments, in this work we are going to restrict ourselves to standard EPR experiments. 
+
+%Cerf S.20
+Using the theoretical basis introduced above, the procedure of an EPR simulation comes down to the following key steps:
+\begin{enumerate}
+ \item Spinach constructs the isotropic and anisotropic part of the Liouvillian ...
+ \item ... and calculates the evolution of the density matrix through the pulse secquence and afterwards by propagating the Liouville equation (\ref{eq-liouville}), ...
+ \item ...then determines the transversal magnetization deppending on $S_+$, a superposition of spin in x- and y-direction, at acquisition time using equation (\ref{}).
+\end{enumerate}
+
+For the $\pi$-pulsed EPR, the user-land readily provides the method \verb|pulse_acquire|. 
+
 
 In the following the preparation of input data and computation flow are summarized, such that the idea where to implement parallelization becomes obvious.
 
@@ -554,9 +604,6 @@ timestep=1/parameters.sweep;
 % Generate the basic operators
 Lp=operator(spin_system,'L+',parameters.spins);
 Ly=(Lp-Lp')/2i;
-
-% Set the secularity assumptions
-spin_system=secularity(spin_system,'nmr');
 \end{lstlisting}
 The function \verb$operator$ prepares the raising operator $L_+$ and then constructs
 \begin{equation}
@@ -568,36 +615,76 @@ The apostrophe in the Matlab code marks the complex conjugate transposition $L_+
 %  \frac{L_+ - L_+^\dagger}{2i} = \frac{L_y + L_y\dagger}{2}
 %\end{align}
 
+\begin{lstlisting}[firstnumber=last]
+% Set the secularity assumptions
+spin_system=secularity(spin_system,'nmr');
+
+% Start from thermal equilibrium
+rho=equilibrium(spin_system);
+\end{lstlisting}
+The \verb$secularity$ function decides about the importance of interactions. In high field EPR and NMR, only the electrons' states are accounted fore fully, whereas the nuclei's spins are only evaluated in z-direction. Density matrix \verb$rho$ is initialized with the termal equilibrium state of the spin system.
 
 \begin{lstlisting}[firstnumber=last]
-% ...
 [Iso,Q]=h_superop(spin_system);
-% ...
+\end{lstlisting}
 
+The isotropic part of the Liouvillian is stored in \verb$Iso$, while \verb$Q$ is the set of five rank-2 \emph{irreducible spherical tensors} representing the Liouvillian's anisotropic part in the rotational basis. The dimensions of those two matrices determine Spinach's memory consumption.
+
+\begin{lstlisting}[firstnumber=last]
 % Get the spherical averaging grid
 grid=load([spin_system.sys.root_dir spin_system.sys.slash 'exp' ...
 				    spin_system.sys.slash 'grids' ...
 				    spin_system.sys.slash 'lebedev_rank_' num2str(spin_system.tols.grid_rank) '.dat'],'ASCII');
 grid_size=size(grid,1); phi=pi*grid(:,1)/180; theta=pi*grid(:,2)/180; weight=grid(:,3);
+\end{lstlisting}
+The Lebedev grid is read from a file holding all precomputed orientations on the unit sphere. The number of points for a Lebedev grid of certain rank can be found in table (\ref{tab-lebedev}).
+%Tabelle einfügen!
 
+\begin{lstlisting}[firstnumber=last]
 % Get the orientation array
 L_aniso=orientation(Q,[phi theta zeros(size(theta))]);
 L=blkdiag(L_aniso{:})+kron(speye(grid_size),Iso);
 L=clean_up(spin_system,L,spin_system.tols.liouv_zero);
+\end{lstlisting}
+\verb$orientation$ rotates the anisotropic part of the Liouvillian in the rotational basis by the specified Euler angles and creates a cell array of operators, one for each orientation. The Liouvillian block matrix \verb$L$ has a diagonal element for every Lebedev orientation $n$:
+\begin{equation}
+ L= L_{\text{aniso}} + I \otimes L_\text{iso} =
+	      \begin{pmatrix} 
+		L_{\text{aniso},1} & & & \\
+		& L_{\text{aniso},2} & & \\
+		& & \text{...} & \\
+		& & & L_{\text{aniso},n}
+              \end{pmatrix} +
+	      \begin{pmatrix} 
+		1 & & & \\
+		& 1 & & \\
+		& & \text{...} & \\
+		& & & 1
+              \end{pmatrix} \otimes L_\text{iso}
+\end{equation}
 
+\begin{lstlisting}[firstnumber=last]
 % Get the initial and the detection states
 rho=kron(ones(grid_size,1),rho);
 coil=kron(weight,state(spin_system,'L+',parameters.spins));
+\end{lstlisting}
+The density matrix is duplicated $n$ times in a column vector to propagate one for each orientation, and similarly the observable to be detected is duplicated \underline{and the Lebedev weights are applied} in a column vector \verb$coil$. In the experimental setup the detection coil measures independently the magnetization in x- and y-direction, which correspond to the horizontal spin state $S_+ = S_x + i S_y$, \verb$'L+'$ in Spinach notation.
 
+\begin{lstlisting}[firstnumber=last]
 % Apply the pulse
 rho=step(spin_system,kron(speye(grid_size),Ly),rho,pi/2);
-
-% ...
 
 fid=evolution(spin_system,L,coil,rho,timestep,parameters.npoints-1,'observable');
 
 end
 \end{lstlisting}
+Generally, \verb$step(spin_system,L,rho,dt)$ propagates the density matrix \verb$rho$ under the influence of a certain Liouvillian \verb$L$ by a time step \verb$dt$. Because \verb$step$ makes uses of the evolution operator (\ref{eq-evolution}) internally, it can conduct a $90^\circ$ rotation around the y-axis by replacing the time step by an angle $\tfrac{\pi}{2}$ and the Liouvillian by the spin operator $L_y$, letting it construct the rotation operator
+\begin{equation}
+ R_y (\tfrac{\pi}{2}) = e^{-i \tfrac{\pi}{2} L_y}
+\end{equation}
+in analogy to equation (\ref{eq-z-rotation}). This just rotates all spins into the x-y-plane, just as a $\tfrac{\pi}{2}$-pulse will do. 
+Sequently, \verb$evolution$ can be regarded as a sequence of 
+
 
 
 
