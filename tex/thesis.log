@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.23)  12 JUL 2012 17:39
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.23)  17 JUL 2012 23:58
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -461,7 +461,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count131
- <FULogo.jpg, id=79, 199.2243pt x 53.2389pt>
+ <FULogo.jpg, id=147, 199.2243pt x 53.2389pt>
 File: FULogo.jpg Graphic file (type jpg)
  <use FULogo.jpg>
 Underfull \hbox (badness 10000) in paragraph at lines 97--97
@@ -491,67 +491,76 @@ oc)
 
  [2] [3] [4] [5]
 [6]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 403.
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 400.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<def>-command' on input line 400.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@tempa' on input line 400.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<def>-command' on input line 400.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@tempb' on input line 400.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\pi' on input line 400.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 400.
-
-[7] [8] [9] [10]
-
-LaTeX Warning: Reference `' on page 11 undefined on input line 533.
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 560.
-
-(/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
+ (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 403.
+ [7] [8]
+LaTeX Font Info:    Try loading font information for U+euf on input line 443.
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2009/06/22 v3.00 Euler Fraktur
+)
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 453.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\<def>-command' on input line 453.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@tempa' on input line 453.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\<def>-command' on input line 453.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\@tempb' on input line 453.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\pi' on input line 453.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 453.
+
+[9] [10] [11]
+
+LaTeX Warning: Reference `' on page 12 undefined on input line 586.
+
+[12]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 560.
- [11]
-Overfull \hbox (98.55444pt too wide) in paragraph at lines 581--583
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 613.
+
+Overfull \hbox (98.55444pt too wide) in paragraph at lines 634--636
 \T1/cmr/m/n/12 ref-er-ence to our spin sys-tem, e.g. to fetch the Li-ou-vil-lia
 n in ques-tion. []\T1/cmtt/m/n/12 pulse_acquire(spin_system, parameters)
  []
 
-[12]
+[13]
 
-LaTeX Warning: Reference `tab-lebedev' on page 13 undefined on input line 646.
+LaTeX Warning: Reference `tab-lebedev' on page 14 undefined on input line 701.
 
-
-Overfull \hbox (13.95525pt too wide) in paragraph at lines 677--678
+[14]
+Overfull \hbox (13.95525pt too wide) in paragraph at lines 732--733
 \T1/cmr/m/n/12 tion, and sim-i-larly the ob-serv-able to be de-tected is du-pli
 -cated $[]$
  []
 
-[13] [14pdfTeX warning (ext4): destination with the same identifier (name{cite.
+[15] [16pdfTeX warning (ext4): destination with the same identifier (name{cite.
 spinach}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.723 \end{document}
+l.797 \end{document}
                     ] (./thesis.aux)
 
 LaTeX Warning: There were undefined references.
@@ -561,13 +570,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9635 strings out of 495021
- 132942 string characters out of 1181035
- 461088 words of memory out of 3000000
- 12438 multiletter control sequences out of 15000+50000
- 26309 words of font info for 75 fonts, out of 3000000 for 9000
+ 9699 strings out of 495021
+ 133965 string characters out of 1181035
+ 427088 words of memory out of 3000000
+ 12469 multiletter control sequences out of 15000+50000
+ 27961 words of font info for 82 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,11n,43p,984b,1823s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,11n,43p,979b,1792s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-
 texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fon
 ts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texmf-texlive/fonts/type1/pub
@@ -583,20 +592,21 @@ usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/tex
 mf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/
 fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-texlive/fonts/type1/
 public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
-nts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.p
-fb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf
-/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/
-cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0500.pf
-b></usr/share/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/
-fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/c
-m-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb
-></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/f
-onts/type1/public/cm-super/sfsl1000.pfb></usr/share/texmf/fonts/type1/public/cm
--super/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb>
-</usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on thesis.pdf (14 pages, 706523 bytes).
+nts/euler/eufm10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/symb
+ols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr
+/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/t
+ype1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super
+/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0500.pfb></usr/
+share/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/ty
+pe1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/
+sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/s
+hare/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/typ
+e1/public/cm-super/sfsl1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
+fti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/sh
+are/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on thesis.pdf (16 pages, 739207 bytes).
 PDF statistics:
- 514 PDF objects out of 1000 (max. 8388607)
- 205 named destinations out of 1000 (max. 500000)
- 158 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 627 PDF objects out of 1000 (max. 8388607)
+ 232 named destinations out of 1000 (max. 500000)
+ 294 words of extra memory for PDF output out of 10000 (max. 10000000)
 

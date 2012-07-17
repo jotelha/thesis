@@ -143,7 +143,7 @@ hyperindex=true, hyperfigures=false]{hyperref} % fichiers pdf 'intelligents', av
 
 \newpage
 
-\section{Basics}
+\section{Mathematical methods}
 First of all, we are going to introduce several theoretical concepts necessary to understand the mechanisms of EPR and numerical spectra computation.
 
 \subsection{Fourier transorm}
@@ -176,6 +176,8 @@ Furthermore, harmonics are eigenfunctions of LTI systems, and the \emph{frequenc
 	\Phi\{e^{i\omega t}\} = \int_{-\infty}^{\infty} e^{i\omega t} h(\tau-t) d\tau =  e^{i\omega t} \int_{-\infty}^{\infty} e^{i\omega (\tau-t)} h(\tau-t) d\tau =  e^{i\omega t} \int_{-\infty}^{\infty} e^{i\omega (\tau)} h(\tau) d\tau = H(\omega) e^{i \omega t}
 \end{equation}
 %\end{comment}
+
+%INSERT: x-y-component of FID
 
 \subsection{Matrix formalism}
 
@@ -369,15 +371,14 @@ the density matrix' equation of motion can be derived by differentiating equatio
   \label{eq-liouville}
 \end{align}
 
-
 \subsubsection{Dynamics}
 In case of a stationary Hamiltonian, the Schr\"odinger equation 
 \begin{equation}
-  i \frac{\partial}{\partial t} | \Psi(t) \rangle = \mathcal{H} |\Psi(t) \rangle
+  i \frac{\partial}{\partial t} | \psi(t) \rangle = \mathcal{H} |\psi(t) \rangle
 \end{equation}
 has the solution
 \begin{equation}
-  |\Psi(t)\rangle = U(t) | \Psi(0) \rangle
+  |\Psi(t)\rangle = U(t) | \psi(0) \rangle
 \end{equation}
 where 
 \begin{equation}
@@ -385,20 +386,77 @@ where
   \label{eq-evolution}
 \end{equation}
 is called the \emph{evolution operator}.
+Equivalently, the Liouville equation has the solution
+\begin{equation}
+ \rho(t) = |\psi(t)\rangle \langle \psi(t)| = e^{-i \mathcal{H} t} | \psi(0) \rangle \langle \psi(0) | e^{i \mathcal{H} t} = e^{-i \mathcal{H} t} \rho(0) e^{i \mathcal{H} t}
+\end{equation}
 
 In case of a time-dependent, but piecewise-constant Hamiltonian the solution has the form
 \begin{equation}
  |\Psi(t)\rangle = \left[ \prod_k e^{-i\mathcal{H}_k \Delta t_k} \right] |\Psi(0)\rangle
 \end{equation}
 
-\begin{comment}
-\subsection{Spherical tensors}
+\subsection{Superoperators, Liouville space}
+The Hamiltonian $\mathcal{H}$ is an operation defined on the space of vectors, similarly the commutation operator $\mathcal{L} = [\mathcal{H}, \cdot ]$ is an operation defined on the space of operators. Thus it is called the \emph{Liouvillian superoperator}. Therefore, the spaces one usually comes to deal with when treating spin dynamics are
+
+\begin{itemize}
+ \item the space where all states live. States are represented as a vector (\ref{eq-orthonormal-basis}) of dimension $N$, and with the scalar product $\langle \phi | \psi \rangle$ they fulfill every requirement to span an $N$-dimensional \emph{Hilbert space}. This space is isomorph to $\mathbb{C}^N$.
+  \item the space where all operators which act on spin states live. Operators such as $\mathcal{H}$ are represented by $N\times N$-matrices, thus the space spanned by those operators is $N^2$-dimensional and isomorph to $\mathbb{C}^{N^2}$. There exist many possible scalar products, so again we deal with a Hilbert space. The special operator space, where we choose $Tr(A^\dagger B)$ as the scalar product is known as the \emph{Liouville space} in spin dynamics.
+  \item the space where all \emph{superoperators} which act on operators live. Superoperators such as $\mathcal{L} = [\mathcal{H}, \cdot ]$ are represented by $N^2 \times N^2$ matrices, thus the space spanned by those superoperators is $N^4$-dimensional and isomorph to $\mathbb{C}^{N^4}$. Again, we chose the scalar product $Tr(A^\dagger B)$ for this Hilbert and call it \emph{superoperator space}.
+\end{itemize}
+
+Now, if we represent states as vectors and operators as matrices, how come we do not have to represent superoperators as more complex objects like ``three-dimensional matrices''? The mathematical trick is to stretch the original operator matrix $\rho$ column-wise into a vertical vector:
+\begin{equation}
+ \rho = \begin{pmatrix} \vec{\rho}_1,\vec{\rho}_2,\ldots,\vec{\rho}_N \end{pmatrix} \rightarrow
+  |\rho \rangle = \begin{pmatrix} \vec{\rho}_1 \\ \vec{\rho}_2 \\ \ldots \\ \vec{\rho}_N \end{pmatrix} 
+\end{equation}
+Of course, every single column vector of $\rho$ has dimension $N$, so $|\rho\rangle$ has dimension $N^2$. The trace of two matrices $A$, $B$ stretches into a vector scalar product:
+\begin{equation}
+ Tr( A^\dagger B ) = \sum_{n,k} A_{nk}^* B_{nk} = \sum_{n'} A_{n'}^* B_{n'} = \langle A | B \rangle
+\end{equation}
+This allows the calculation of a matrix scalar product in $O(N^2)$ runtime.
+
+With the operator stretched into a vector, the superoperator can accordingly be stretched into an $N^2 \times N^2$ matrix representation. The matrix version of the Liouvillian is the sum of two Kronecker products
+\begin{equation}
+ \mathcal{L} = E \otimes \mathcal{H}^T - \mathcal{H} \otimes E
+\end{equation}
+%insert proof
+where $E$ is the $N \times N$ unity matrix. 
+
+\subsubsection{Choice of basis set and irreducible spherical tensors}
+When we are looking for a suitable basis of the Liouville space to conduct some spin dynamics simulation, the perfect choice would be \emph{eigenoperators} $S_k$ of the Liouvillian, since they are invariant under all interactions of the system:
+\begin{equation}
+  \mathcal{L} S_k = l_k S_k
+\end{equation}
+To find those eigenoperators in their vector form, one could diagonalize the Liouvillians matrix representation. Unfortunately the computation costs would be enourmous due to the $N^4$ dimensions of the Liouville space. A wise choice would be a set of eigenoperators invariant under commutation with $J_z$, since this operator characterizes the dominating Zeeman interaction in EPR. Or even better, a set of operators invariant under rotations, since we have to examine the spin system from many different angles to average the powder spectrum.
+
+%Slichter S. 490
+As we know, the angular momentum operators $J_x$, $J_y$ and $J_z$ generate rotations. It is possible to define a family of operators $T_{lm}$ called \emph{irreducible spherical tensors (IST)}, which fulfill the commutation relations
+\begin{align}
+ [J_\pm,T_{lm}] & = \sqrt{l(l+1)-m(m\pm1)} T_{l(m\pm1)} \\
+  [J_z, T_{lm}] & = m T_{lm}
+  \label{eq-tlm-commutators}
+\end{align}
+In the space of operators they are the analogon to the spherical harmonics in the space of wavefunctions, for every $l$ there exist $2l+1$ independent IST with $m = -l, -l+1, \dots , l-1, l$ and any rotation transforms $T_{lm}$ into a linear combination of $T_{lm'}$ with same $l$:
+%Starting from the commutation relations (\ref{eq-tlm-commutators}), it can be shown that a rotation of $T_{lm}$ results in 
+\begin{equation}
+ R(\alpha,\beta,\gamma) \ T_{lm} = \sum_{m'=-l}^l \mathfrak{D}_{m',m}^{(l)}(\alpha,\beta,\gamma) \ T_{lm'}
+\end{equation}
+The matrix elements $\mathfrak{D}_{m,m'}^{(l)}(\alpha.\beta,\gamma)$ are called \emph{Wigner functions} and make up the \emph{Wigner rotation matrix} of rank $l$ corresponding to a certain rotation $R(\alpha,\beta,\gamma)$. They can be evaluated with the spherical harmonics
+\begin{equation}
+ \mathfrak{D}_{m,m'}^{(l)}(\alpha.\beta,\gamma) = \langle Y_{lm}|R(\alpha,\beta,\gamma)|Y_{lm'} \rangle
+\end{equation}
+
+
+
+
+
+\subsubsection{}
 All operators are square matrices, which might or might not exhibit symmetric features. It will prove handy to express those \emph{tensors} as a composition of a symmetric, \emph{isotropic} part and the \emph{anisotropic} deviation from perfect spherical symmetry. A totally isotropic tensor has only one eigenvalue and can be reduced to a scalar. 
-\end{comment}
 
 
 \section{$\tfrac{\pi}{2}$-pulsed EPR}
-The mechanisms of \emph{EPR (Electron Paramegnetic Resonance)}, also called \emph{ESR (Electron Spin Resonance)}, work analogous to the mechanisms of \emph{NMR (Nuclear Magnetic Resonance)}. In diamagnetic materials, all electrons are spin-paired, making the magnetic dipole vanish, and enabling the system to be accessible by NMR, and according to \cite[Chap. 4, p. 107]{nmr-ox}, NMR technique offer two further ``advantages'' in comparison with EPR: First, relaxation time of spin electrons is very short compared with nuclei; second the nuclear spin Hamiltonian offers a broader diversity of interactions giving insight to the system's properties. Nevertheless, EPR experiments are only suitable to investigate systems with unpaired electrons, which exhibit a non-zero electron spin. The basic idea is to perturb a spin system's equilibrium by a small pulsed oscillating magnetic field and record the emitted radiation during the relaxation process. 
+The mechanisms of \emph{EPR (Electron Paramegnetic Resonance)}, also called \emph{ESR (Electron Spin Resonance)}, work analogous to the mechanisms of \emph{NMR (Nuclear Magnetic Resonance)}. In diamagnetic materials, all electrons are spin-paired, making the magnetic dipole vanish, and enabling the system to be accessible by NMR, and according to \cite[Chap. 4, p. 107]{nmr-ox}, NMR technique offer two further ``advantages'' in comparison with EPR: First, relaxation time of spin electrons is very short compared with nuclei; second the nuclear spin Hamiltonian offers a broader diversity of interactions giving insight to the system's properties. Nevertheless, EPR experiments are suitable to investigate systems with unpaired electrons, which exhibit a non-zero electron spin. The basic idea is to perturb a spin system's equilibrium by a small pulsed oscillating magnetic field and record the emitted radiation during the relaxation process. 
 
 When we place a spin sytem inside a static magnetic field $\vec{B}_0 = B_0 \hat{z}$ and let it settle to equilibrium, due to Zeeman effect more electron spins are goint to align parallel to $\vec{B}_0$ than antiparallel, resulting in a net magnetization of the system. The pulse $\vec{B}_1 = B_1 \hat{x} e^{i(\vec{k}\cdot\vec{r}-\omega_1 t} \cdot u(t_0-t)$ linearly polarized in x-direction will tilt the electron spins and disturb the equilibrium in a way we are going to examine in the following:
 
@@ -520,7 +578,7 @@ and the rotating frame Hamiltonian
 \end{equation}
 At resonant frequency the field in z-direction vanishes and the field component in x-direction causes a simple precession of the system's spin around the magnetic field axis at frequency $\omega_2 = - \gamma B_1$ in the rotating frame. Choosing an appropriate duration of the pulse $\omega_2 t_p = \tfrac{\pi}{2}$, the equilibrium magnetisation of the sample will be disturbed, since the system's spins are all tilted by $90^\circ$ around the x-axis into the x-y-plane. 
 
-
+\subsection{Experimental setup}
 
 \section{Spinach}
 The Matlab library \emph{Spinach} supplies efficient methods for large-scale spin dynamics simulations. It consists of the \emph{kernel} with the implementation of general spin dynamics simulation techniques and the \emph{user-land} with a collection of different experiements to perform. Basically, the user prepares the description of a spin system, which is then translated by the kernel into the most efficient basis sets, superoperators, etc. The user-land decides how to deal with those objects, whether to apply a pre-established experiment, or whether to perform the kernel's simulation procedures manually. Though Spinach is able to simulate numerous kinds of experiments, in this work we are going to restrict ourselves to standard EPR experiments. 
@@ -596,6 +654,8 @@ The ``crisp'' apodization modulates the FID by a declining cosine window functio
  \text{FID}'(t) = \text{FID}(t) \cdot \cos^8 \left( \frac{\pi}{2} \cdot \frac{t}{L_\text{FID}} \right)
 \end{equation}
 Line 31 finally performs Fast Fourier Transform to generate the frequency domain spectrum.
+
+%Insert graphics about the effect of fft, zero filling and shifting
 
 \subsubsection{pulse\_acquire}
 
@@ -690,6 +750,25 @@ Generally, \verb$step(spin_system,L,rho,dt)$ propagates the density matrix \verb
 \end{equation}
 in analogy to equation (\ref{eq-z-rotation}). This just rotates all spins into the x-y-plane, just as a $\tfrac{\pi}{2}$-pulse will do. 
 Sequently, \verb$evolution$ can be regarded as a sequence of \verb$npoints$ \verb$step$-functions propagating the density matrix through the whole time interval by steps of duration \verb$timestep$ by applying Liouvillian \verb$L$. In addition, the observable \verb$coil$ is evaluated for every single step, recording the time resolved FID with magnetization in x-direction as its real part and magnetization in y-direction as its imaginary part. 
+
+\section{Parallelization}
+
+\subsection{Clusters and platforms}
+\subsubsection{Sheldon}
+\subsubsection{Soroban}
+
+\subsection{Matlab parallel computing toolbox}
+\subsubsection{Matlab licences}
+\subsubsection{Matlab - Linux interaction}
+
+\subsection{Spinach modification}
+\subsubsection{Master process}
+\subsubsection{Child processes}
+\subsubsection{Finalization process}
+
+\subsection{Benchmarking}
+
+\section{Conclusion and outlook}
 
 \FloatBarrier
 \begin{thebibliography}{9}
