@@ -1,22 +1,20 @@
-\BOOKMARK [1][-]{section.1}{Mathematical methods}{}
-\BOOKMARK [2][-]{subsection.1.1}{Fourier transorm}{section.1}
-\BOOKMARK [2][-]{subsection.1.2}{Matrix formalism}{section.1}
-\BOOKMARK [3][-]{subsubsection.1.2.1}{Diagonizable matrices}{subsection.1.2}
-\BOOKMARK [3][-]{subsubsection.1.2.2}{Matrix exponentials}{subsection.1.2}
-\BOOKMARK [2][-]{subsection.1.3}{Spin formalism}{section.1}
-\BOOKMARK [3][-]{subsubsection.1.3.1}{Quantum states and measurments done on them}{subsection.1.3}
-\BOOKMARK [3][-]{subsubsection.1.3.2}{Density operator and spin ensembles}{subsection.1.3}
-\BOOKMARK [3][-]{subsubsection.1.3.3}{Liouville equation}{subsection.1.3}
-\BOOKMARK [3][-]{subsubsection.1.3.4}{Dynamics}{subsection.1.3}
-\BOOKMARK [2][-]{subsection.1.4}{Superoperators, Liouville space}{section.1}
-\BOOKMARK [3][-]{subsubsection.1.4.1}{Choice of basis set and irreducible spherical tensors}{subsection.1.4}
-\BOOKMARK [3][-]{subsubsection.1.4.2}{}{subsection.1.4}
-\BOOKMARK [1][-]{section.2}{ FULogo.jpg2-pulsed EPR}{}
-\BOOKMARK [2][-]{subsection.2.1}{Spin system Hamiltonian}{section.2}
-\BOOKMARK [2][-]{subsection.2.2}{g-tensor and A-tensor}{section.2}
-\BOOKMARK [3][-]{subsubsection.2.2.1}{Rotating reference frame}{subsection.2.2}
-\BOOKMARK [2][-]{subsection.2.3}{Resonant frequency field}{section.2}
-\BOOKMARK [2][-]{subsection.2.4}{Experimental setup}{section.2}
+\BOOKMARK [1][-]{section.1}{ FULogo.jpg2-pulsed EPR}{}
+\BOOKMARK [2][-]{subsection.1.1}{Spin system Hamiltonian}{section.1}
+\BOOKMARK [2][-]{subsection.1.2}{g-tensor and A-tensor}{section.1}
+\BOOKMARK [2][-]{subsection.1.3}{Matrix exponentials}{section.1}
+\BOOKMARK [2][-]{subsection.1.4}{Rotating reference frame}{section.1}
+\BOOKMARK [2][-]{subsection.1.5}{Resonant frequency field}{section.1}
+\BOOKMARK [2][-]{subsection.1.6}{Experimental setup}{section.1}
+\BOOKMARK [1][-]{section.2}{Mathematical methods}{}
+\BOOKMARK [2][-]{subsection.2.1}{Matrix formalism}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Diagonizable matrices}{subsection.2.1}
+\BOOKMARK [2][-]{subsection.2.2}{Spin formalism}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Quantum states and measurments done on them}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Density operator and spin ensembles}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Liouville equation}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.4}{Dynamics}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.5}{Superoperators, Liouville space}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.6}{Choice of basis set and irreducible spherical tensors}{subsection.2.2}
 \BOOKMARK [1][-]{section.3}{Spinach}{}
 \BOOKMARK [2][-]{subsection.3.1}{A Spinach EPR Simulation}{section.3}
 \BOOKMARK [3][-]{subsubsection.3.1.1}{Typical input file}{subsection.3.1}
