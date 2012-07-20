@@ -1,34 +1,36 @@
 \BOOKMARK [1][-]{section.1}{ FULogo.jpg2-pulsed EPR}{}
-\BOOKMARK [2][-]{subsection.1.1}{Spin system Hamiltonian}{section.1}
-\BOOKMARK [2][-]{subsection.1.2}{g-tensor and A-tensor}{section.1}
-\BOOKMARK [2][-]{subsection.1.3}{Matrix exponentials}{section.1}
-\BOOKMARK [2][-]{subsection.1.4}{Rotating reference frame}{section.1}
-\BOOKMARK [2][-]{subsection.1.5}{Resonant frequency field}{section.1}
-\BOOKMARK [2][-]{subsection.1.6}{Experimental setup}{section.1}
-\BOOKMARK [1][-]{section.2}{Mathematical methods}{}
-\BOOKMARK [2][-]{subsection.2.1}{Matrix formalism}{section.2}
-\BOOKMARK [3][-]{subsubsection.2.1.1}{Diagonizable matrices}{subsection.2.1}
-\BOOKMARK [2][-]{subsection.2.2}{Spin formalism}{section.2}
-\BOOKMARK [3][-]{subsubsection.2.2.1}{Quantum states and measurments done on them}{subsection.2.2}
-\BOOKMARK [3][-]{subsubsection.2.2.2}{Density operator and spin ensembles}{subsection.2.2}
-\BOOKMARK [3][-]{subsubsection.2.2.3}{Liouville equation}{subsection.2.2}
-\BOOKMARK [3][-]{subsubsection.2.2.4}{Dynamics}{subsection.2.2}
-\BOOKMARK [3][-]{subsubsection.2.2.5}{Superoperators, Liouville space}{subsection.2.2}
-\BOOKMARK [3][-]{subsubsection.2.2.6}{Choice of basis set and irreducible spherical tensors}{subsection.2.2}
-\BOOKMARK [1][-]{section.3}{Spinach}{}
-\BOOKMARK [2][-]{subsection.3.1}{A Spinach EPR Simulation}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Typical input file}{subsection.3.1}
-\BOOKMARK [3][-]{subsubsection.3.1.2}{pulse\137acquire}{subsection.3.1}
-\BOOKMARK [1][-]{section.4}{Parallelization}{}
-\BOOKMARK [2][-]{subsection.4.1}{Clusters and platforms}{section.4}
-\BOOKMARK [3][-]{subsubsection.4.1.1}{Sheldon}{subsection.4.1}
-\BOOKMARK [3][-]{subsubsection.4.1.2}{Soroban}{subsection.4.1}
-\BOOKMARK [2][-]{subsection.4.2}{Matlab parallel computing toolbox}{section.4}
-\BOOKMARK [3][-]{subsubsection.4.2.1}{Matlab licences}{subsection.4.2}
-\BOOKMARK [3][-]{subsubsection.4.2.2}{Matlab - Linux interaction}{subsection.4.2}
-\BOOKMARK [2][-]{subsection.4.3}{Spinach modification}{section.4}
-\BOOKMARK [3][-]{subsubsection.4.3.1}{Master process}{subsection.4.3}
-\BOOKMARK [3][-]{subsubsection.4.3.2}{Child processes}{subsection.4.3}
-\BOOKMARK [3][-]{subsubsection.4.3.3}{Finalization process}{subsection.4.3}
-\BOOKMARK [2][-]{subsection.4.4}{Benchmarking}{section.4}
-\BOOKMARK [1][-]{section.5}{Conclusion and outlook}{}
+\BOOKMARK [2][-]{subsection.1.1}{Introduction}{section.1}
+\BOOKMARK [2][-]{subsection.1.2}{Spin interactions}{section.1}
+\BOOKMARK [3][-]{subsubsection.1.2.1}{Spin system Hamiltonian}{subsection.1.2}
+\BOOKMARK [3][-]{subsubsection.1.2.2}{g-tensor and A-tensor}{subsection.1.2}
+\BOOKMARK [2][-]{subsection.1.3}{Spin formalism}{section.1}
+\BOOKMARK [3][-]{subsubsection.1.3.1}{Quantum states and measurments done on them}{subsection.1.3}
+\BOOKMARK [3][-]{subsubsection.1.3.2}{Evolution operator and time propagation}{subsection.1.3}
+\BOOKMARK [3][-]{subsubsection.1.3.3}{Density operator and spin ensembles}{subsection.1.3}
+\BOOKMARK [3][-]{subsubsection.1.3.4}{Liouville equation}{subsection.1.3}
+\BOOKMARK [3][-]{subsubsection.1.3.5}{Superoperators, Liouville space}{subsection.1.3}
+\BOOKMARK [3][-]{subsubsection.1.3.6}{Choice of basis set and irreducible spherical tensors}{subsection.1.3}
+\BOOKMARK [2][-]{subsection.1.4}{Understanding the experiment}{section.1}
+\BOOKMARK [3][-]{subsubsection.1.4.1}{Rotating reference frame}{subsection.1.4}
+\BOOKMARK [3][-]{subsubsection.1.4.2}{Resonant frequency field}{subsection.1.4}
+\BOOKMARK [3][-]{subsubsection.1.4.3}{FID detection}{subsection.1.4}
+\BOOKMARK [3][-]{subsubsection.1.4.4}{Real and imaginary spectrum}{subsection.1.4}
+\BOOKMARK [3][-]{subsubsection.1.4.5}{Averaging over Lebedev grids}{subsection.1.4}
+\BOOKMARK [2][-]{subsection.1.5}{Essence}{section.1}
+\BOOKMARK [1][-]{section.2}{Spinach}{}
+\BOOKMARK [2][-]{subsection.2.1}{A Spinach EPR Simulation}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Typical input file}{subsection.2.1}
+\BOOKMARK [3][-]{subsubsection.2.1.2}{pulse\137acquire}{subsection.2.1}
+\BOOKMARK [1][-]{section.3}{Parallelization}{}
+\BOOKMARK [2][-]{subsection.3.1}{Clusters and platforms}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.1.1}{Sheldon}{subsection.3.1}
+\BOOKMARK [3][-]{subsubsection.3.1.2}{Soroban}{subsection.3.1}
+\BOOKMARK [2][-]{subsection.3.2}{Matlab parallel computing toolbox}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Matlab licences}{subsection.3.2}
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Matlab - Linux interaction}{subsection.3.2}
+\BOOKMARK [2][-]{subsection.3.3}{Spinach modification}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Master process}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Child processes}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.3}{Finalization process}{subsection.3.3}
+\BOOKMARK [2][-]{subsection.3.4}{Benchmarking}{section.3}
+\BOOKMARK [1][-]{section.4}{Conclusion and outlook}{}

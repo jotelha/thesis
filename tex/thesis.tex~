@@ -145,14 +145,16 @@ hyperindex=true, hyperfigures=false]{hyperref} % fichiers pdf 'intelligents', av
 \newpage
 
 \section{$\tfrac{\pi}{2}$-pulsed EPR}
+\subsection{Introduction}
 The mechanisms of \emph{EPR (Electron Paramegnetic Resonance)}, also called \emph{ESR (Electron Spin Resonance)}, work analogous to the mechanisms of \emph{NMR (Nuclear Magnetic Resonance)}. In \emph{diamagnetic} materials, all electrons are spin-paired, making the elctron magnetic dipole vanish, and enabling the system to be accessible by NMR. 
 %, and according to \cite[Chap. 4, p. 107]{nmr-ox}, NMR technique offer two further ``advantages'' in comparison with EPR: First, relaxation time of spin electrons is very short compared with nuclei; second the nuclear spin Hamiltonian offers a broader diversity of interactions giving insight to the system's properties. Nevertheless, 
-EPR experiments are suitable to investigate \emph{paramagnetic} systems with unpaired electron spins, which exhibit a non-zero electron spin. The basic idea is to perturb a spin system's equilibrium by a small pulsed oscillating magnetic field and record resulting time-dependent magnetization during the relaxation process. 
+EPR experiments are suitable to investigate \emph{paramagnetic} systems with unpaired electron spins, which exhibit a non-zero electron spin. The basic idea is to perturb a spin system's equilibrium by a small pulsed oscillating magnetic field:
 
-When we place a sample of spin sytems inside a static magnetic field $\vec{B}_0 = B_0 \hat{z}$ and let it settle to equilibrium, due to Zeeman effect more electron spins are goint to align parallel to $\vec{B}_0$ than antiparallel, resulting in a net magnetization of the sample. A magnetic pulse $\vec{B}_1(t) = B_1(t) \hat{x}$ linearly polarized in x-direction will tilt the electron spins and disturb the equilibrium in a way we are going to examine in the course of this article.
+When we place a \emph{powder sample} of spin sytems inside a static magnetic field $\vec{B}_0 = B_0 \hat{z}$ and let it settle to equilibrium, due to Zeeman effect more electron spins are goint to align parallel to $\vec{B}_0$ than antiparallel, resulting in a net magnetization of the sample. When speaking of a powder sample we mean a sample in which many spin systems exist in randomly distributed spatial orientations. A magnetic pulse $\vec{B}_1(t) = B_1(t) \hat{x}$ linearly polarized in x-direction will tilt the electron spins and disturb the equilibrium in a way we are going to examine in the course of this article. The resulting time-dependent magnetization during the relaxation process may be recorded. This time-resolved signal is called the \emph{free induction decay (FID)}. 
 %The pulse $\vec{B}_1 = B_1 \hat{x} e^{i(\vec{k}\cdot\vec{r}-\omega_1 t)} \cdot u(t_0-t)$ linearly polarized in x-direction will tilt the electron spins and disturb the equilibrium in a way we are going to examine in the course of this article.
 
-\subsection{Spin system Hamiltonian}
+\subsection{Spin interactions}
+\subsubsection{Spin system Hamiltonian}
 Like in any other quantum mechanical problem the starting point when treating an EPR experiment theoretically is the Schr\"odinger equation\footnote{Following spin dynamics conventions in the course of this article we set $\hbar = 1$}
 \begin{equation}
  i \hbar \frac{\partial}{\partial t} |\psi\rangle = \mathcal{H} |\psi \rangle
@@ -204,7 +206,7 @@ Like in any other quantum mechanical problem the starting point when treating an
   \item \uline{Other weaker interactions} like coupling of the nuclear quadrupole moment to the electron's electromagnetic field and the magnetic coupling of electrons with each other or nuclei with each other.
 \end{enumerate}
 
-\subsection{g-tensor and A-tensor}
+\subsubsection{g-tensor and A-tensor}
   In the spin Hamiltonian above different interactions have been grouped with square brackets into three packages. The latter package $\left[\mathcal{H}_{NZ} + \mathcal{H}_{NCS} + \text{weaker interactions}\right]$ simply marks interactions which we are allowed to neglect in the case of high field EPR. When the external magnetic field $\vec{B}_0$ becomes sufficiently strong, their contribution diminishes in comparison with the interactions depending on $\vec{B}_0$.
 
   The former package $\left[\mathcal{H}_{EZ} + \mathcal{H}_{ECS} + \mathcal{H}_{LS}\right]$ marks major interactions linear in spin. In EPR the overall behaviour of those interactions is summarized in the \emph{g-tensor}:
@@ -227,7 +229,52 @@ Like in any other quantum mechanical problem the starting point when treating an
 %where $I$ is the identity matrix.
   Another possible self-interaction $\mathcal{H}_\text{quadratic} = \mathbf{S} \cdot A \cdot \mathbf{S}$ we are not going to encounter in the case of high field EPR.
 
-\subsection{Matrix exponentials}
+\subsection{Spin formalism}
+Our aim is to understand the mechanisms employed in Spinach's simulation, and we are especially curious about the scaling of Spinach's memory and CPU time consumption. Hence we will examine the mathematical formalism directly underlying numerical computation more thoroughly.
+
+\subsubsection{Quantum states and measurments done on them}
+Any allowed spin state $| \psi \rangle$ can be written as a linear superposition of an orthogonal basis set of a Hilbert  space spanned by all allowed \emph{azimuthal quantum number} states $| m \rangle$:
+\begin{equation}
+ | \psi \rangle = \sum_m a_m | m \rangle 
+\label{eq-orthonormal-basis}
+\end{equation}
+where the amplitudes are complex $a_m = |a_m| e^{i\phi_m}$ with phase $\phi_m$ and magnitude $|a_m|$. The $|m\rangle$ can be represented by a proper scaled basis of choice, but the $m$ lable offers a general independent representation.
+ 
+All measurements to be done on a spin system yield eigenvalues of a linear operator associated with the particular measurement. The corresponding observed physical quantity is called \emph{observable}. Measuring the spin component of a system in one of the basis states along the z-axis $\mathbf{S_z}$ thus yields
+\begin{equation}
+  \mathbf{S_z} |m\rangle = m |m\rangle
+\end{equation}
+The orthogonal basis can be normalized by requiring the inner product of basis vectors to be
+\begin{equation}
+ \langle m|m'\rangle = \delta_{m m'}
+  \label{eq-orthonormality}
+\end{equation}
+
+\begin{comment}
+This requirement automatically defines the corresponding \emph{bras} for the \emph{ket} states. For a system of $S=\frac{1}{2}$ and thus $m=\pm \frac{1}{2}$ we have
+\begin{align} 
+ |\tfrac{1}{2}\rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad |-\tfrac{1}{2}\rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}\\
+ \langle\tfrac{1}{2}| = \begin{bmatrix} 1 & 0 \end{bmatrix}, \quad \langle-\tfrac{1}{2}| = \begin{bmatrix} 0 & 1 \end{bmatrix} 
+\end{align}
+yielding the operator for the spin z-component observable 
+\begin{equation}
+ S_z = \begin{bmatrix} \tfrac{1}{2} & 0 \\ 0 & -\tfrac{1}{2} \end{bmatrix}
+\end{equation}
+\end{comment}
+
+If a spin system exists in the eigenstate $|m\rangle$ of $\mathbf{S_z}$, then the measurement of $\mathbf{S_z}$ will yield
+\begin{equation}
+ \langle m | \mathbf{S_z} | m \rangle = m
+\end{equation}
+The measurement on a general superposition will yield
+\begin{align}
+ \langle \psi | \mathbf{S_z} | \psi \rangle & = \sum_{m,m'} a_m^* a_{m'} \langle m' | \mathbf{S_z} | m \rangle\\
+  & = \sum_{m,m'} a_m^* a_{m'} m \langle m' | m \rangle\\
+  & = \sum_{m} |a_{m}|^2  m
+\end{align}
+due to the orthormality of the basis set.
+
+\subsubsection{Evolution operator and time propagation}
 In the following we shall make use of matrix exponentials to express some quantum mechanical operators. The defintion of the exponential
 \begin{equation}
  e^x = \sum_{k=0}^\infty \frac{x^k}{k!} = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + ...
@@ -237,19 +284,247 @@ can be easily applied to square matrices, eg.:
  e^{i \phi A } = I + i \phi A - \frac{(\phi A)^2}{2!} - i \frac{(\phi A)^3}{3!} + \frac{(\phi A)^4}{4!} + i \frac{(\phi A)^5}{5!} - ...
 \end{equation}
 such that exponentials are defined for matrices as well.
-\begin{comment}
-Only if the operators $A$ and $B$ commute, the classical identities
-\begin{align}
- Ae^{iB} = e^{iB}A \\
-  e^{i(A+B)} = e^{iA}e^{iB}
-\end{align}
-hold.
-\end{comment}
 
-\subsection{Rotating reference frame}
+\label{sec-dynamics}
+In case of a stationary Hamiltonian, the Schr\"odinger equation 
+\begin{equation}
+  i \frac{\partial}{\partial t} | \psi(t) \rangle = \mathcal{H} |\psi(t) \rangle
+\end{equation}
+has the solution
+\begin{equation}
+  |\Psi(t)\rangle = U(t) | \psi(0) \rangle
+  \label{eq-psi-general-solution}
+\end{equation}
+where 
+\begin{equation}
+ U(t) = e^{-i \mathcal{H} t}
+  \label{eq-evolution}
+\end{equation}
+is called the \emph{evolution operator}.
+
+In case of a time-dependent, but piecewise-constant Hamiltonian the solution has the form
+\begin{equation}
+ |\Psi(t)\rangle = \left[ \prod_k e^{-i\mathcal{H}_k \Delta t_k} \right] |\Psi(0)\rangle
+  \label{eq-time-propagation}
+\end{equation}
+This is the basis of numerical time propagation.
+
+\subsubsection{Density operator and spin ensembles}
+%Slichter S. 157ff
+Due to equation (\ref{eq-orthonormal-basis}) the expectation value of an observable $A$ can be expressed as 
+\begin{equation}
+ \langle A \rangle = \langle \psi | A | \psi \rangle = \sum_{m,n} c_m^* c_n \langle m | A | n \rangle
+  \label{eq-observable-representation}
+\end{equation}
+Now, when the expectation value of a certain observable is required, we are always interested in the product $c_m^* c_n$ rather than the distinct $c_n$, thus we can think of a matrix representation of those probabilities and define an operator $P$ with
+\begin{equation}
+ \langle n | P | m \rangle = c_n c_m^*
+\end{equation}
+Equation (\ref{eq-observable-representation}) becomes
+\begin{equation}
+ \langle A \rangle = \sum_{m,n} \langle n | P | m \rangle \langle m | A | n \rangle
+  \label{eq-P-A-representation}
+\end{equation}
+Since $|m\rangle$ form an orthonormal basis set, the results of $A$ and $P$ acting on a basis vector can be expanded in the basis:
+% \langle l | P | m \rangle = a_l due to orthononormality
+\begin{align} 
+ P|m\rangle & = \sum_l a_l |l\rangle = \sum_l \langle l |P|m\rangle |l\rangle\\
+ A|n\rangle & = \sum_m b_m |m\rangle = \sum_m \langle m |A|n\rangle |m\rangle 
+\end{align}
+since the $a_l$ and $b_a$ may be found as
+\begin{align}
+  \langle l |P|m\rangle & = \sum_{l'} a_{l'} \langle l'|l\rangle = a_l\\
+  \langle m |A|n\rangle & = \sum_{m'} b_{m'} \langle m'|m\rangle = a_m\\
+\end{align}
+allowing the following expression to be rewritten
+\begin{align}
+ \Rightarrow P A |n\rangle & = \sum_m P|m\rangle \langle m | A | n \rangle \\
+  & = \sum_{l,m} |l\rangle \langle l | P | m \rangle \langle m | A | n \rangle \\
+  \Rightarrow \langle n | P A | n \rangle & = \sum_{l,m} \langle n|l\rangle \langle l | P | m \rangle \langle m | A | n \rangle \\
+  & = \sum_{l,m} \delta_{ln} \langle l | P | m \rangle \langle m | A | n \rangle \\
+  & = \sum_{m} \langle n | P | m \rangle \langle m | A | n \rangle
+\end{align}
+Comparing with equation (\ref{eq-P-A-representation}) we find
+\begin{equation}
+ \langle A \rangle = \sum_n \langle n | P A | n \rangle = Tr(P A) = Tr(A P)
+ \label{eq-A-P-trace}
+\end{equation}
+where $Tr$ is the trace -- the total sum of the matrix' diagonal elements.
+$P$ is an Hermitian operator since
+\begin{equation}
+ \langle n|P|m\rangle = c_n c_m^* = (c_m c_n^*)^* = \langle m |P|n\rangle^*
+\end{equation}
+and we might as well write
+\begin{equation}
+ \langle A \rangle = Tr(P^\dagger A) = Tr(A^\dagger P)
+\label{eq-rho-observable}
+\end{equation}
+
+%Slichter S. 159, Callaghan S. 78
+In EPR we pulse a powder sample. Theoretically this means a measurement on an ensemble of many spin systems with many (most generally different) spin states $|\psi\rangle$ instead of determining the state of a single system. The observable averaged about the whole statistical ensemble is written as
+\begin{align}
+ \overline{\langle A \rangle} & = \overline{\langle \psi | A | \psi \rangle} \\
+  & = \sum_\psi p_\psi \langle \psi | A | \psi \rangle \\ 
+  & = \sum_\psi p_\psi \left( \sum_{m,n} c_m^* c_n \langle m | A | n \rangle \right) \\
+  & = \sum_{m,n} \left( \sum_\psi p_\psi c_m^* c_n \right) \langle m | A | n \rangle \\
+  & = \sum_{m,n} \overline{c_m^* c_n} \langle m | A | n \rangle
+  \label{eq-ensemble-representation}
+\end{align}
+where $p_\psi$ is an appropriate statistical averaging weight chosen according to the occupancy of $|\psi\rangle$. On this basis we introduce the \emph{density matrix operator}
+\begin{equation} 
+ \langle n | \rho | m \rangle = \overline{c_m^* c_n} = \overline{\langle n | P | m \rangle}
+\end{equation}
+whereby equation (\ref{eq-ensemble-representation}) can be expressed in analogy to equation (\ref{eq-A-P-trace}) as
+\begin{equation}
+ \overline{\langle A \rangle} = \sum_{n,m} \langle n | \rho | m \rangle \langle m | A | n \rangle = \sum_{n} \langle n | \rho A | n \rangle = Tr(\rho^\dagger A) = Tr(A^\dagger \rho)
+\end{equation}
+Another beautiful expression for the density matrix can be derived by noticing that
+\begin{align}
+ \langle n |\psi \rangle \langle \psi | m \rangle & = \langle n | \left( \sum_{n'} c_{n'} |n' \rangle \right) \left( \sum_{m'} c_{m'}^* \langle m' | \right) | m \rangle \\ & = \sum_{n',m'} c_{n'} c_{m'}^* \langle n | n' \rangle \langle m' | m \rangle = c_n^* c_m  = \langle n | P | m \rangle \\
+  \Rightarrow |\psi\rangle\langle\psi| & = P \quad; \quad \overline{|\psi\rangle\langle\psi|}  = \rho
+\label{eq-density-matrix}
+\end{align}
+
+\subsubsection{Liouville equation}
+% Kuprov L9
+Under comparison with the general Schr\"odinger equation and its complex conjugate below
+\begin{align}
+ \langle \psi | \frac{\partial}{\partial t} |\psi\rangle  & = -i \langle \psi | \mathcal{H} |\psi\rangle \\
+  \left( \frac{\partial}{\partial t} \langle \psi | \right)  |\psi\rangle
+   & = \sum_{m,n} \frac{\partial c_m^*}{\partial t} c_n \langle m | n \rangle 
+   =  \sum_{m} \frac{\partial c_m^*}{\partial t} c_m \\
+   & = \left( \sum_{m} c_m^* \frac{\partial c_m}{\partial t}\right)^*
+   = \left( \langle \psi | \frac{\partial}{\partial t} |\psi\rangle \right)^* = i \langle \psi |\mathcal{H} |\psi\rangle
+\end{align}
+the density matrix' equation of motion can be derived by differentiating equation (\ref{eq-density-matrix}) with respect to time:
+\begin{align}
+ \frac{\partial}{\partial t} \rho & = \left( \frac{\partial}{\partial t} | \psi \rangle \right) \langle \psi | + | \psi \rangle \left( \frac{\partial}{\partial t} \langle \psi | \right)  \\
+  & = - i \mathcal{H} |\psi\rangle\langle\psi| + i |\psi\rangle\langle\psi| \mathcal{H}  \\
+  & = -i ( \mathcal{H} \rho - \rho \mathcal{H} ) = -i [ \mathcal{H}, \rho ] 
+  \label{eq-liouville}
+\end{align}
+We arrived at the \emph{Liouville equation}. Its general solution follows directly from the Schr\"odinger equation's solution (\ref{eq-psi-general-solution}):
+
+\begin{equation}
+ \rho(t) = |\psi(t)\rangle \langle \psi(t)| = e^{-i \mathcal{H} t} | \psi(0) \rangle \langle \psi(0) | e^{i \mathcal{H} t} = e^{-i \mathcal{H} t} \rho(0) e^{i \mathcal{H} t}
+\end{equation}
+
+\subsubsection{Superoperators, Liouville space}
+The Hamiltonian $\mathcal{H}$ is an operation defined on the space of vectors, similarly the commutation operator $\mathcal{L} = [\mathcal{H}, \cdot ]$ is an operation defined on the space of operators. Thus it is called the \emph{Liouvillian superoperator}. The spaces one usually comes to deal with when treating spin dynamics are
+
+\begin{itemize}
+ \item the space where all states live. States are represented as a vector (\ref{eq-orthonormal-basis}) of dimension $N$, and with the scalar product $\langle \phi | \psi \rangle$ they fulfill every requirement to span an $N$-dimensional \emph{Hilbert space}. This space is isomorph to $\mathbb{C}^N$.
+  \item the space where all operators which act on spin states live. Operators such as $\mathcal{H}$ are represented by $N\times N$-matrices, thus the space spanned by those operators is $N^2$-dimensional and isomorph to $\mathbb{C}^{N^2}$. There exist many possible scalar products, so again we deal with a Hilbert space. The special operator space, where we choose $Tr(A^\dagger B)$ as the scalar product is known as the \emph{Liouville space} in spin dynamics.
+  \item the space where all \emph{superoperators} which act on operators live. Superoperators such as $\mathcal{L} = [\mathcal{H}, \cdot ]$ are represented by $N^2 \times N^2$ matrices, thus the space spanned by those superoperators is $N^4$-dimensional and isomorph to $\mathbb{C}^{N^4}$. Again, we chose the scalar product $Tr(A^\dagger B)$ for this Hilbert space and call it \emph{superoperator space}.
+\end{itemize}
+
+Now, if we represent states as vectors and operators as matrices, how come we do not have to represent superoperators as more complex objects like ``three-dimensional matrices''? The mathematical trick is to stretch the original operator matrix $\rho$ column-wise into a vertical vector:
+\begin{equation}
+ \rho = \begin{pmatrix} \vec{\rho}_1,\vec{\rho}_2,\ldots,\vec{\rho}_N \end{pmatrix} \rightarrow
+  |\rho \rangle = \begin{pmatrix} \vec{\rho}_1 \\ \vec{\rho}_2 \\ \ldots \\ \vec{\rho}_N \end{pmatrix} 
+\end{equation}
+Of course, every single column vector of $\rho$ has dimension $N$, so $|\rho\rangle$ has dimension $N^2$. The trace of two matrices $A$, $B$ stretches into a vector scalar product:
+\begin{equation}
+ Tr( A^\dagger B ) = \sum_{n,k} A_{nk}^* B_{nk} = \sum_{n'} A_{n'}^* B_{n'} = \langle A | B \rangle
+\end{equation}
+This allows the calculation of a matrix scalar product in $O(N^2)$ runtime.
+
+With the operator stretched into a vector, the superoperator can accordingly be stretched into an $N^2 \times N^2$ matrix representation. The matrix version of the Liouvillian is the sum of two Kronecker products
+\begin{equation}
+ \mathcal{L} = E \otimes \mathcal{H}^T - \mathcal{H} \otimes E
+\end{equation}
+%insert proof
+where $E$ is the $N \times N$ unity matrix. 
+
+%Callaghan S. 85
+For visualization, a spin-$\tfrac{1}{2}$ system with the two-dimensional Hilbert space basis consisting of $|-\tfrac{1}{2}\rangle$ and $|\tfrac{1}{2}\rangle$ yields a four-dimensional Liouville space, and as its orthonormal basis we might choose $\tfrac{1}{2}E, J_x, J_y$ and $J_z$, or $E, I_z, -\tfrac{1}{\sqrt{2}} J_+$ and $\tfrac{1}{\sqrt{2}} J_-$, which are all $2\times 2$ matrices. Similarly a spin-$1$ system with the three-dimensional Hilbert space spanned by $|-1\rangle, |0\rangle$ and $|1\rangle$ requires a nine-dimensional Liouville basis, and in general a spin system of $N$ possible states yields an $N^2$ dimensional Liouville space (and an $N^4$ dimensional superoperator space). 
+%To illustrate the explosion of dimensions, a spin system of $10$ spin-$\tfrac{1}{2}$ particles allows $N=2^{10} = 1024$ states, requring an $N^2 = 1,048,576$ dimensional Liouville basis. Thus in numerical computation this basis is reduced under loss of information to yield acceptable memory costs. 
+The next section treats the question, how to choose an apropriate basis out of many orthonormal possibilities.
+
+\subsubsection{Choice of basis set and irreducible spherical tensors}
+When we are looking for a suitable basis of the Liouville space to conduct some spin dynamics simulation, the perfect choice would be \emph{eigenoperators} $S_k$ of the Liouvillian, since they are invariant under all interactions of the system:
+\begin{equation}
+  \mathcal{L} S_k = l_k S_k
+\end{equation}
+To find those eigenoperators in their vector form, one could diagonalize the Liouvillians matrix representation. Unfortunately the computation costs would be enourmous due to the $N^4$ dimensions of the superoperator space. A wise choice would be a set of eigenoperators invariant under commutation with $J_z$, since this operator characterizes the dominating Zeeman interaction in EPR. Or even better, a set of operators invariant under rotations, since we have to examine the spin system from many different angles to average the powder spectrum.
+
+%Callaghan S. 89
+%Slichter S. 490
+As we know, the angular momentum operators $J_x$, $J_y$ and $J_z$ generate rotations. It is possible to define a family of operators $T_{lm}$ called \emph{irreducible spherical tensors (IST)} of rank $l$ and order $m$, which fulfill the commutation relations
+\begin{align}
+ [J_\pm,T_{lm}] & = \sqrt{l(l+1)-m(m\pm1)} T_{l(m\pm1)} \\
+  [J_z, T_{lm}] & = m T_{lm}
+  \label{eq-tlm-commutators}
+\end{align}
+In the space of operators they are the analogon to the spherical harmonics in the space of wavefunctions, for every $l$ there exist $2l+1$ independent IST with $m = -l, -l+1, \dots , l-1, l$ and any rotation transforms $T_{lm}$ into a linear combination of $T_{lm'}$ with same rank $l$:
+%Starting from the commutation relations (\ref{eq-tlm-commutators}), it can be shown that a rotation of $T_{lm}$ results in 
+\begin{equation}
+ R(\alpha,\beta,\gamma) \ T_{lm} = \sum_{m'=-l}^l \mathfrak{D}_{m',m}^{(l)}(\alpha,\beta,\gamma) \ T_{lm'}
+  \label{eq-wigner-rotation}
+\end{equation}
+The matrix elements $\mathfrak{D}_{m,m'}^{(l)}(\alpha.\beta,\gamma)$ are called \emph{Wigner functions} and make up the \emph{Wigner rotation matrix} of rank $l$ corresponding to a certain rotation $R(\alpha,\beta,\gamma)$. They can be evaluated with the spherical harmonics
+\begin{equation}
+ \mathfrak{D}_{m,m'}^{(l)}(\alpha.\beta,\gamma) = \langle Y_{lm}|R(\alpha,\beta,\gamma)|Y_{lm'} \rangle
+\end{equation}
+Just as the spherical harmonics $Y_{lm}$ form an orthonormal basis on the unit sphere of the wave functions' Hilbert space, do all IST $T_{lm}$ form an orthonormal basis on the Liouville space of operators, and thus any operator, e.g. the density matrix $\rho$ of dimension $N^2$, may be expanded in a linear combination of IST:
+\begin{equation}
+ \rho = \sum_{l=0}^{N-1} \sum_{m=-l}^l a_{lm} T_{lm}
+\end{equation}
+Obviously, a spin-$\tfrac{1}{2}$ density matrix of dimension $N^2=4$ can be fully represented by the single zero-order IST and the three first-order IST, while for a $N^2=9$ Liouville space all IST of second rank are required as well. 
+%The first few IST of one single spin happen to be
+
+The lowest rank IST is the identity operator, the first rank IST are linear superpositions of $J_x, J_y$ and $J_z$. All higher rank IST $T_{LM} (J_1,J_2)$ can be formed as products of lower rank IST following the rule for combining angular momenta:
+\begin{equation}
+ T_{LM}(J_1,J_2) = \sum_{m_1,m_2} \langle l_1 m_1 l_2 m_2 | L M \rangle \ T_{l_1 m_1} (J_1) \ T_{l_2 m_2} (J_2)
+\end{equation}
+where the \emph{Clebsch-Gordan coefficients} $\langle l_1 m_1 l_2 m_2 | L M \rangle$ are zero except for $m_1 + m_2 = M$. $K$ ranges from $|k_1-k_2|$ to $k_1+k_2$. The new IST again obey the rotational features above. Taking $k_1 = k_2 = 1$ we can produce the nine tensors below for $J_1 = J_2 = J$  
+\begin{equation}
+ \begin{matrix*}[l]
+	&	& \quad \quad & &		& \quad \quad     & T_{2 -2}	& = \tfrac{1}{2} J_-^2 \\[1em]
+	&	& & T_{1 -1}	& = \tfrac{1}{\sqrt{2}} J_-	& & T_{2 -1}	& = \tfrac{1}{2} ( J_z J_- + J_- J_z) \\[1em]
+  T_{0 0}	& = E 	& & T_{1 0}	& = J_z 			& & T_{2 0} 	& = \tfrac{1}{\sqrt{6}} (3J_z^2-2E) \\[1em]
+	&	& & T_{1 1}	& = -\tfrac{1}{\sqrt{2}} J_+	& & T_{2 1}	& = - \tfrac{1}{2} ( J_zJ_+ + J_+ J_z)\\[1em]
+	&	& &		&				& & T_{2 2}	& = \tfrac{1}{2} J_+^2
+ \end{matrix*}
+\end{equation}
+while for $J_1 \neq J_2$ we can produce 16 independent tensors, of which the second rank tensors read
+\begin{equation}
+ \begin{matrix*}[l]
+	 T_{2 -2}	& = J_{1-} J_{2-} \\[1em]
+	 T_{2 -1}	& = ( J_{1z} J_{2-} + J_{1-} J_{2z}) \\[1em]
+	 T_{2 0} 	& = \sqrt{\tfrac{2}{3}} (3 J_{1z} J_{2z}-J_1\cdot J_2) \\[1em]
+	 T_{2 1}	& =  - ( J_{1z} J_{2+} + J_{1+} J_{2z}) \\[1em]
+	 T_{2 2}	& = - J_{1+} J_{2+}
+ \end{matrix*}
+\end{equation}
+From there on it would be possible to construct IST for an arbitrary number of spins, but looking at the most general interaction included in an EPR Hamiltonian, the maximum number of interacting spins amounts to two, e.g. $\vec{L}$ and $\vec{S}$ coupled by the interaction tensor $A$ 
+\begin{equation}
+ \vec{L} \cdot A \cdot \vec{S} = \sum_{k,n} a_{kn} L_k S_n \quad \text{with} \quad  k,n = x,y,z
+\end{equation}
+of which linear and quadratic interactions form special cases. Having a linear superposition of $L_k S_n$ terms, the interaction must be expandeble in a basis consisting of rank two IST at maximum. Practically, first rank terms' contribution diminishes and hence is ignored:
+\begin{equation}
+ \vec{L} \cdot A \cdot \vec{S} = \sum_{l=0}^2 \sum_{m=-l}^l \alpha_{lm} T_{lm} (L,S) \approx \alpha_{00} T_{00} + \sum_{m=-2}^2 \alpha_{2m} T_{2m}(L,S)
+\end{equation}
+Therefore the whole anisotropic Hamiltonian consisting of scalar-spin and spin-spin interactions of $N$ spins may be expanded in second rank IST representation (ignoring quadratic self-interaction):
+\begin{equation}
+ \mathcal{H} = \mathcal{H}_{\text{iso}} + \sum_L \sum_{m=-2}^2 \alpha_{L,m}\ T_{2m} (L) + \sum_{L,S\neq L} \sum_{m=-2}^{2} \beta_{L,S,m}\ T_{2m}(L,S)
+\end{equation}
+The special feature of this expansion is its behaviour under rotations $R(\alpha,\beta,\gamma)$ -- the Hamiltonian inherits the IST's rotational transformation rule (\ref{eq-wigner-rotation}):
+\begin{align}
+ R \mathcal{H} & = \mathcal{H}_\text{iso} +  \sum_L \sum_{m=-2}^2 \alpha_{L,m}\ R T_{2m} (L) + \sum_{L,S\neq L} \sum_{m=-2}^{2} \beta_{L,S,m}\ R T_{2m}(L,S) \\
+  & = \mathcal{H}_\text{iso} +  \sum_L \sum_{m=-2}^2 \alpha_{L,m} \sum_{m'=-2}^{m'} \mathfrak{D}_{mm'}^{(2)} T_{2m'} (L) + \sum_{L,S\neq L} \sum_{m=-2}^{2} \beta_{L,S,m} \sum_{m'=-2}^{2} \mathfrak{D}_{mm'}^{(2)} T_{2m'}(L,S) \\
+  & = \mathcal{H}_\text{iso} +  \sum_{m=-2}^2 \sum_{m'=-2}^{2} \mathfrak{D}_{mm'}^{(2)}  \left( \sum_L  \alpha_{L,m} T_{2m'} (L) + \sum_{L,S\neq L} \beta_{L,S,m} T_{2m'}(L,S) \right)\\
+  & =  \mathcal{H}_\text{iso} +  \sum_{m,m'=-2}^{2} \mathfrak{D}_{mm'}^{(2)} Q_{mm'} \quad \text{with} \quad 
+  Q_{mm'} = \sum_L  \alpha_{L,m} T_{2m'} (L) + \sum_{L,S\neq L} \beta_{L,S,m} T_{2m'}(L,S)
+\end{align}
+The 25 elements $Q_{mm'}$ of the $5\times 5$ matrix $Q$ are called \emph{rotational basis operators}. They store the anisotropic part of any spin system's Hamiltonian in such a way that any rotational orientation of the system yields a linear combination of this rotational basis with precomputable Wigner function coefficients. Notice that each $Q_{mm'}$ has dimensions $N \times N$.  
+
+\subsection{Understanding the experiment}
+
+\subsubsection{Rotating reference frame}
 % Callaghan p.110 4.2.1
 % Slichter p. 27
-A magnetic field $B_0$ applied along the z-axis causes a magnetic moment to precess around the z-axis at the Larmor frequency $\omega_0$. With this classical approach as a starting point it is possible to explain a fair amount of EPR phenomena, but since we want to get used to spin formalism, we will explain a spin system's behaviour from the quantum mechanical perspective right from the beginning. Since the electron's magnetic moment is proportional to its angular momentum $\vec{\mu} = \gamma \mathbf{J}$ with the \emph{Land\'e g-factor} $\gamma$, the interaction energy $E = - \vec{\mu} \cdot \vec{B}$ and thus the Hamiltonian, the evolution operator\footnote{this is a bit of a spoiler, see section (\ref{sec-dynamics})} and the Schr\"odinger equation's solution can be expressed as
+A magnetic field $B_0$ applied along the z-axis causes a magnetic moment to precess around the z-axis at the Larmor frequency $\omega_0$. With this classical approach as a starting point it is possible to explain a fair amount of EPR phenomena, but since we want to get used to spin formalism, we will explain a spin system's behaviour from the quantum mechanical perspective right from the beginning. Since the electron's magnetic moment is proportional to its angular momentum $\vec{\mu} = \gamma \mathbf{J}$ with the \emph{Land\'e g-factor} $\gamma$, the interaction energy $E = - \vec{\mu} \cdot \vec{B}$ and thus the Hamiltonian, the evolution operator and the Schr\"odinger equation's solution can be expressed as
 \begin{equation}
   \mathcal{H} = - \gamma B_0 \mathbf{J_z}, \quad U(t) = e^{i \gamma B_0 t \mathbf{J_z}}, \quad |\psi(t)\rangle = e^{i \gamma B_0 t \mathbf{J_z}} |\psi(0)\rangle = e^{i \omega_0 t \mathbf{J_z}} |\psi(0)\rangle \quad \text{with} \quad \omega_0 = \gamma B_0
 \end{equation}
@@ -281,7 +556,7 @@ And if we know the Hamiltonian $\mathcal{H}$ for $|\psi\rangle$ in one frame, we
   \Leftrightarrow \omega_1 \mathbf{J_z} | \psi' \rangle + i \frac{\partial}{\partial t} | \psi' \rangle & = \left( e^{i \omega_1 t \mathbf{J_z}} \mathcal{H} e^{-i \omega_1 t \mathbf{J_z}} \right) |\psi'\rangle \\
   \Leftrightarrow i \frac{\partial}{\partial t} | \psi' \rangle & = \left( e^{i \omega_1 t \mathbf{J_z}} \mathcal{H} e^{-i \omega_1 t \mathbf{J_z}}- \omega_1  \mathbf{J_z} \right) |\psi'\rangle \\
   & = \mathcal{H}'|\psi'\rangle \quad \text{with} \quad \mathcal{H}' = e^{i \omega_1 t \mathbf{J_z}} \mathcal{H} e^{-i \omega_1 t \mathbf{J_z}}- \omega_1  \mathbf{J_z} 
-  \label{eq-rotating-hamiltonian}) 
+  \label{eq-rotating-hamiltonian}
 \end{align}
 
 
@@ -306,10 +581,10 @@ Differentiating the equation's left hand side and rearranging yields
 \end{align}
 \end{comment}
 
-\subsection{Resonant frequency field}
+\subsubsection{Resonant frequency field}
 Suppose we observe the equilibrium system due to Zeeman interaction $\mathcal{H} = - \gamma B_0 J_z$ from frame rotating with $\omega_1$. According to equation (\ref{eq-rotating-hamiltonian})
 \begin{equation}
-  \mathcal{H'} = e^{i \omega_1 t \mathbf{J_z}} \mathcal{H} e^{-i \omega_1 t \mathbf{J_z}}- \phi \mathbf{J_z} = -\gamma(B_0 + \frac{\omega_1}{\gamma}) \mathbf{J_z}
+  \mathcal{H'} = e^{i \omega_1 t \mathbf{J_z}} \mathcal{H} e^{-i \omega_1 t \mathbf{J_z}}- \omega_1 \mathbf{J_z} = -\gamma(B_0 + \frac{\omega_1}{\gamma}) \mathbf{J_z}
 \end{equation}
 The rotating frame introduces another term acting like an additional magnetic field. By choosing the angular velocity to equal the Zeeman effect's Larmor frequency $\omega_1 = -\gamma B_0$ we can make the net magnetic field vanish in the rotating frame. This is easy to imagine: The rotating frame just follows the system's Larmor precession, letting the system appear stationary.
 
@@ -339,7 +614,7 @@ and the rotating frame Hamiltonian
 \end{equation}
 At resonant frequency the field in z-direction vanishes and the field component in x-direction causes a simple precession of the system's spin around the magnetic field axis at frequency $\omega_2 = - \gamma B_1$ in the rotating frame. Choosing an appropriate duration of the pulse $\omega_2 t_p = \tfrac{\pi}{2}$, the equilibrium magnetisation of the sample will be disturbed, since the system's spins are all tilted by $90^\circ$ around the x-axis into the x-y-plane. 
 \end{comment}
-\subsection{Experimental setup}
+\subsubsection{FID detection}
 % Callaghan p. 123ff
 %Insert graphics Callaghan p.124
 When the spins are precessing around $B_1$ in the rotating frame, and undergoing a more complex motion resulting from a superposition of precession around the static $B_0$ and the rotating $B_1$, what physical quantity are we going to measure? As has been noticed, the system's magnetic moment is proportional to its spin orientation $\vec{\mu} \propto \mathbf{S}$, hence we want to record the system's total magnetization. For this purpose a detection coil is installed orthogonal to the static magnetic field $B_0$, which records the change of the spin system's oscillating magnetization via Faraday induction.
@@ -349,16 +624,16 @@ When the spins are precessing around $B_1$ in the rotating frame, and undergoing
 
 For $\tfrac{\pi}{2}$-pulse EPR, right after the pulse the spins lie in the x-y-plane of the lab frame, rotating around the z-axis, and together with them the magnetization $\vec{M}$. Say, the detection coil is aligned along the x-axis, then it will record the change of magnetization in x-direction $M_x$, and the coil's signal will oscillate with the spin system's Larmor frequency
 \begin{equation}
- S(t) = S_0(t) \cos \omega_1 t = S_0(t)  \frac{e^{-i \omega_1 t} + e^{i \omega_1 t}}{2}
+ S(t) = S_0 \cos \omega_1 t = S_0  \frac{e^{-i \omega_1 t} + e^{i \omega_1 t}}{2}
 \end{equation}
  %As well we might have a second coil aligned along the y-axis, and thereby a second channel to record the change of magnetization in y-direction. Then we can mix a complex signal
 The signal is modulated with a complex oscillating signal $e^{i\omega t}$
 \begin{equation}
- S'(t) = S(t) e^{i\omega t} = \frac{1}{2} S_0(t) \left( e^{-i (\omega_1-\omega) t} + e^{i (\omega_1+\omega) t} \right)
+ S'(t) = S(t) e^{i\omega t} = \frac{1}{2} S_0 \left( e^{-i (\omega_1-\omega) t} + e^{i (\omega_1+\omega) t} \right)
 \end{equation}
 and the sum frequency term is filtered out to yield
 \begin{equation}
- S'(t) =\frac{1}{2} S_0(t) e^{-i (\omega_1-\omega) t}
+ S'(t) =\frac{1}{2} S_0 e^{-i (\omega_1-\omega) t}
 \end{equation}
 
 
@@ -370,17 +645,18 @@ and if we express the density matrix in a rotating frame of velocity $\omega$
 \begin{equation}
  \rho \propto \mathbf{J_y} \cos (\omega_1-\omega) t + \mathbf{J_x} \sin (\omega_1-\omega) t
 \end{equation}
-If we are able to evaluate $\mathbf{J_+} = \mathbf{J_x} + i \mathbf{J_y}$ as a ``complex observable'' in the rotating frame, it would yield
+If we are able to evaluate $\mathbf{J_+} = \mathbf{J_x} + i \mathbf{J_y}$ as a ``complex observable'' in the rotating frame, it would yield\footnote{where the last line just reflects the relation between spin and magnetization in a sample of $N$ spin systems, see \cite[chap. 4.3.1 Free precession and Faraday detection, p. 125]{ox-nmr}}
 \begin{align}
  Tr( \mathbf{J_+} \rho' ) & \propto i\ Tr(\mathbf{J_y}^2) \cos (\omega_1-\omega) t + Tr(\mathbf{J_x}^2) \sin (\omega_1-\omega) t \\
 & \propto i ( \cos (\omega_1-\omega) t - i \sin (\omega_1-\omega) t ) \quad \text{since} \quad Tr(\mathbf{J_y}^2) = Tr(\mathbf{J_x}^2) \\
-& \propto e^{-i (\omega_1-\omega) t} \propto S'(t)
+N\gamma \ Tr( \mathbf{J_+} \rho' ) & = i M_0 e^{-i (\omega_1-\omega) t} \propto \frac{1}{2} S_0 e^{-i (\omega_1-\omega) t} = S'(t)
 \end{align}
-Hence we see that the detection coil's modulated signal is just proportional to the magnetization we would observe in a reference frame rotating with the modulation frequency $\omega$. The signal oscillates at frequency $\Delta \omega = \omega_1 - \omega$. The conclusion to draw is that the rotating frame does not only constitute a handy tool to visualize the effect of a magnetic pulse, but proves equally useful in the detection process as well. Thus any simulation might well be performed without ever leaving the rotating frame, yielding the FID in form of the complex observable $\mathbf{J_+} = \mathbf{J_x} + \mathbf{J_y}$.
+Hence we see that the detection coil's modulated signal is just proportional to the magnetization we would observe in a reference frame rotating with the modulation frequency $\omega$, and same applies for a relaxing manetization $M(t)$ instead of $M_0$ modulating the signal. The $S'$ signal oscillates at frequency $\Delta \omega = \omega_1 - \omega$, and the conclusion to draw is that the rotating frame does not only constitute a handy tool to visualize the effect of a magnetic pulse, but proves equally useful in the detection process as well. Thus any simulation might well be performed without ever leaving the rotating frame, yielding the FID in form of the complex observable $\mathbf{J_+} = \mathbf{J_x} + i \mathbf{J_y}$.
 
-
-\section{Mathematical methods}
-First of all, we are going to introduce several theoretical concepts necessary to understand the mechanisms of EPR and numerical spectra computation.
+\subsubsection{Real and imaginary spectrum}
+insert
+\subsubsection{Averaging over Lebedev grids}
+Since we consider powder samples, we have to average the spectra of many differently orientated spin ensembles. Assuming each spin ensemble to be randomly orientated, we need a method to discretize the unit sphere in a way such that the resulting discrete orientations represent the infinite amount of continuous possible orientations most accurately. Lebedev grids provide a method of weighted discretization, depending on the resolution they are labeled with their rank $L$, and Spinach includes precomputed angles and weights for Lebedev grids up to rank 131. In table (insert) one finds the number of orientations for Lebedev grids of certain rank. 
 
 \begin{comment}
 \subsection{Fourier transorm}
@@ -414,7 +690,6 @@ Furthermore, harmonics are eigenfunctions of LTI systems, and the \emph{frequenc
 
 
 %INSERT: x-y-component of FID
-\end{comment}
 
 \subsection{Matrix formalism}
 
@@ -465,274 +740,22 @@ while the power of a diagonal matrix is just
               \end{pmatrix}
 \end{equation}
 Also matrix exponentials can be computed in this way, since they can be expanded as power series such as below.
-
-
-
-\subsection{Spin formalism}
-Our aim is to understand the scaling of Spinach's memory and CPU time consumption. Hence we will examine the mathematical formalism underlying numerical computation.
-%Though the basic mechanisms of EPR can be understood on the basis of a semi classical approach, a quantum mechanical approach is necessary to account for many more subtle features. Here one finds a short introduction to the quantum mechanical formalism involved in EPR theory. 
-%According to \cite[Chap. 3]{nmr-ox}, the four basic concepts of the quantum mechanics involved to describe spin behaviour are:
-\subsubsection{Quantum states and measurments done on them}
-Any allowed spin state $| \Psi \rangle$ can be written as a linear superposition of an orthogonal basis set of a Hilbert  space spanned by all allowed \emph{azimuthal quantum number} states $| m \rangle$:
-\begin{equation}
- | \Psi \rangle = \sum_m a_m | m \rangle 
-\label{eq-orthonormal-basis}
-\end{equation}
-where the amplitudes are complex $a_m = |a_m| e^{i\phi_m}$ with phase $\phi_m$ and magnitude $|a_m|$. The $|m\rangle$ can be represented by a proper scaled basis of choice, but the $m$ lable offers a general independant representation.
- 
-All measurements to be done on a spin system yield eigenvalues of a linear operator associated with the particular measurement. The corresponding observed physical quantity is called \emph{observable}. Measuring the spin component of a system in one of the basis states along the z-axis $S_z$ thus yields
-\begin{equation}
-  S_z |m\rangle = m |m\rangle
-\end{equation}
-The orthogonal basis can be normalized by requiring the inner product of basis vectors to be
-\begin{equation}
- \langle m|m'\rangle = \delta_{m m'}
-  \label{eq-orthonormality}
-\end{equation}
-
-\begin{comment}
-This requirement automatically defines the corresponding \emph{bras} for the \emph{ket} states. For a system of $S=\frac{1}{2}$ and thus $m=\pm \frac{1}{2}$ we have
-\begin{align} 
- |\tfrac{1}{2}\rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad |-\tfrac{1}{2}\rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}\\
- \langle\tfrac{1}{2}| = \begin{bmatrix} 1 & 0 \end{bmatrix}, \quad \langle-\tfrac{1}{2}| = \begin{bmatrix} 0 & 1 \end{bmatrix} 
-\end{align}
-yielding the operator for the spin z-component observable 
-\begin{equation}
- S_z = \begin{bmatrix} \tfrac{1}{2} & 0 \\ 0 & -\tfrac{1}{2} \end{bmatrix}
-\end{equation}
 \end{comment}
 
-If a spin system exists in the eigenstate $|m\rangle$ of $S_z$, then the measurement of $S_z$ will yield
-\begin{equation}
- \langle m | S_z | m \rangle = m
-\end{equation}
-The measurement on a general superposition will yield
-\begin{align}
- \langle \Psi | S_z | \Psi \rangle & = \sum_{m,m'} a_m^* a_{m'} \langle m' | S_z | m \rangle\\
-  & = \sum_{m,m'} a_m^* a_{m'} m \langle m' | m \rangle\\
-  & = \sum_{m} |a_{m}|^2  m
-\end{align}
-due to the orthormality of the basis set.
 
-\subsubsection{Density operator and spin ensembles}
-%Slichter S. 157ff
-Due to equation (\ref{eq-orthonormal-basis}) the expectation value of an observable $A$ can be expressed as 
-\begin{equation}
- \langle A \rangle = \langle \psi | A | \psi \rangle = \sum_{m,n} c_m^* c_n \langle m | A | n \rangle
-  \label{eq-observable-representation}
-\end{equation}
-Now, when the expectation value of a certain observable is required, we are always interested in the product $c_m^* c_n$ rather than the distinct $c_n$, thus we can think of a matrix representation of those probabilities and define an operator $P$ with
-\begin{equation}
- \langle n | P | m \rangle = c_n c_m^*
-\end{equation}
-Equation (\ref{eq-observable-representation}) becomes
-\begin{equation}
- \langle A \rangle = \sum_{m,n} \langle n | P | m \rangle \langle m | A | n \rangle
-  \label{eq-P-A-representation}
-\end{equation}
-Since $|m\rangle$ form an orthonormal basis set, the results of $A$ and $P$ acting on a basis vector can be expanded in the basis:
-% \langle l | P | m \rangle = a_l due to orthononormality
-\begin{align} 
- P|m\rangle & = \sum_l a_l |l\rangle = \sum_l \langle l | P | m \rangle | l \rangle\\
- A|n\rangle & = \sum_m a_m |m\rangle = \sum_m \langle m | A | n \rangle | m \rangle\\
- \Rightarrow P A |n\rangle & = \sum_m P|m\rangle \langle m | A | n \rangle \\
-  & = \sum_{l,m} |l\rangle \langle l | P | m \rangle \langle m | A | n \rangle \\
-  \Rightarrow \langle n | P A | n \rangle & = \sum_{l,m} \langle n|l\rangle \langle l | P | m \rangle \langle m | A | n \rangle \\
-  & = \sum_{l,m} \delta_{ln} \langle l | P | m \rangle \langle m | A | n \rangle \\
-  & = \sum_{m} \langle n | P | m \rangle \langle m | A | n \rangle
-\end{align}
-Comparing with equation (\ref{eq-P-A-representation}) we find
-\begin{equation}
- \langle A \rangle = \sum_n \langle n | P A | n \rangle = Tr(P A) = Tr(A P)
- \label{eq-A-P-trace}
-\end{equation}
-where $Tr$ is the trace -- the total sum of the matrix' diagonal elements.
-
-%Slichter S. 159, Callaghan S. 78
-In EPR we pulse a powder sample. Theoretically this means a measurement on an ensemble of many spin systems with many (most generally different) spin states $|\psi\rangle$ instead of determining the state of a single system. The observable averaged about the whole statistical ensemble is written as
-\begin{align}
- \overline{\langle A \rangle} & = \overline{\langle \psi | A | \psi \rangle} \\
-  & = \sum_\psi p_\psi \langle \psi | A | \psi \rangle \\ 
-  & = \sum_\psi p_\psi \left( \sum_{m,n} c_m^* c_n \langle m | A | n \rangle \right) \\
-  & = \sum_{m,n} \left( \sum_\psi p_\psi c_m^* c_n \right) \langle m | A | n \rangle \\
-  & = \sum_{m,n} \overline{c_m^* c_n} \langle m | A | n \rangle
-  \label{eq-ensemble-representation}
-\end{align}
-where $p_\psi$ is an appropriate statistical averaging weight chosen according to the occupancy of $|\psi\rangle$. On this basis we introduce the \emph{density matrix operator}
-\begin{equation} 
- \langle n | \rho | m \rangle = \overline{c_m^* c_n} = \overline{\langle n | P | m \rangle}
-\end{equation}
-whereby equation (\ref{eq-ensemble-representation}) can be expressed in analogy to equation (\ref{eq-A-P-trace}) as
-\begin{equation}
- \overline{\langle A \rangle} = \sum_{n,m} \langle n | \rho | m \rangle \langle m | A | n \rangle = \sum_{n} \langle n | \rho A | n \rangle = Tr(\rho A) = Tr(A \rho)
-\end{equation}
-Another beautiful expression for the density matrix can be derived by noticing that
-\begin{align}
- \langle n |\psi \rangle \langle \psi | m \rangle & = \langle n | \left( \sum_{n'} c_{n'} |n' \rangle \right) \left( \sum_{m'} c_{m'}^* \langle m' | \right) | m \rangle \\ & = \sum_{n',m'} c_{n'} c_{m'}^* \langle n | n' \rangle \langle m' | m \rangle = c_n^* c_m  = \langle n | P | m \rangle \\
-  \Rightarrow |\psi\rangle\langle\psi| & = P \quad; \quad \overline{|\psi\rangle\langle\psi|}  = \rho
-\label{eq-density-matrix}
-\end{align}
-
-\subsubsection{Liouville equation}
-% Kuprov L9
-Under comparison with the general Schr\"odinger equation and its complex conjugate below
-\begin{align}
- \langle \psi | \frac{\partial}{\partial t} |\psi\rangle  & = -i \langle \psi | \mathcal{H} |\psi\rangle \\
-  \left( \frac{\partial}{\partial t} \langle \psi | \right)  |\psi\rangle
-   & = \sum_{m,n} \frac{\partial c_m^*}{\partial t} c_n \langle m | n \rangle 
-   =  \sum_{m} \frac{\partial c_m^*}{\partial t} c_m \\
-   & = \left( \sum_{m} c_m^* \frac{\partial c_m}{\partial t}\right)^*
-   = \left( \langle \psi | \frac{\partial}{\partial t} |\psi\rangle \right)^* = i \langle \psi |\mathcal{H} |\psi\rangle
-\end{align}
-the density matrix' equation of motion can be derived by differentiating equation (\ref{eq-density-matrix}) with respect to time:
-\begin{align}
- \frac{\partial}{\partial t} \rho & = \left( \frac{\partial}{\partial t} | \psi \rangle \right) \langle \psi | + | \psi \rangle \left( \frac{\partial}{\partial t} \langle \psi | \right)  \\
-  & = - i \mathcal{H} |\psi\rangle\langle\psi| + i |\psi\rangle\langle\psi| \mathcal{H}  \\
-  & = -i ( \mathcal{H} \rho - \rho \mathcal{H} ) = -i [ \mathcal{H}, \rho ] 
-  \label{eq-liouville}
-\end{align}
-
-\subsubsection{Dynamics}
-\label{sec-dynamics}
-In case of a stationary Hamiltonian, the Schr\"odinger equation 
-\begin{equation}
-  i \frac{\partial}{\partial t} | \psi(t) \rangle = \mathcal{H} |\psi(t) \rangle
-\end{equation}
-has the solution
-\begin{equation}
-  |\Psi(t)\rangle = U(t) | \psi(0) \rangle
-\end{equation}
-where 
-\begin{equation}
- U(t) = e^{-i \mathcal{H} t}
-  \label{eq-evolution}
-\end{equation}
-is called the \emph{evolution operator}.
-Equivalently, the Liouville equation has the solution
-\begin{equation}
- \rho(t) = |\psi(t)\rangle \langle \psi(t)| = e^{-i \mathcal{H} t} | \psi(0) \rangle \langle \psi(0) | e^{i \mathcal{H} t} = e^{-i \mathcal{H} t} \rho(0) e^{i \mathcal{H} t}
-\end{equation}
-
-In case of a time-dependent, but piecewise-constant Hamiltonian the solution has the form
-\begin{equation}
- |\Psi(t)\rangle = \left[ \prod_k e^{-i\mathcal{H}_k \Delta t_k} \right] |\Psi(0)\rangle
-\end{equation}
-This is the basis of numerical time propagation.
-
-\subsubsection{Superoperators, Liouville space}
-The Hamiltonian $\mathcal{H}$ is an operation defined on the space of vectors, similarly the commutation operator $\mathcal{L} = [\mathcal{H}, \cdot ]$ is an operation defined on the space of operators. Thus it is called the \emph{Liouvillian superoperator}. Therefore, the spaces one usually comes to deal with when treating spin dynamics are
-
+\subsection{Essence}
+The previous theoretical piece yields the following essential facts:
 \begin{itemize}
- \item the space where all states live. States are represented as a vector (\ref{eq-orthonormal-basis}) of dimension $N$, and with the scalar product $\langle \phi | \psi \rangle$ they fulfill every requirement to span an $N$-dimensional \emph{Hilbert space}. This space is isomorph to $\mathbb{C}^N$.
-  \item the space where all operators which act on spin states live. Operators such as $\mathcal{H}$ are represented by $N\times N$-matrices, thus the space spanned by those operators is $N^2$-dimensional and isomorph to $\mathbb{C}^{N^2}$. There exist many possible scalar products, so again we deal with a Hilbert space. The special operator space, where we choose $Tr(A^\dagger B)$ as the scalar product is known as the \emph{Liouville space} in spin dynamics.
-  \item the space where all \emph{superoperators} which act on operators live. Superoperators such as $\mathcal{L} = [\mathcal{H}, \cdot ]$ are represented by $N^2 \times N^2$ matrices, thus the space spanned by those superoperators is $N^4$-dimensional and isomorph to $\mathbb{C}^{N^4}$. Again, we chose the scalar product $Tr(A^\dagger B)$ for this Hilbert and call it \emph{superoperator space}.
+  \item the spin interaction properties of a system consisting of $n$ spins including one electron and $n-1$ other nuclei can be described fully by one $3 \times 3$ g-tensor for the interaction linear in electron spin and a set of $n-1$ $3 \times 3$ A-tensors for the interactions between electron spin and each nucleus spin.
+  \item the computation acts on the density matrix $\rho$ in Liouville space
+  \item the density matrix $\rho$ may be propagated step-wise in time by applying the Liouvillian superoperator $\mathcal{L}$ repeatedly for short time steps in the manner of equation (\ref{eq-time-propagation})
+  \item a spin system of $N$ states spans an $N^2$-dimensional Liouville space and an $N^4$-dimensional superoperator space
+  \item the memory consumption of the simulation will be determined by the single isotropic part and the 25 anisotropic parts stemming from the $Q_{mm'}$ of the Liouvillian, which together scale with $26 \times N^4$.
+  \item a spin simulation may be conducted entirely in the rotational frame
+  \item the FID can be obtained by evaluating $\mathbf{J_+}$ on the propagated density matrix $\rho$
+  \item the simulation has to be averaged over many orientations of a powder sample
 \end{itemize}
-
-Now, if we represent states as vectors and operators as matrices, how come we do not have to represent superoperators as more complex objects like ``three-dimensional matrices''? The mathematical trick is to stretch the original operator matrix $\rho$ column-wise into a vertical vector:
-\begin{equation}
- \rho = \begin{pmatrix} \vec{\rho}_1,\vec{\rho}_2,\ldots,\vec{\rho}_N \end{pmatrix} \rightarrow
-  |\rho \rangle = \begin{pmatrix} \vec{\rho}_1 \\ \vec{\rho}_2 \\ \ldots \\ \vec{\rho}_N \end{pmatrix} 
-\end{equation}
-Of course, every single column vector of $\rho$ has dimension $N$, so $|\rho\rangle$ has dimension $N^2$. The trace of two matrices $A$, $B$ stretches into a vector scalar product:
-\begin{equation}
- Tr( A^\dagger B ) = \sum_{n,k} A_{nk}^* B_{nk} = \sum_{n'} A_{n'}^* B_{n'} = \langle A | B \rangle
-\end{equation}
-This allows the calculation of a matrix scalar product in $O(N^2)$ runtime.
-
-With the operator stretched into a vector, the superoperator can accordingly be stretched into an $N^2 \times N^2$ matrix representation. The matrix version of the Liouvillian is the sum of two Kronecker products
-\begin{equation}
- \mathcal{L} = E \otimes \mathcal{H}^T - \mathcal{H} \otimes E
-\end{equation}
-%insert proof
-where $E$ is the $N \times N$ unity matrix. 
-
-%Callaghan S. 85
-For visualization, a spin-$\tfrac{1}{2}$ system with the two-dimensional Hilbert space basis consisting of $|-\tfrac{1}{2}\rangle$ and $|\tfrac{1}{2}\rangle$ yields a four-dimensional Liouville space, and as its orthonormal basis we might choose $\tfrac{1}{2}E, J_x, J_y$ and $J_z$, or $E, I_z, -\tfrac{1}{\sqrt{2}} J_+$ and $\tfrac{1}{\sqrt{2}} J_-$, which are all $2\times 2$ matrices. Similarly a spin-$1$ system with the three-dimensional Hilbert space spanned by $|-1\rangle, |0\rangle$ and $|1\rangle$ requires a nine-dimensional Liouville basis, and in general a spin system of $N$ possible states yields an $N^2$ dimensional Liouville space (and an $N^4$ dimensional superoperator space). To illustrate the explosion of dimensions, a spin system of $10$ spin-$\tfrac{1}{2}$ particles allows $N=2^{10} = 1024$ states, requring an $N^2 = 1,048,576$ dimensional Liouville basis. Thus in numerical computation this basis is reduced under loss of information to yield acceptable memory costs. The next section treats the question, how to choose an apropriate basis out of many orthonormal possibilities.
-
-\subsubsection{Choice of basis set and irreducible spherical tensors}
-When we are looking for a suitable basis of the Liouville space to conduct some spin dynamics simulation, the perfect choice would be \emph{eigenoperators} $S_k$ of the Liouvillian, since they are invariant under all interactions of the system:
-\begin{equation}
-  \mathcal{L} S_k = l_k S_k
-\end{equation}
-To find those eigenoperators in their vector form, one could diagonalize the Liouvillians matrix representation. Unfortunately the computation costs would be enourmous due to the $N^4$ dimensions of the Liouville space. A wise choice would be a set of eigenoperators invariant under commutation with $J_z$, since this operator characterizes the dominating Zeeman interaction in EPR. Or even better, a set of operators invariant under rotations, since we have to examine the spin system from many different angles to average the powder spectrum.
-
-%Callaghan S. 89
-%Slichter S. 490
-As we know, the angular momentum operators $J_x$, $J_y$ and $J_z$ generate rotations. It is possible to define a family of operators $T_{lm}$ called \emph{irreducible spherical tensors (IST)} of rank $l$ and order $m$, which fulfill the commutation relations
-\begin{align}
- [J_\pm,T_{lm}] & = \sqrt{l(l+1)-m(m\pm1)} T_{l(m\pm1)} \\
-  [J_z, T_{lm}] & = m T_{lm}
-  \label{eq-tlm-commutators}
-\end{align}
-In the space of operators they are the analogon to the spherical harmonics in the space of wavefunctions, for every $l$ there exist $2l+1$ independent IST with $m = -l, -l+1, \dots , l-1, l$ and any rotation transforms $T_{lm}$ into a linear combination of $T_{lm'}$ with same $l$:
-%Starting from the commutation relations (\ref{eq-tlm-commutators}), it can be shown that a rotation of $T_{lm}$ results in 
-\begin{equation}
- R(\alpha,\beta,\gamma) \ T_{lm} = \sum_{m'=-l}^l \mathfrak{D}_{m',m}^{(l)}(\alpha,\beta,\gamma) \ T_{lm'}
-  \label{eq-wigner-rotation}
-\end{equation}
-The matrix elements $\mathfrak{D}_{m,m'}^{(l)}(\alpha.\beta,\gamma)$ are called \emph{Wigner functions} and make up the \emph{Wigner rotation matrix} of rank $l$ corresponding to a certain rotation $R(\alpha,\beta,\gamma)$. They can be evaluated with the spherical harmonics
-\begin{equation}
- \mathfrak{D}_{m,m'}^{(l)}(\alpha.\beta,\gamma) = \langle Y_{lm}|R(\alpha,\beta,\gamma)|Y_{lm'} \rangle
-\end{equation}
-Just as the spherical harmonics $Y_{lm}$ form an orthonormal basis on the unit sphere of the wave functions' Hilbert space, do all IST $T_{lm}$ form an orthonormal basis on the Liouville space of operators, and thus any operator, e.g. the density matrix $\rho$ of dimension $N^2$, may be expanded in a linear combination of IST:
-\begin{equation}
- \rho = \sum_{l=0}^{N-1} \sum_{m=-l}^l a_{lm} T_{lm}
-\end{equation}
-Obviously, a spin-$\tfrac{1}{2}$ density matrix of dimension $N^2=4$ can be fully represented by the single zero-order IST and the three first-order IST, while for a $N^2=9$ Liouville space all IST of second rank are required as well. 
-%The first few IST of one single spin happen to be
-
-The lowerst rank IST is the identity operator, the first rank IST are linear superpositions of $J_x, J_y$ and $J_z$. All higher rank IST $T_{LM} (J_1,J_2)$ can be formed as products of lower rank IST following the rule for combining angular momenta:
-\begin{equation}
- T_{LM}(J_1,J_2) = \sum_{m_1,m_2} \langle l_1 m_1 l_2 m_2 | L M \rangle \ T_{l_1 m_1} (J_1) \ T_{l_2 m_2} (J_2)
-\end{equation}
-where the \emph{Clebsch-Gordan coefficients} $\langle l_1 m_1 l_2 m_2 | L M \rangle$ are zero except for $m_1 + m_2 = M$. $K$ ranges from $|k_1-k_2|$ to $k_1+k_2$. The new IST again obey the rotational features above. Taking $k_1 = k_2 = 1$ we can produce the nine tensors below for $J_1 = J_2 = J$  
-\begin{equation}
- \begin{matrix*}[l]
-	&	& \quad \quad & &		& \quad \quad     & T_{2 -2}	& = \tfrac{1}{2} J_-^2 \\[1em]
-	&	& & T_{1 -1}	& = \tfrac{1}{\sqrt{2}} J_-	& & T_{2 -1}	& = \tfrac{1}{2} ( J_z J_- + J_- J_z) \\[1em]
-  T_{0 0}	& = E 	& & T_{1 0}	& = J_z 			& & T_{2 0} 	& = \tfrac{1}{\sqrt{6}} (3J_z^2-2E) \\[1em]
-	&	& & T_{1 1}	& = -\tfrac{1}{\sqrt{2}} J_+	& & T_{2 1}	& = - \tfrac{1}{2} ( J_zJ_+ + J_+ J_z)\\[1em]
-	&	& &		&				& & T_{2 2}	& = \tfrac{1}{2} J_+^2
- \end{matrix*}
-\end{equation}
-while for $J_1 \neq J_2$ we can produce 16 independent tensors, of which the second rank tensors read
-\begin{equation}
- \begin{matrix*}[l]
-	 T_{2 -2}	& = J_{1-} J_{2-} \\[1em]
-	 T_{2 -1}	& = ( J_{1z} J_{2-} + J_{1-} J_{2z}) \\[1em]
-	 T_{2 0} 	& = \sqrt{\tfrac{2}{3}} (3 J_{1z} J_{2z}-J_1\cdot J_2) \\[1em]
-	 T_{2 1}	& =  - ( J_{1z} J_{2+} + J_{1+} J_{2z}) \\[1em]
-	 T_{2 2}	& = - J_{1+} J_{2+}
- \end{matrix*}
-\end{equation}
-From there on it would be possible to construct IST for an arbitrary number of spins, but looking at the most general interaction included in an EPR Hamiltonian, the maximum number of interacting spins amounts to two, e.g. $\vec{L}$ and $\vec{S}$ coupled by the interaction tensor $A$ 
-\begin{equation}
- \vec{L} \cdot A \cdot \vec{S} = \sum_{k,n} a_{kn} L_k S_n \quad \text{with} \quad  k,n = x,y,z
-\end{equation}
-of which linear and quadratic interactions form special cases. Having a linear superposition of $L_k S_n$ terms, the interaction must be expandeble in a basis consisting of rank two IST at maximum. In praxis, first rank terms' contribution diminishes and hence is ignored:
-\begin{equation}
- \vec{L} \cdot A \cdot \vec{S} = \sum_{l=0}^2 \sum_{m=-l}^l \alpha_{lm} T_{lm} (L,S) \approx \alpha_{00} T_{00} + \sum_{m=-2}^2 \alpha_{2m} T_{2m}(L,S)
-\end{equation}
-Therefore the whole anisotropic Hamiltonian consisting of scalar-spin and spin-spin interactions of $N$ spins may be expanded in second rank IST representation (ignoring quadratic self-interaction):
-\begin{equation}
- \mathcal{H} = \mathcal{H}_{\text{iso}} + \sum_L \sum_{m=-2}^2 \alpha_{L,m}\ T_{2m} (L) + \sum_{L,S\neq L} \sum_{m=-2}^{2} \beta_{L,S,m}\ T_{2m}(L,S)
-\end{equation}
-The special feature of this expansion is its behaviour under rotations $R(\alpha,\beta,\gamma)$ -- the Hamiltonian inherits the IST's rotational transformation rule (\ref{eq-wigner-rotation}):
-\begin{align}
- R \mathcal{H} & = \mathcal{H}_\text{iso} +  \sum_L \sum_{m=-2}^2 \alpha_{L,m}\ R T_{2m} (L) + \sum_{L,S\neq L} \sum_{m=-2}^{2} \beta_{L,S,m}\ R T_{2m}(L,S) \\
-  & = \mathcal{H}_\text{iso} +  \sum_L \sum_{m=-2}^2 \alpha_{L,m} \sum_{m'=-2}^{m'} \mathfrak{D}_{mm'}^{(2)} T_{2m'} (L) + \sum_{L,S\neq L} \sum_{m=-2}^{2} \beta_{L,S,m} \sum_{m'=-2}^{2} \mathfrak{D}_{mm'}^{(2)} T_{2m'}(L,S) \\
-  & = \mathcal{H}_\text{iso} +  \sum_{m=-2}^2 \sum_{m'=-2}^{2} \mathfrak{D}_{mm'}^{(2)}  \left( \sum_L  \alpha_{L,m} T_{2m'} (L) + \sum_{L,S\neq L} \beta_{L,S,m} T_{2m'}(L,S) \right)\\
-  & =  \mathcal{H}_\text{iso} +  \sum_{m,m'=-2}^{2} \mathfrak{D}_{mm'}^{(2)} Q_{mm'} \quad \text{with} \quad 
-  Q_{mm'} = \sum_L  \alpha_{L,m} T_{2m'} (L) + \sum_{L,S\neq L} \beta_{L,S,m} T_{2m'}(L,S)
-\end{align}
-The 25 elements $Q_{mm'}$ of the $5\times 5$ matrix $Q$ are called \emph{rotational basis operators}. They store the anisotropic part of any spin system's Hamiltonian such that any rotational orientation of the system yields a linear combination of this rotational basis with precomputable Wigner function coefficients. Notice that each $Q_{mm'}$ has dimensions $N \times N$.  
-
-
-\begin{comment}
-\subsubsection{}
-All operators are square matrices, which might or might not exhibit symmetric features. It will prove handy to express those \emph{tensors} as a composition of a symmetric, \emph{isotropic} part and the \emph{anisotropic} deviation from perfect spherical symmetry. A totally isotropic tensor has only one eigenvalue and can be reduced to a scalar. 
-\end{comment}
-
+A spin system consisting of an unpaired electron ($S=\tfrac{1}{2}$) and a nitrogen core ($S=1$) will yield $N = 2 \cdot 3 = 6$ possible states, a density matrix of $N^2 = 36$ elements, and a Liouvillian of $26 \cdot N^4=26 \cdot 1296 = 33,696$ elements. A Matlab complex double representation takes 16 bytes, yielding an estimate of $16 \cdot 26 \cdot N^4 \text{B} \approx 530 \text{kB}$ memory usage at maximum. If we add 4 protons ($S=\tfrac{1}{2})$ to the system, we have $N = 6 \cdot 2^4= 96$ states, $9216$ density matrix elements, $\sim \cdot 2.2 \cdot 10^{9}$ Liouvillian elements and a maximum memory usage of $33 \text{GB}$. In fact, the Matlab simulations take by far less memory, since all of the involved matrices are sparse. We will have a thorough memory benchmarking lateron.
 
 \section{Spinach}
 The Matlab library \emph{Spinach} supplies efficient methods for large-scale spin dynamics simulations. It consists of the \emph{kernel} with the implementation of general spin dynamics simulation techniques and the \emph{user-land} with a collection of different experiements to perform. Basically, the user prepares the description of a spin system, which is then translated by the kernel into the most efficient basis sets, superoperators, etc. The user-land decides how to deal with those objects, whether to apply a pre-established experiment, or whether to perform the kernel's simulation procedures manually. Though Spinach is able to simulate numerous kinds of experiments, in this work we are going to restrict ourselves to standard EPR experiments. 
@@ -741,8 +764,9 @@ The Matlab library \emph{Spinach} supplies efficient methods for large-scale spi
 Using the theoretical basis introduced above, the procedure of an EPR simulation comes down to the following key steps:
 \begin{enumerate}
  \item Spinach constructs the isotropic and anisotropic part of the Liouvillian in the rotational basis ...
- \item ... and propagates the evolution of the density matrix through the pulse secquence and afterwards by applying the Liouville equation (\ref{eq-liouville}), ...
- \item ...then determines the transversal magnetization depending on $S_+$, a superposition of spin in x- and y-direction, at acquisition time using equation (\ref{}).
+ \item ... propagates the density matrix in one step through the $\tfrac{\pi}{2}$-pulse by applying a rotation operator ...
+  \item ... then propagates the density matrix step by step through the relaxation process by applying the Liouville equation (\ref{eq-liouville}) piece-wise in time, ...
+ \item ... and determines the transversal magnetization depending on $\mathbf{J_+}$, a superposition of spin in x- and y-direction, for each step.
 \end{enumerate}
 
 For the $\tfrac{\pi}{2}$-pulsed EPR, the user-land readily provides the method \verb|pulse_acquire|. 
