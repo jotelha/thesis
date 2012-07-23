@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.23)  20 JUL 2012 14:27
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.23)  24 JUL 2012 01:16
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -355,7 +355,18 @@ File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
 \f@ncyO@olf=\skip64
 \f@ncyO@orf=\skip65
 )
-(/usr/share/texmf-texlive/tex/latex/caption/caption.sty
+(/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2008/02/07
+
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)
+\FV@CodeLineNo=\count116
+\FV@InFile=\read1
+\FV@TabBox=\box28
+\c@FancyVerbLine=\count117
+\FV@StepNumber=\count118
+\FV@OutFile=\write3
+) (/usr/share/texmf-texlive/tex/latex/caption/caption.sty
 Package: caption 2009/10/09 v3.1k Customizing captions (AR)
 
 (/usr/share/texmf-texlive/tex/latex/caption/caption3.sty
@@ -367,18 +378,18 @@ Package: caption3 2009/10/09 v3.1k caption3 kernel (AR)
 \caption@parindent=\dimen134
 \caption@hangindent=\dimen135
 )
-\c@ContinuedFloat=\count116
+\c@ContinuedFloat=\count119
 Package caption Info: hyperref package is loaded.
 Package caption Info: subfigure package is loaded.
 )
 (/usr/share/texmf-texlive/tex/latex/ltxmisc/ulem.sty
-\UL@box=\box28
-\UL@hyphenbox=\box29
+\UL@box=\box29
+\UL@hyphenbox=\box30
 \UL@skip=\skip66
 \UL@hook=\toks25
-\UL@pe=\count117
+\UL@pe=\count120
 \UL@pixel=\dimen136
-\ULC@box=\box30
+\ULC@box=\box31
 Package: ulem 2000/05/26
 \ULdepth=\dimen137
 )
@@ -389,32 +400,32 @@ Package: moreverb 2008/06/03 v2.3 `more' verbatim facilities
 Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks26
 \verbatim@line=\toks27
-\verbatim@in@stream=\read1
+\verbatim@in@stream=\read2
 )
-\verbatim@out=\write3
-\tab@position=\count118
-\tab@size=\count119
-\listing@line=\count120
+\verbatim@out=\write4
+\tab@position=\count121
+\tab@size=\count122
+\listing@line=\count123
 )
 (/usr/share/texmf-texlive/tex/latex/listings/listings.sty
-\lst@mode=\count121
-\lst@gtempboxa=\box31
+\lst@mode=\count124
+\lst@gtempboxa=\box32
 \lst@token=\toks28
-\lst@length=\count122
+\lst@length=\count125
 \lst@currlwidth=\dimen138
-\lst@column=\count123
-\lst@pos=\count124
+\lst@column=\count126
+\lst@pos=\count127
 \lst@lostspace=\dimen139
 \lst@width=\dimen140
-\lst@newlines=\count125
-\lst@lineno=\count126
+\lst@newlines=\count128
+\lst@lineno=\count129
 \lst@maxwidth=\dimen141
 
 (/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-\c@lstnumber=\count127
-\lst@skipnumbers=\count128
-\lst@framebox=\box32
+\c@lstnumber=\count130
+\lst@skipnumbers=\count131
+\lst@framebox=\box33
 )
 (/usr/share/texmf-texlive/tex/latex/listings/listings.cfg
 File: listings.cfg 2007/02/22 1.4 listings configuration
@@ -428,183 +439,173 @@ File: lstlang1.sty 2004/09/05 1.3 listings language file
 LaTeX Warning: Unused global option(s):
     [11.5pt].
 
-(./thesis.aux
-
-LaTeX Warning: Label `spinach' multiply defined.
-
-)
+(./thesis.aux)
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
  (/usr/share/texmf/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count129
+\scratchcounter=\count132
 \scratchdimen=\dimen142
-\scratchbox=\box33
-\nofMPsegments=\count130
-\nofMParguments=\count131
+\scratchbox=\box34
+\nofMPsegments=\count133
+\nofMParguments=\count134
 \everyMPshowfont=\toks29
-\MPscratchCnt=\count132
+\MPscratchCnt=\count135
 \MPscratchDim=\dimen143
-\MPnumerator=\count133
+\MPnumerator=\count136
 \everyMPtoPDFconversion=\toks30
 )
-Package hyperref Info: Link coloring ON on input line 88.
+Package hyperref Info: Link coloring ON on input line 90.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
 Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
-\c@section@level=\count134
+\c@section@level=\count137
 )
-LaTeX Info: Redefining \ref on input line 88.
-LaTeX Info: Redefining \pageref on input line 88.
+LaTeX Info: Redefining \ref on input line 90.
+LaTeX Info: Redefining \pageref on input line 90.
  (./thesis.out)
 (./thesis.out)
-\@outlinefile=\write4
-\openout4 = `thesis.out'.
+\@outlinefile=\write5
+\openout5 = `thesis.out'.
 
-\AtBeginShipoutBox=\box34
+\AtBeginShipoutBox=\box35
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count135
- <FULogo.jpg, id=147, 199.2243pt x 53.2389pt>
+\c@lstlisting=\count138
+ <FULogo.jpg, id=155, 199.2243pt x 53.2389pt>
 File: FULogo.jpg Graphic file (type jpg)
  <use FULogo.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 98--98
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 113.
+LaTeX Font Info:    Try loading font information for U+msa on input line 115.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 113.
+LaTeX Font Info:    Try loading font information for U+msb on input line 115.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-)
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 113.
-
-
-(/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 ) (./thesis.toc [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./FULogo.jpg>])
-\tf@toc=\write5
-\openout5 = `thesis.toc'.
+\tf@toc=\write6
+\openout6 = `thesis.toc'.
 
  [2]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 147.
+(hyperref)                removing `math shift' on input line 149.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<def>-command' on input line 147.
+(hyperref)                removing `\<def>-command' on input line 149.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@tempa' on input line 147.
+(hyperref)                removing `\@tempa' on input line 149.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<def>-command' on input line 147.
+(hyperref)                removing `\<def>-command' on input line 149.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@tempb' on input line 147.
+(hyperref)                removing `\@tempb' on input line 149.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\pi' on input line 147.
+(hyperref)                removing `\pi' on input line 149.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 147.
+(hyperref)                removing `math shift' on input line 149.
 
 [3] [4] [5] [6] [7]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 416.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 418.
 
  (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 416.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 418.
 
 [8]
-LaTeX Font Info:    Try loading font information for U+euf on input line 462.
+LaTeX Font Info:    Try loading font information for U+euf on input line 464.
  (/usr/share/texmf-texlive/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2009/06/22 v3.00 Euler Fraktur
 ) [9] [10] [11]
-Overfull \hbox (5.87999pt too wide) in paragraph at lines 560--560
+Overfull \hbox (5.87999pt too wide) in paragraph at lines 563--563
 [] 
  []
 
 [12]
 
-LaTeX Warning: Citation `ox-nmr' on page 13 undefined on input line 602.
+LaTeX Warning: Citation `ox-nmr' on page 13 undefined on input line 605.
 
 
-LaTeX Warning: Citation `ox-nmr' on page 13 undefined on input line 648.
+LaTeX Warning: Citation `ox-nmr' on page 13 undefined on input line 651.
 
-[13] [14] [15]
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 796.
+[13] [14]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 795.
 
-Overfull \hbox (98.55444pt too wide) in paragraph at lines 817--819
-\T1/cmr/m/n/12 ref-er-ence to our spin sys-tem, e.g. to fetch the Li-ou-vil-lia
-n in ques-tion. []\T1/cmtt/m/n/12 pulse_acquire(spin_system, parameters)
+ (/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+) [15] [16]
+[17]
+Overfull \hbox (9.35588pt too wide) in paragraph at lines 868--869
+\T1/cmr/m/n/12 code in his MAT-LAB client. With the Par-al-lel Com-put-ing Tool
+-box' com-mand [] \T1/cmtt/m/n/12 matlabpool open
  []
 
-[16]
-
-LaTeX Warning: Reference `tab-lebedev' on page 17 undefined on input line 884.
-
-
-Overfull \hbox (13.95525pt too wide) in paragraph at lines 915--916
+[18]
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 923.
+ [19] [20]
+Overfull \hbox (13.95525pt too wide) in paragraph at lines 1044--1045
 \T1/cmr/m/n/12 tion, and sim-i-larly the ob-serv-able to be de-tected is du-pli
 -cated $[]$
  []
 
-[17] [18pdfTeX warning (ext4): destination with the same identifier (name{cite.
-spinach}) has been already used, duplicate ignored
+[21] <spin_system_simplified.jpg, id=573, 823.878pt x 2023.56pt>
+File: spin_system_simplified.jpg Graphic file (type jpg)
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.970 
-      ] [19] (./thesis.aux)
+<use spin_system_simplified.jpg>
+
+LaTeX Warning: Float too large for page by 35.47664pt on input line 1078.
+
+[22] [23 <./spin_system_simplified.jpg>] [24] (./thesis.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 10150 strings out of 495021
- 141353 string characters out of 1181035
- 480175 words of memory out of 3000000
- 12884 multiletter control sequences out of 15000+50000
- 28501 words of font info for 82 fonts, out of 3000000 for 9000
+ 10625 strings out of 495021
+ 148546 string characters out of 1181035
+ 466511 words of memory out of 3000000
+ 13307 multiletter control sequences out of 15000+50000
+ 27642 words of font info for 77 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,10n,43p,934b,1813s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,10n,43p,1191b,1824s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-
 texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fon
 ts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texmf-texlive/fonts/type1/pub
@@ -633,11 +634,13 @@ r/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/
 type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-supe
 r/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr
 /share/texmf/fonts/type1/public/cm-super/sfsl1000.pfb></usr/share/texmf/fonts/t
-ype1/public/cm-super/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super
-/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on thesis.pdf (19 pages, 806900 bytes).
+ype1/public/cm-super/sfti0800.pfb></usr/share/texmf/fonts/type1/public/cm-super
+/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/
+share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf/fonts/ty
+pe1/public/cm-super/sftt1200.pfb>
+Output written on thesis.pdf (24 pages, 1584253 bytes).
 PDF statistics:
- 686 PDF objects out of 1000 (max. 8388607)
- 257 named destinations out of 1000 (max. 500000)
- 294 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 786 PDF objects out of 1000 (max. 8388607)
+ 307 named destinations out of 1000 (max. 500000)
+ 315 words of extra memory for PDF output out of 10000 (max. 10000000)
 

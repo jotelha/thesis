@@ -36,6 +36,8 @@ hyperindex=true, hyperfigures=false]{hyperref} % fichiers pdf 'intelligents', av
 
 \usepackage{fancyhdr} % Wahl der Kopf- und Fu�zeile
 \pagestyle{headings} %zeigt Seitennummer und Abschnittstitel an
+\usepackage{fancyvrb}
+\VerbatimFootnotes %Verbatim in Footnotes
 
 \usepackage[center]{caption}
 
@@ -110,7 +112,7 @@ hyperindex=true, hyperfigures=false]{hyperref} % fichiers pdf 'intelligents', av
 \vspace{1cm}
 
 \parbox{15cm}{\small
-\textbf{Abstract}: \emph{Electron Paramagnetic Resonance} is a spectroscopy method to investigate systems of unpaired electron spins. \emph{Spinach}\footnote{written by Theoretical Spin Dynamics Group, University of Southampton, \url{www.spindynamics.org}} is a Matlab library to simulate different kinds of spin system experiemnts, including EPR. This paper aims to give an overview of the theoretical concepts involved in spin dynamics, especially those necessary to comprehend  Spinach's way of numerical computation. After understanding the parameters determining Spinach's resources usage we adopt parallel computing methods on Linux clusters to accelerate the calculation of EPR lineshape spectra.  }
+\textbf{Abstract}: \emph{Electron Paramagnetic Resonance} is a spectroscopy method to investigate systems of unpaired electron spins. \emph{Spinach} is a Matlab library to simulate different kinds of spin system experiemnts, including EPR. This paper aims to give an overview of the theoretical concepts involved in spin dynamics, especially those necessary to comprehend  Spinach's way of numerical computation. After understanding the parameters determining Spinach's resources usage we adopt parallel computing methods on Linux clusters to accelerate the calculation of EPR lineshape spectra.  }
 
 \vspace{0.5cm}
 
@@ -144,7 +146,7 @@ hyperindex=true, hyperfigures=false]{hyperref} % fichiers pdf 'intelligents', av
 
 \newpage
 
-\section{$\tfrac{\pi}{2}$-pulsed EPR}
+\section{Theory of $\tfrac{\pi}{2}$-pulsed EPR}
 \subsection{Introduction}
 The mechanisms of \emph{EPR (Electron Paramegnetic Resonance)}, also called \emph{ESR (Electron Spin Resonance)}, work analogous to the mechanisms of \emph{NMR (Nuclear Magnetic Resonance)}. In \emph{diamagnetic} materials, all electrons are spin-paired, making the elctron magnetic dipole vanish, and enabling the system to be accessible by NMR. 
 %, and according to \cite[Chap. 4, p. 107]{nmr-ox}, NMR technique offer two further ``advantages'' in comparison with EPR: First, relaxation time of spin electrons is very short compared with nuclei; second the nuclear spin Hamiltonian offers a broader diversity of interactions giving insight to the system's properties. Nevertheless, 
@@ -555,7 +557,8 @@ And if we know the Hamiltonian $\mathcal{H}$ for $|\psi\rangle$ in one frame, we
   \quad \left. \right| \cdot e^{i \omega_1 t \mathbf{J_z}},\ e^{i \omega_1 t \mathbf{J_z}} \mathbf{J_z} e^{-i \omega_1 t \mathbf{J_z}}= \mathbf{J_z} \\
   \Leftrightarrow \omega_1 \mathbf{J_z} | \psi' \rangle + i \frac{\partial}{\partial t} | \psi' \rangle & = \left( e^{i \omega_1 t \mathbf{J_z}} \mathcal{H} e^{-i \omega_1 t \mathbf{J_z}} \right) |\psi'\rangle \\
   \Leftrightarrow i \frac{\partial}{\partial t} | \psi' \rangle & = \left( e^{i \omega_1 t \mathbf{J_z}} \mathcal{H} e^{-i \omega_1 t \mathbf{J_z}}- \omega_1  \mathbf{J_z} \right) |\psi'\rangle \\
-  & = \mathcal{H}'|\psi'\rangle \quad \text{with} \quad \mathcal{H}' = e^{i \omega_1 t \mathbf{J_z}} \mathcal{H} e^{-i \omega_1 t \mathbf{J_z}}- \omega_1  \mathbf{J_z} 
+  & = \mathcal{H}'|\psi'\rangle \\
+ &\text{with} \quad \mathcal{H}' = e^{i \omega_1 t \mathbf{J_z}} \mathcal{H} e^{-i \omega_1 t \mathbf{J_z}}- \omega_1  \mathbf{J_z} 
   \label{eq-rotating-hamiltonian}
 \end{align}
 
@@ -582,7 +585,7 @@ Differentiating the equation's left hand side and rearranging yields
 \end{comment}
 
 \subsubsection{Resonant frequency field}
-Suppose we observe the equilibrium system due to Zeeman interaction $\mathcal{H} = - \gamma B_0 J_z$ from frame rotating with $\omega_1$. According to equation (\ref{eq-rotating-hamiltonian})
+Suppose we observe the equilibrium system due to Zeeman interaction $\mathcal{H} = - \gamma B_0 J_z$ from a frame rotating with $\omega_1$. According to equation (\ref{eq-rotating-hamiltonian})
 \begin{equation}
   \mathcal{H'} = e^{i \omega_1 t \mathbf{J_z}} \mathcal{H} e^{-i \omega_1 t \mathbf{J_z}}- \omega_1 \mathbf{J_z} = -\gamma(B_0 + \frac{\omega_1}{\gamma}) \mathbf{J_z}
 \end{equation}
@@ -656,7 +659,37 @@ Hence we see that the detection coil's modulated signal is just proportional to 
 \subsubsection{Real and imaginary spectrum}
 insert
 \subsubsection{Averaging over Lebedev grids}
-Since we consider powder samples, we have to average the spectra of many differently orientated spin ensembles. Assuming each spin ensemble to be randomly orientated, we need a method to discretize the unit sphere in a way such that the resulting discrete orientations represent the infinite amount of continuous possible orientations most accurately. Lebedev grids provide a method of weighted discretization, depending on the resolution they are labeled with their rank $L$, and Spinach includes precomputed angles and weights for Lebedev grids up to rank 131. In table (insert) one finds the number of orientations for Lebedev grids of certain rank. 
+Since we consider powder samples, we have to average the spectra of many differently orientated spin ensembles. Assuming each spin ensemble to be randomly orientated, we need a method to discretize the unit sphere in a way such that the resulting discrete orientations represent the infinite amount of continuous possible orientations most accurately and then perform numerical integration about the unit sphere. \emph{Gaussian spherical quadrature} is a powerful integration technique, and the most efficient sampling scheme for the sphere was developed by the Russian mathematician Lebedev. Lebedev grids provide a method of weighted discretization, depending on the resolution they are labeled with their rank $J$, and Spinach includes precomputed angles and weights for Lebedev grids up to rank 131. In table (\ref{tab-lebedev}) one finds the number of orientations for Lebedev grids of certain rank. 
+
+\begin{figure}
+  \begin{center}
+ \begin{tabular}{|r|r|}
+  \hline
+  rank $J$	& orientations $N$ \\
+  \hline
+  47		& 770 \\
+  53		& 974 \\
+  59		& 1202 \\
+  65		& 1454 \\
+  77		& 2030 \\
+  95		& 3074 \\
+  101		& 3470 \\
+  107		& 3890 \\
+  113		& 4334 \\
+  119		& 4802 \\
+  125		& 5294 \\
+  131		& 5810 \\
+  \hline
+ \end{tabular}
+\caption{the number of orientation for selected Lebedev grids of rank $J$}
+\label{tab-lebedev}
+  \end{center}
+\end{figure}
+With the precomputed weights $w_i$ and orientations $\theta_i, \phi_i$, the evaluation of the integral $I$ of function $f$ on the unit sphere reduces to a sum
+\begin{equation}
+ I[f] = \sum_{i=1}^N w_i f(\theta_i,\phi_i)
+\end{equation}
+
 
 \begin{comment}
 \subsection{Fourier transorm}
@@ -757,26 +790,116 @@ The previous theoretical piece yields the following essential facts:
 \end{itemize}
 A spin system consisting of an unpaired electron ($S=\tfrac{1}{2}$) and a nitrogen core ($S=1$) will yield $N = 2 \cdot 3 = 6$ possible states, a density matrix of $N^2 = 36$ elements, and a Liouvillian of $26 \cdot N^4=26 \cdot 1296 = 33,696$ elements. A Matlab complex double representation takes 16 bytes, yielding an estimate of $16 \cdot 26 \cdot N^4 \text{B} \approx 530 \text{kB}$ memory usage at maximum. If we add 4 protons ($S=\tfrac{1}{2})$ to the system, we have $N = 6 \cdot 2^4= 96$ states, $9216$ density matrix elements, $\sim \cdot 2.2 \cdot 10^{9}$ Liouvillian elements and a maximum memory usage of $33 \text{GB}$. In fact, the Matlab simulations take by far less memory, since all of the involved matrices are sparse. We will have a thorough memory benchmarking lateron.
 
-\section{Spinach}
-The Matlab library \emph{Spinach} supplies efficient methods for large-scale spin dynamics simulations. It consists of the \emph{kernel} with the implementation of general spin dynamics simulation techniques and the \emph{user-land} with a collection of different experiements to perform. Basically, the user prepares the description of a spin system, which is then translated by the kernel into the most efficient basis sets, superoperators, etc. The user-land decides how to deal with those objects, whether to apply a pre-established experiment, or whether to perform the kernel's simulation procedures manually. Though Spinach is able to simulate numerous kinds of experiments, in this work we are going to restrict ourselves to standard EPR experiments. 
+\section{Parallelization of Spinach}
 
+The Matlab library \emph{Spinach}\footnote{written by Theoretical Spin Dynamics Group, University of Southampton, \url{www.spindynamics.org}, for an architectural overview see \verb$docs/developer_notes/architecture_overview$} supplies efficient methods for large-scale spin dynamics simulations. It consists of the \emph{kernel} with the implementation of general spin dynamics simulation techniques and the \emph{user-land} with a collection of different experiements to perform. Basically, the user prepares the description of a spin system, which is then translated by the kernel into the most efficient basis sets, superoperators, etc. The user-land decides how to deal with those objects, whether to apply a pre-established experiment, or whether to perform the kernel's simulation procedures manually. Though Spinach is able to simulate numerous kinds of experiments, in this work we are going to restrict ourselves to the standard $\tfrac{\pi}{2}$-pulsed EPR experiments, for which the user-land readily provides the method \verb|pulse_acquire|. 
+
+Since the code parallelization is highly platform dependable, we will discuss the available technologies and their constraints first.
+\subsection{Clusters and platforms}
+Most supercomputers nowadays are so called \emph{clusters}: Several \emph{nodes} with several \emph{cores (CPUs)} each are connected in a fast network. One single node's \emph{memory (RAM)} may be shared by all its cores, but every CPU usually has its own range of RAM, to which access is fastest. Access on another node's RAM via network is slowest. The advantage of computer clusters is obvious: The hardware does not differ significantly from standard desktop computers and purchase and maintainance costs are reasonably low. 
+The architecture of a cluster requires efficient resource management. For this purpose, several \emph{job scheduler} platforms exist. Everyone, who wishes to run a parrallel job on the cluster, has to \emph{submit} the job with the job scheduler. The job scheduler then asseses the job's potential resource usage upon the user's estimation and \emph{enqueues} the job with a certain priority for execution. Hence the user shall estimate well: Too generous estimations of memory usage and runtime will cause the job to be enqueued way too long, too tight estimations though will cause the job to be terminated by the scheduler when it exceeds its claimed resources by far. 
+
+Both clusters available for testing run on Linux, but they use different job schedulers. Here a short introduction to 
+\subsubsection{Sheldon}
+Sheldon is a linux computer cluster of the Freie Universit\"at Berlin physics department and posseses nodes of different specifications, reaching from 68 eight core nodes with 2 to 4 GB RAM per core (n042-n109) over 32 twelve core nodes with 8GB RAM per core (n010-n041) up to two 32 core nodes with 2GB RAM per core (n110-n111)\footnote{see \url{https://wiki.physik.fu-berlin.de/it/doku.php?id=services:cluster:start} for detailed specifications}. A process running exclusively on one node can thus make use of 96GB RAM at maximum on the twelve core nodes. \emph{TORQUE Resource Manager}\footnote{maintained by \emph{Adaptive Computing}, \url{http://www.adaptivecomputing.com/products/open-source/torque/}} is Sheldon's job scheduler, and here is a summary of the most important commands:
+\begin{itemize}
+ \item \verb$qsub$ \emph{jobfile-name} -- submits a job for execution and returns a five digit job identifier
+  \item \verb$showstart$ \emph{job-id} -- yields the expectated start time of a certain job's execution
+  \item \verb$qdel$ \emph{job-id} -- removes a certain job from the queue or aborts its execution
+  \item \verb$qstat$ {\emph{job-id}} -- yields the status of all current jobs {or a certain job already submitted}
+  \item \verb$qf$ -- displays the resource usage on all nodes of the whole cluster
+\end{itemize}
+A jobfile to evoke a matlab function will look like this:
+\begin{lstlisting}
+#!/bin/bash
+#PBS -N testjob
+#PBS -q batch
+#PBS -l nodes=1:ppn=2
+#PBS -l pmem=2gb
+#PBS -l walltime=01:00:00
+#PBS -m bea -M user@zedat.fu-berlin.de
+#PBS -e testjob_torque_error
+#PBS -o testjob_torque_output
+#PBS -W depend=afterok:job-id1:job-id2:...
+
+cd $PBS_O_WORKDIR
+matlab -nodesktop -nosplash -r "generic_matlab_function(...); quit;" &> testjob_matlab.log
+\end{lstlisting}
+All \verb$#PBS$-lines are options to be read by TORQUE, they determine from top to bottom the job's name \verb$testjob$, the queue, the number of requested nodes and processors per node (ppn), the requested RAM per core, the maximum execution time, an email address to send status messages to, a filename for the error logfile, a filename for the standard output logfile, and a dependency list for jobs to be finished successfully before executing this job. Sheldon possesses two queues \verb$batch$ and \verb$highmem$, which enqueue for execution on the eight core nodes or on the twelve core nodes respectively. \verb#cd $PBS_O_WORKDIR# changes to the directory from which \verb$qsub$ was called, usually somewhere in the user's home directory. After \verb$testjob$ is finished, the TORQUE error and output can be found in this directory as \verb$testjob_torque_error.e$ and \verb$testjob_torque_output.o$, while Matlab's error and output will be located in \verb$testjob_matlab.log$.
+
+\subsubsection{Soroban}
+Soroban is a linux computer cluster of the Freie Universit\"at Berlin consisting of 112 nodes with twelve cores and 2GB RAM per core each\footnote{see \url{http://www.zedat.fu-berlin.de/Compute/Soroban} for detailed specifications}. A process running exclusively on one node can thus make use of 24GB RAM at maximum. SLURM\footnote{maintained by Lawrence Livermore National Laboratory 7000 East Avenue, Livermore, CA 94550, USA, \url{https://computing.llnl.gov/linux/slurm/slurm.html}} is Soroban's job scheduler, and here is a summary of its most important commands:
+\begin{itemize}
+ \item \verb$sbatch$ \emph{jobfile-name} -- submits a job for execution and returns a five digit job identifier
+  \item \verb$scancel$ \emph{job-id} -- removes a certain job from the queue or aborts its execution
+  \item \verb$squeue$ {\verb$-j$ \emph{job-id}} -- yields the status of all current jobs {or a certain job already submitted}
+  \item \verb$sinfo$ or \verb$sview$-- display info on the resource usage on all nodes of the whole cluster, latter offers a GUI.
+\end{itemize}
+A jobfile to evoke a matlab function will look like this:
+\begin{lstlisting}
+ #!/bin/bash 
+#SBATCH --job-name=testjob
+#SBATCH --partition=main
+#SBATCH --nodes=1 
+#SBATCH --ntasks-per-node=2 
+#SBATCH --mem-per-cpu=2GB
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=user@zedat.fu-berlin.de 
+#SBATCH --error=testjob_slurm_error.e
+#SBATCH --output=testjob_slurm_output.o 
+#SBATCH --dependency=afterok:jod-id-1:job-id-2:...
+
+cd $SUBMITDIR
+module load matlab/R2011b
+matlab -nodesktop -nosplash -r "generic_matlab_function(...); quit;" &> testjob_matlab.log                                                                                   
+\end{lstlisting}
+The meaning of all paramters goes in analogy with the TORQUE parameters described above. For Soroban it is not necessary to specify a certain queue, since the nodes do not differ much in hardware, but there still exist the queues (or ``partitions'') \verb$main$, \verb$test$ and \verb$gpu$.
+
+\subsection{MATLAB parallel computing toolbox}
+%image source
+%http://www.mathworks.com/support/product/DM/installation/images/interaction_new1.gif
+\subsubsection{MATLAB licences}
+MATLAB has a rather dedicated licence model, and for a parallelized computation several licenses are necessary:
+\begin{itemize}
+ \item A \emph{MATLAB client}, the standard MATLAB distribution to be checked out for the user's work station when starting MATLAB
+\item A \emph{Parallel Computing Toolbox}, likewise to be checked out for the client to enable parallel code features
+\item A \emph{Distributed Computing Server} on the cluster to open \emph{MATLAB workers} when requested by a client. The number of workers per node and per cluster is limited depending on the actual Server licence.
+\end{itemize}
+The actual idea of parallelization in Matlab then works as follows: A user wants to run parallel code in his MATLAB client. With the Parallel Computing Toolbox' command \verb$ matlabpool open$ \emph{poolsize} he may send a request to the cluster's Distributed Computing Server to allocate a number \emph{poolsize} of workers -- remote MATLAB processes without GUI. Granted that enough worker licences are available, the connection between client and cluster will be established and the user is then free to run his code. Afterwards he is to free the worker licences with \verb$ matlabpool close$.
+
+This approach does not prove very handy in the case of our Spinach simulations for several reasons. Firstly, if the connection between client and cluster is lost, it is problematic to reconnect and receive any results from the ``workers without leader''. Secondly, in general work stations do not necessarily have the Parallel Computing Toolbox equipped. Thirdly, a smooth communication between Distributed Computing Server and job scheduler is required, which is rather fancy to configure. Hence we will ``work around'' the client-cluster problem by evoking a ``silent'' MATLAB client on one cluster node with minimal resource use, which serves as a \emph{master process} by acting as the ``user within the cluster'', calling more MATLAB processes, opening the MATLAB pool and delegating tasks to the allocated workers automatically.
+
+\subsubsection{Matlab - Linux interaction}
+MATLAB offers one important command to evoke shell commands from within a MATLAB client:
+\begin{lstlisting}
+[status,stdout] = unix('any_command');
+\end{lstlisting}
+With its help it will be possible for us to create functions submitting jobs on the cluster dynamically during MATLAB execution by calling \verb$qsub$ or \verb$sbatch$. Furthermore, we can extract the returned job identifier, track the job throughout its execution and create subsequent dependent jobs, all from within MATLAB. One should notice that each MATLAB job executed directly via a jobfile checks out another MATLAB client and Parallel Computing Toolbox licence, while jobs indirectly scheduled via the \verb$matlabpool$ command stay inside one Parallel Computing Toolbox, but check out numerous worker licences. The aim will be to make maximum use of the available combination of client and worker licences.
+
+\subsubsection{Parallel code elements}
+The \emph{Parallel Computing Toolbox} offers several parallelization concepts, of which only the \verb$parfor$-loop will be important for us:
+\begin{lstlisting}
+parfor i=int_a:int_b
+  ...code...
+end
+\end{lstlisting}
+
+The parfor-loop just works like a normal for-loop, with the difference that single loop iterations are distributed to all workers of the current MATLAB pool. Consequently, the parfor-loop may not be applied to replace for-loops, where the computation results depend on the ordered sequence of execution. Since we are only averaging over many orientations of an EPR powder sample, the parfor-loop may well be used in our case. Variables used inside a parfor-loop have to be initialized explicitely in the preceding code segment, in order to inform MATLAB about which workspace information to transfer to the workers. This will turn out relevant lateron when loading variables into workspace from a file.
+
+\subsection{A Spinach EPR Simulation}
 %Cerf S.20
 Using the theoretical basis introduced above, the procedure of an EPR simulation comes down to the following key steps:
 \begin{enumerate}
- \item Spinach constructs the isotropic and anisotropic part of the Liouvillian in the rotational basis ...
+ \item Spinach reads the g- and A-tensors from an input file and constructs the isotropic and anisotropic part of the Liouvillian in the rotational basis ...
  \item ... propagates the density matrix in one step through the $\tfrac{\pi}{2}$-pulse by applying a rotation operator ...
-  \item ... then propagates the density matrix step by step through the relaxation process by applying the Liouville equation (\ref{eq-liouville}) piece-wise in time, ...
+  \item ... then propagates the density matrix step by step through the relaxation process by applying the Liouville equation (\ref{eq-liouville}) repeatedly for short time steps, ...
  \item ... and determines the transversal magnetization depending on $\mathbf{J_+}$, a superposition of spin in x- and y-direction, for each step.
 \end{enumerate}
 
-For the $\tfrac{\pi}{2}$-pulsed EPR, the user-land readily provides the method \verb|pulse_acquire|. 
+In the following the preparation of input data and computation flow are summarized for a simple system consisting of an electron spin $\tfrac{1}{2}$, a nitrogen spin $1$ and a proton spin $\tfrac{1}{2}$.%, such that the idea where to implement parallelization becomes obvious.
 
-
-In the following the preparation of input data and computation flow are summarized, such that the idea where to implement parallelization becomes obvious.
-
-\subsection{A Spinach EPR Simulation}
 \subsubsection{Typical input file}
-This file prepares a typical spin system and conducts a $\pi$-pulsed EPR experiment on it. The data structure \verb$sys$ contains information about the spin system and the experimental setup, \verb$inter$ represents the linear and bilinear interactions of the spins, \verb$bas$ specifies the state basis set to be used and \verb$parameters$ specifies the enquired simulation results. 
+This Matlab file prepares a typical spin system and conducts a $\tfrac{\pi}{2}$-pulsed EPR experiment on it. The data structure \verb$sys$ contains information about the spin system and the experimental setup, \verb$inter$ represents the linear and bilinear interactions of the spins, \verb$bas$ specifies the basis set to be used and \verb$parameters$ specifies the enquired simulation results. 
 \begin{lstlisting}
 function jlh_3spins()
 
@@ -786,7 +909,9 @@ sys.regime='powder';
 bas.mode='ESR-1';
 sys.tols.grid_rank=101;
 \end{lstlisting} 
-Specifies $B_0 = 3.356 T$ and tells Spinach to average the spectrum over uniformly distributed orientations in a ``powder''. The mode ``ESR-1'' generates a complete state space for all electrons, but reduces the state space for all nuclei in a certain way to be efficient enough and still yield reasonable EPR results. The grid rank $101$ chooses a certain Lebedev grid of orientations to average about.
+Specifies $B_0 = 3.356 T$ and tells Spinach to average the spectrum over uniformly distributed orientations in a ``powder''. The mode ``ESR-1'' generates a complete state space for all electrons, but reduces the state space for all nuclei in a certain way to be efficient enough and still yield reasonable EPR results. 
+%INSERT description of state space reduction
+The mode ``ESR-2'' will create a full state space for all electrons and anisptropically coupled nuclei, that is all nuclei in the case of our system. This would result in a $12$-dimensional state space, such that the density matrix stretched into a column vector will count $144$ elements, and the superoperators will be represented by $144\times144$ matrices. The grid rank $101$ chooses a certain Lebedev grid of $3470$ orientations to average about.
 \begin{lstlisting}[firstnumber=last]
 % Interactions
 sys.isotopes={'E','14N', '1H'};
@@ -796,7 +921,7 @@ inter.coupling.matrix=cell(3,3);
 inter.coupling.matrix{1,2}=1e6*[29.4479  3.9997 -0.4979;   3.9997  76.1445 -14.8367;  -0.4979 -14.8367  38.4285];  %92.815191
 inter.coupling.matrix{1,3}=1e6*[-1.2922  2.0819 -1.9943;  2.0819  -1.407 -1.7023; -1.9943 -1.7023 -1.5011];  %5.3217912
 \end{lstlisting}
-Advises Spinach to prepare a spin system of an unpaired electron, a nitrogen nucleus and a proton spin. The Zeeman matrix states the $3\times 3$ g-Tensor, while the coupling matrices state the $3\times 3$ A-tensors accounting for the hyperfine interactions between electron spin and all other spins.
+Advises Spinach to prepare a spin system of an unpaired electron, a nitrogen nucleus and a proton spin\footnote{for a full list of available standard isotopes have a look at \verb$kernel/spin.m$}. The Zeeman matrix represents the $3\times 3$ g-Tensor, while the coupling matrices represent the $3\times 3$ A-tensors accounting for the hyperfine interactions between electron spin and all other spins.
 \begin{lstlisting}[firstnumber=last]
 % Set the sequence parameters
 parameters.offset=0;
@@ -807,14 +932,17 @@ parameters.spins='E';
 parameters.axis_units='Gauss';
 parameters.derivative=0;
 \end{lstlisting}
-Sets parameters for the experiment to simulate: \verb$npoints$ determines the number of time steps in the simulation, \verb$sweep$ chooses the spectral window's width, and thus the duration of one time step, $zerofill$ sets the FID zero-filling and \verb$spins$ selects the spins to be pulsed and detected -- the electron spin in our case.
+%Insert: Transmitter offset
+Sets parameters for the experiment to simulate: \verb$npoints$ determines the number of time steps in the simulation, \verb$sweep$ chooses the spectral window's width, and thus the duration of one time step, \verb$zerofill$ sets the FID zero-filling and \verb$spins$ selects the spins to be pulsed and detected -- the electron spin in our case. \verb$derivative$ can be set to evaluate for the derivative of the FID instead.
+
 \begin{lstlisting}[firstnumber=last]
 % Run Spinach
 spin_system=create(sys,inter);
 spin_system=basis(spin_system,bas);
 fid=pulse_acquire(spin_system,parameters);
 \end{lstlisting}
-The first kernel functions to be called are \verb$create(sys,inter)$ and \verb$basis(spin_system,bas)$. Former returns the data structure \verb$spin_system$, which can be handed to the kernel lateron to reference to our spin system, e.g. to fetch the Liouvillian in question.
+The first kernel functions to be called are \verb$create(sys,inter)$ and \verb$basis(spin_system,bas)$. Former returns the data structure \verb$spin_system$, which describes  can be handed to the kernel lateron to reference to our spin system, e.g. to fetch the Liouvillian in question. A simplified sketch of \verb$spin_system$'s internal structure may be found in figure (insert). The values assigned to its different attributes by \verb$create$ and verb$basis$ for our specific sample spin system are added in bold font. Attributes directly determined by the parameters from this input file are marked red, attributes derived indirectly from those parameters are marked green.
+ 
 \verb$pulse_acquire(spin_system, parameters)$ finally conducts the $\pi$-pulsed EPR and returns the time-resolved FID.
 \begin{lstlisting}[firstnumber=last]
 % Apodization
@@ -849,11 +977,11 @@ timestep=1/parameters.sweep;
 Lp=operator(spin_system,'L+',parameters.spins);
 Ly=(Lp-Lp')/2i;
 \end{lstlisting}
-The function \verb$operator$ prepares the raising operator $L_+$ and then constructs
+The function \verb$operator$ prepares the raising superoperator $J_+$ and then constructs
 \begin{equation}
-  L_y = \frac{1}{2i} ( L_+ - L_- ) = \frac{1}{2i} ( L_+ - L_+^\dagger )
+  J_y = \frac{1}{2i} ( J_+ - J_- ) = \frac{1}{2i} ( J_+ - J_+^\dagger )
 \end{equation}
-The apostrophe in the Matlab code marks the complex conjugate transposition $L_+^\dagger$ of $L_+$. The relation above can be easily found by realizing that the raising and the lowering operator form a Hermitian conjugate pair $L_- = L_+^\dagger$
+The apostrophe in the Matlab code marks the complex conjugate transposition $J_+^\dagger$ of $J_+$. The relation above can be easily found by realizing that the raising and the lowering operator form a Hermitian conjugate pair $J_- = J_+^\dagger$
 %\begin{align}
 % L_+ = L_x + i L_y, \quad L_+^\dagger = L_x^\dagger - i L_y^\dagger \\
 %  \frac{L_+ - L_+^\dagger}{2i} = \frac{L_y + L_y\dagger}{2}
@@ -872,7 +1000,7 @@ The \verb$secularity$ function decides about the importance of interactions. In 
 [Iso,Q]=h_superop(spin_system);
 \end{lstlisting}
 
-The isotropic part of the Liouvillian is stored in \verb$Iso$, while \verb$Q$ is the set of five rank-2 \emph{irreducible spherical tensors} representing the Liouvillian's anisotropic part in the rotational basis. The dimensions of those two matrices determine Spinach's memory consumption.
+The isotropic part of the Liouvillian superoperator is stored in the $144\times144$ matrix \verb$Iso$, while \verb$Q$ is the set of 25 $Q_{mm'}$ rotational basis operators stored in a $5\times5$ matrix of $144\times144$ matrices representing the Liouvillian's anisotropic part. The dimensions of those two matrices determine Spinach's memory consumption.
 
 \begin{lstlisting}[firstnumber=last]
 % Get the spherical averaging grid
@@ -882,7 +1010,6 @@ grid=load([spin_system.sys.root_dir spin_system.sys.slash 'exp' ...
 grid_size=size(grid,1); phi=pi*grid(:,1)/180; theta=pi*grid(:,2)/180; weight=grid(:,3);
 \end{lstlisting}
 The Lebedev grid is read from a file holding all precomputed orientations on the unit sphere. The number of points for a Lebedev grid of certain rank can be found in table (\ref{tab-lebedev}).
-%Tabelle einfügen!
 
 \begin{lstlisting}[firstnumber=last]
 % Get the orientation array
@@ -912,7 +1039,7 @@ L=clean_up(spin_system,L,spin_system.tols.liouv_zero);
 rho=kron(ones(grid_size,1),rho);
 coil=kron(weight,state(spin_system,'L+',parameters.spins));
 \end{lstlisting}
-The density matrix is duplicated $n$ times in a column vector to propagate one for each orientation, and similarly the observable to be detected is duplicated \underline{and the Lebedev weights are applied} in a column vector \verb$coil$. In the experimental setup the detection coil measures independently the magnetization in x- and y-direction, which correspond to the horizontal spin state $S_+ = S_x + i S_y$, \verb$'L+'$ in Spinach notation.
+The density matrix is duplicated $n$ times in a column vector to propagate one for each orientation, and similarly the observable to be detected is duplicated \underline{and the Lebedev weights are applied} in a column vector \verb$coil$. In the experimental setup the detection coil measures independently the magnetization in x- and y-direction, which correspond to the horizontal spin state $J_+ = J_x + i J_y$, \verb$'L+'$ in Spinach notation.
 
 \begin{lstlisting}[firstnumber=last]
 % Apply the pulse
@@ -922,24 +1049,15 @@ fid=evolution(spin_system,L,coil,rho,timestep,parameters.npoints-1,'observable')
 
 end
 \end{lstlisting}
-Generally, \verb$step(spin_system,L,rho,dt)$ propagates the density matrix \verb$rho$ under the influence of a certain Liouvillian \verb$L$ by a time step \verb$dt$. Because \verb$step$ makes uses of the evolution operator (\ref{eq-evolution}) internally, it can conduct a $90^\circ$ rotation around the y-axis by replacing the time step by an angle $\tfrac{\pi}{2}$ and the Liouvillian by the spin operator $L_y$, letting it construct the rotation operator
+Generally, \verb$step(spin_system,L,rho,dt)$ propagates the density matrix \verb$rho$ under the influence of a certain Liouvillian \verb$L$ by a time step \verb$dt$. Because \verb$step$ makes uses of the evolution superoperator (\ref{eq-evolution}) internally, it can conduct a $90^\circ$ rotation around the y-axis by replacing the time step by an angle $\tfrac{\pi}{2}$ and the Liouvillian by the spin superoperator $J_y$, letting it construct the rotation operator
 \begin{equation}
- R_y (\tfrac{\pi}{2}) = e^{-i \tfrac{\pi}{2} L_y}
+ R_y (\tfrac{\pi}{2}) = e^{-i \tfrac{\pi}{2} J_y}
 \end{equation}
 in analogy to equation (\ref{eq-z-rotation}). This just rotates all spins into the x-y-plane, just as a $\tfrac{\pi}{2}$-pulse will do. 
-Sequently, \verb$evolution$ can be regarded as a sequence of \verb$npoints$ \verb$step$-functions propagating the density matrix through the whole time interval by steps of duration \verb$timestep$ by applying Liouvillian \verb$L$. In addition, the observable \verb$coil$ is evaluated for every single step, recording the time resolved FID with magnetization in x-direction as its real part and magnetization in y-direction as its imaginary part. 
-
-\section{Parallelization}
-
-\subsection{Clusters and platforms}
-\subsubsection{Sheldon}
-\subsubsection{Soroban}
-
-\subsection{Matlab parallel computing toolbox}
-\subsubsection{Matlab licences}
-\subsubsection{Matlab - Linux interaction}
+Sequently, \verb$evolution$ can be regarded as a sequence of \verb$npoints$ \verb$step$-functions propagating the density matrix through the whole time interval by steps of duration \verb$timestep$ by applying the Liouvillian \verb$L$. In addition, the observable \verb$coil$ is evaluated for every single step, recording the time resolved FID with magnetization in x-direction as its real part and magnetization in y-direction as its imaginary part. 
 
 \subsection{Spinach modification}
+The simplemost form of parallelization applicable to Spinach will be to subdevide the amount of orientations into smaller packages and distribute them to parallel tasks. 
 \subsubsection{Master process}
 \subsubsection{Child processes}
 \subsubsection{Finalization process}
@@ -948,11 +1066,21 @@ Sequently, \verb$evolution$ can be regarded as a sequence of \verb$npoints$ \ver
 
 \section{Conclusion and outlook}
 
+\section{Appendix}
+\subsection{Figures}
+
+\begin{figure}
+  \centering
+ \includegraphics[width=0.6\textwidth]{spin_system_simplified.jpg}
+  \caption{The Spinach spin-system data structure filled with attributes of an electron-nitrogen-proton spin system.}
+\end{figure}
+
+
 \FloatBarrier
 \begin{thebibliography}{9}
-\bibitem{spinach}
+\bibitem{spindyn}
   Dr. Ilya Kuprov,
-  \emph{Spin Dynamics, Lecture 1 - 10}.
+  \emph{Spin Dynamics, Lecture 1 - 17}.
   University of Oxford,
   2011.
 
@@ -962,11 +1090,23 @@ Sequently, \verb$evolution$ can be regarded as a sequence of \verb$npoints$ \ver
   Journal of Magnetic Resonance,
   208 (2011) 179-194.
 
+\bibitem{spinach-input-manual}
+  Theoretical Spin Dynamics Group, \url{www.spindynamics.org}, 
+  \emph{Spinach package - input preparation manual}.
+  University of Southampton, 
+  2011.
+
 \bibitem{cerf}
   Corinne Cerf,
   \emph{NMR Spectroscopy: From Quantum Mechanics to Protein Spectra}.
   %Unit\'e de Conformation des Macromol\'ecules Biologiques, 
   Concepts in Magnetic Resonancem Vol. 9(1) 17-41, (1997)
+
+\bibitem{lebedev}
+  Baltzar Stevensson, Mattias Ed\'en,
+  \emph{Efficient orientational averaging by the extension of Lebedev grids via regularized octahedral symmetry expansion}.
+  Journal of Magnetic Resonance,
+  191 (2006) 162-176.
 
 \bibitem{griffiths}
   David J. Griffiths,

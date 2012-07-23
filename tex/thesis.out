@@ -1,4 +1,4 @@
-\BOOKMARK [1][-]{section.1}{ FULogo.jpg2-pulsed EPR}{}
+\BOOKMARK [1][-]{section.1}{Theory of \040FULogo.jpg2-pulsed EPR}{}
 \BOOKMARK [2][-]{subsection.1.1}{Introduction}{section.1}
 \BOOKMARK [2][-]{subsection.1.2}{Spin interactions}{section.1}
 \BOOKMARK [3][-]{subsubsection.1.2.1}{Spin system Hamiltonian}{subsection.1.2}
@@ -17,20 +17,22 @@
 \BOOKMARK [3][-]{subsubsection.1.4.4}{Real and imaginary spectrum}{subsection.1.4}
 \BOOKMARK [3][-]{subsubsection.1.4.5}{Averaging over Lebedev grids}{subsection.1.4}
 \BOOKMARK [2][-]{subsection.1.5}{Essence}{section.1}
-\BOOKMARK [1][-]{section.2}{Spinach}{}
-\BOOKMARK [2][-]{subsection.2.1}{A Spinach EPR Simulation}{section.2}
-\BOOKMARK [3][-]{subsubsection.2.1.1}{Typical input file}{subsection.2.1}
-\BOOKMARK [3][-]{subsubsection.2.1.2}{pulse\137acquire}{subsection.2.1}
-\BOOKMARK [1][-]{section.3}{Parallelization}{}
-\BOOKMARK [2][-]{subsection.3.1}{Clusters and platforms}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Sheldon}{subsection.3.1}
-\BOOKMARK [3][-]{subsubsection.3.1.2}{Soroban}{subsection.3.1}
-\BOOKMARK [2][-]{subsection.3.2}{Matlab parallel computing toolbox}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.2.1}{Matlab licences}{subsection.3.2}
-\BOOKMARK [3][-]{subsubsection.3.2.2}{Matlab - Linux interaction}{subsection.3.2}
-\BOOKMARK [2][-]{subsection.3.3}{Spinach modification}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.3.1}{Master process}{subsection.3.3}
-\BOOKMARK [3][-]{subsubsection.3.3.2}{Child processes}{subsection.3.3}
-\BOOKMARK [3][-]{subsubsection.3.3.3}{Finalization process}{subsection.3.3}
-\BOOKMARK [2][-]{subsection.3.4}{Benchmarking}{section.3}
-\BOOKMARK [1][-]{section.4}{Conclusion and outlook}{}
+\BOOKMARK [1][-]{section.2}{Parallelization of Spinach}{}
+\BOOKMARK [2][-]{subsection.2.1}{Clusters and platforms}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Sheldon}{subsection.2.1}
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Soroban}{subsection.2.1}
+\BOOKMARK [2][-]{subsection.2.2}{MATLAB parallel computing toolbox}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.2.1}{MATLAB licences}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Matlab - Linux interaction}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Parallel code elements}{subsection.2.2}
+\BOOKMARK [2][-]{subsection.2.3}{A Spinach EPR Simulation}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Typical input file}{subsection.2.3}
+\BOOKMARK [3][-]{subsubsection.2.3.2}{pulse\137acquire}{subsection.2.3}
+\BOOKMARK [2][-]{subsection.2.4}{Spinach modification}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Master process}{subsection.2.4}
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Child processes}{subsection.2.4}
+\BOOKMARK [3][-]{subsubsection.2.4.3}{Finalization process}{subsection.2.4}
+\BOOKMARK [2][-]{subsection.2.5}{Benchmarking}{section.2}
+\BOOKMARK [1][-]{section.3}{Conclusion and outlook}{}
+\BOOKMARK [1][-]{section.4}{Appendix}{}
+\BOOKMARK [2][-]{subsection.4.1}{Figures}{section.4}

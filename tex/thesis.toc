@@ -1,5 +1,5 @@
 \select@language {english}
-\contentsline {section}{\numberline {1}$\genfrac {}{}{}1{\pi }{2}$-pulsed EPR}{3}{section.1}
+\contentsline {section}{\numberline {1}Theory of $\genfrac {}{}{}1{\pi }{2}$-pulsed EPR}{3}{section.1}
 \contentsline {subsection}{\numberline {1.1}Introduction}{3}{subsection.1.1}
 \contentsline {subsection}{\numberline {1.2}Spin interactions}{3}{subsection.1.2}
 \contentsline {subsubsection}{\numberline {1.2.1}Spin system Hamiltonian}{3}{subsubsection.1.2.1}
@@ -17,21 +17,23 @@
 \contentsline {subsubsection}{\numberline {1.4.3}FID detection}{13}{subsubsection.1.4.3}
 \contentsline {subsubsection}{\numberline {1.4.4}Real and imaginary spectrum}{14}{subsubsection.1.4.4}
 \contentsline {subsubsection}{\numberline {1.4.5}Averaging over Lebedev grids}{14}{subsubsection.1.4.5}
-\contentsline {subsection}{\numberline {1.5}Essence}{14}{subsection.1.5}
-\contentsline {section}{\numberline {2}Spinach}{15}{section.2}
-\contentsline {subsection}{\numberline {2.1}A Spinach EPR Simulation}{15}{subsection.2.1}
-\contentsline {subsubsection}{\numberline {2.1.1}Typical input file}{15}{subsubsection.2.1.1}
-\contentsline {subsubsection}{\numberline {2.1.2}pulse\_acquire}{16}{subsubsection.2.1.2}
-\contentsline {section}{\numberline {3}Parallelization}{18}{section.3}
-\contentsline {subsection}{\numberline {3.1}Clusters and platforms}{18}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Sheldon}{18}{subsubsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.2}Soroban}{18}{subsubsection.3.1.2}
-\contentsline {subsection}{\numberline {3.2}Matlab parallel computing toolbox}{18}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Matlab licences}{18}{subsubsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2}Matlab - Linux interaction}{18}{subsubsection.3.2.2}
-\contentsline {subsection}{\numberline {3.3}Spinach modification}{18}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}Master process}{18}{subsubsection.3.3.1}
-\contentsline {subsubsection}{\numberline {3.3.2}Child processes}{18}{subsubsection.3.3.2}
-\contentsline {subsubsection}{\numberline {3.3.3}Finalization process}{18}{subsubsection.3.3.3}
-\contentsline {subsection}{\numberline {3.4}Benchmarking}{18}{subsection.3.4}
-\contentsline {section}{\numberline {4}Conclusion and outlook}{18}{section.4}
+\contentsline {subsection}{\numberline {1.5}Essence}{15}{subsection.1.5}
+\contentsline {section}{\numberline {2}Parallelization of Spinach}{15}{section.2}
+\contentsline {subsection}{\numberline {2.1}Clusters and platforms}{16}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Sheldon}{16}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Soroban}{17}{subsubsection.2.1.2}
+\contentsline {subsection}{\numberline {2.2}MATLAB parallel computing toolbox}{17}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}MATLAB licences}{17}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Matlab - Linux interaction}{18}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Parallel code elements}{18}{subsubsection.2.2.3}
+\contentsline {subsection}{\numberline {2.3}A Spinach EPR Simulation}{19}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Typical input file}{19}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}pulse\_acquire}{20}{subsubsection.2.3.2}
+\contentsline {subsection}{\numberline {2.4}Spinach modification}{22}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Master process}{22}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}Child processes}{22}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}Finalization process}{22}{subsubsection.2.4.3}
+\contentsline {subsection}{\numberline {2.5}Benchmarking}{22}{subsection.2.5}
+\contentsline {section}{\numberline {3}Conclusion and outlook}{22}{section.3}
+\contentsline {section}{\numberline {4}Appendix}{22}{section.4}
+\contentsline {subsection}{\numberline {4.1}Figures}{22}{subsection.4.1}
