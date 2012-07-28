@@ -51,8 +51,8 @@
 \citation{slichter}
 \newlabel{eq-rotating-hamiltonian}{{85}{12}{Rotating reference frame\relax }{equation.1.85}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.2}Resonant frequency field}{12}{subsubsection.1.4.2}}
-\citation{ox-nmr}
-\citation{ox-nmr}
+\citation{nmr-ox}
+\citation{nmr-ox}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.3}FID detection}{13}{subsubsection.1.4.3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces the number of orientation for selected Lebedev grids of rank $J$\relax }}{14}{figure.caption.2}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
@@ -61,25 +61,63 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.4.5}Averaging over Lebedev grids}{14}{subsubsection.1.4.5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Essence}{15}{subsection.1.5}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Parallelization of Spinach}{15}{section.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Clusters and platforms}{16}{subsection.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Sheldon}{16}{subsubsection.2.1.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Soroban}{17}{subsubsection.2.1.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}MATLAB parallel computing toolbox}{17}{subsection.2.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}MATLAB licences}{17}{subsubsection.2.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Matlab - Linux interaction}{18}{subsubsection.2.2.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Parallel code elements}{18}{subsubsection.2.2.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}A Spinach EPR Simulation}{19}{subsection.2.3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Typical input file}{19}{subsubsection.2.3.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}pulse\_acquire}{20}{subsubsection.2.3.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Spinach modification}{22}{subsection.2.4}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1}Master process}{22}{subsubsection.2.4.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2}Child processes}{22}{subsubsection.2.4.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3}Finalization process}{22}{subsubsection.2.4.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Benchmarking}{22}{subsection.2.5}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Conclusion and outlook}{22}{section.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Appendix}{22}{section.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Figures}{22}{subsection.4.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The Spinach spin-system data structure filled with attributes of an electron-nitrogen-proton spin system.\relax }}{23}{figure.caption.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Spinach modification}{16}{subsection.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Implementation}{16}{subsubsection.2.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Benchmarking}{17}{subsection.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Single orientation}{17}{subsubsection.2.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Single core computaion}{17}{subsubsection.2.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.3}Small scale spin systems}{17}{subsubsection.2.2.3}}
+\newlabel{fig-so-runtime}{{2a}{18}{execution time in dependence on spin system complexity\relax \relax }{figure.caption.3}{}}
+\newlabel{sub@fig-so-runtime}{{a}{18}{execution time in dependence on spin system complexity\relax \relax }{figure.caption.3}{}}
+\newlabel{fig-so-memory}{{2b}{18}{peak virtual memory usage in dependence on spin system complexity\relax \relax }{figure.caption.3}{}}
+\newlabel{sub@fig-so-memory}{{b}{18}{peak virtual memory usage in dependence on spin system complexity\relax \relax }{figure.caption.3}{}}
+\newlabel{fig-so-file-size}{{2c}{18}{Liouvillian file size in dependence on spin system complexity\relax \relax }{figure.caption.3}{}}
+\newlabel{sub@fig-so-file-size}{{c}{18}{Liouvillian file size in dependence on spin system complexity\relax \relax }{figure.caption.3}{}}
+\newlabel{fig-so-expansion}{{2d}{18}{virtual memory usage in dependence on Liouvillian file size\relax \relax }{figure.caption.3}{}}
+\newlabel{sub@fig-so-expansion}{{d}{18}{virtual memory usage in dependence on Liouvillian file size\relax \relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Spinach execution statistics for one single orientation\relax }}{18}{figure.caption.3}}
+\newlabel{fig-so-stats}{{2}{18}{Spinach execution statistics for one single orientation\relax \relax }{figure.caption.3}{}}
+\newlabel{fig-2ppn-sc-runtime}{{3a}{18}{two-core parallelization\relax \relax }{figure.caption.4}{}}
+\newlabel{sub@fig-2ppn-sc-runtime}{{a}{18}{two-core parallelization\relax \relax }{figure.caption.4}{}}
+\newlabel{fig-9ppn-sc-memory}{{3b}{18}{nine-core parallelization\relax \relax }{figure.caption.4}{}}
+\newlabel{sub@fig-9ppn-sc-memory}{{b}{18}{nine-core parallelization\relax \relax }{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces execution time in dependence on spin system complexity for small scale spin systems\relax }}{18}{figure.caption.4}}
+\newlabel{fig-sc-runtime}{{3}{18}{execution time in dependence on spin system complexity for small scale spin systems\relax \relax }{figure.caption.4}{}}
+\newlabel{fig-total-sc-runtime}{{4a}{19}{two-core and nine-core parallelization runtime\relax \relax }{figure.caption.5}{}}
+\newlabel{sub@fig-total-sc-runtime}{{a}{19}{two-core and nine-core parallelization runtime\relax \relax }{figure.caption.5}{}}
+\newlabel{fig-parallel-mixed-runtime}{{4b}{19}{runtime relation between mixed mode and parallel mode\relax \relax }{figure.caption.5}{}}
+\newlabel{sub@fig-parallel-mixed-runtime}{{b}{19}{runtime relation between mixed mode and parallel mode\relax \relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces \relax }}{19}{figure.caption.5}}
+\newlabel{fig-sc-runtime-2}{{4}{19}{\relax \relax }{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.4}Large scale spin systems}{19}{subsubsection.2.2.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.5}Scaling model}{19}{subsubsection.2.2.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Conclusion and outlook}{20}{section.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Appendix}{20}{section.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Clusters}{20}{subsection.4.1}}
+\newlabel{sec-clusters}{{4.1}{20}{Clusters\relax }{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Sheldon}{20}{subsubsection.4.1.1}}
+\newlabel{sec-sheldon}{{4.1.1}{20}{Sheldon\relax }{subsubsection.4.1.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Soroban}{21}{subsubsection.4.1.2}}
+\newlabel{sec-soroban}{{4.1.2}{21}{Soroban\relax }{subsubsection.4.1.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The paralleization model of MATLAB\relax }}{22}{figure.caption.6}}
+\newlabel{fig-matlab-parallelization}{{5}{22}{The paralleization model of MATLAB\relax \relax }{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}MATLAB on Clusters}{22}{subsection.4.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}MATLAB licences}{22}{subsubsection.4.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Matlab - Linux interaction}{23}{subsubsection.4.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Parallel code elements}{23}{subsubsection.4.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}A Spinach EPR Simulation}{23}{subsection.4.3}}
+\newlabel{sec-spinach-computation}{{4.3}{23}{A Spinach EPR Simulation\relax }{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Typical input file}{24}{subsubsection.4.3.1}}
+\newlabel{sec-input-file}{{4.3.1}{24}{Typical input file\relax }{subsubsection.4.3.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}pulse\_acquire}{25}{subsubsection.4.3.2}}
+\newlabel{sec-pulse-acquire}{{4.3.2}{25}{pulse\_acquire\relax }{subsubsection.4.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Spinach modification code}{27}{subsection.4.4}}
+\newlabel{sec-spinach-mod-code}{{4.4}{27}{Spinach modification code\relax }{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Master process}{27}{subsubsection.4.4.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}Child processes}{27}{subsubsection.4.4.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.3}Finalization process}{29}{subsubsection.4.4.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Figures}{29}{subsection.4.5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The Spinach spin-system data structure filled with attributes of an electron-nitrogen-proton spin system.\relax }}{30}{figure.caption.7}}
 \bibcite{spindyn}{1}
 \bibcite{spinach}{2}
 \bibcite{spinach-input-manual}{3}

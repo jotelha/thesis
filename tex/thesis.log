@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.23)  24 JUL 2012 01:16
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.23)  28 JUL 2012 22:10
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -117,26 +117,6 @@ Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
 ))
-(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.sty
-Package: subfigure 2002/03/15 v2.1.5 subfigure package
-\subfigtopskip=\skip46
-\subfigcapskip=\skip47
-\subfigcaptopadj=\dimen114
-\subfigbottomskip=\skip48
-\subfigcapmargin=\dimen115
-\subfiglabelskip=\skip49
-\c@subfigure=\count100
-\c@lofdepth=\count101
-\c@subtable=\count102
-\c@lotdepth=\count103
-
-****************************************
-* Local config file subfigure.cfg used *
-****************************************
-(/usr/share/texmf-texlive/tex/latex/subfigure/subfigure.cfg)
-\subfig@top=\skip50
-\subfig@bottom=\skip51
-)
 (/usr/share/texmf-texlive/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
 )
@@ -145,22 +125,22 @@ Package: mathtools 2008/08/01 v1.06 mathematical typesetting tools (MH)
 
 (/usr/share/texmf-texlive/tex/latex/tools/calc.sty
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count104
-\calc@Bcount=\count105
-\calc@Adimen=\dimen116
-\calc@Bdimen=\dimen117
-\calc@Askip=\skip52
-\calc@Bskip=\skip53
+\calc@Acount=\count100
+\calc@Bcount=\count101
+\calc@Adimen=\dimen114
+\calc@Bdimen=\dimen115
+\calc@Askip=\skip46
+\calc@Bskip=\skip47
 LaTeX Info: Redefining \setlength on input line 76.
 LaTeX Info: Redefining \addtolength on input line 77.
-\calc@Ccount=\count106
-\calc@Cskip=\skip54
+\calc@Ccount=\count102
+\calc@Cskip=\skip48
 )
 (/usr/share/texmf-texlive/tex/latex/mh/mhsetup.sty
 Package: mhsetup 2007/12/03 v1.2 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count107
-\l_MT_multwidth_dim=\dimen118
+\g_MT_multlinerow_int=\count103
+\l_MT_multwidth_dim=\dimen116
 )
 (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
@@ -178,8 +158,8 @@ Language: germanb 2008/06/01 v2.6m German support from the babel system
 
 (/usr/share/texmf-texlive/tex/generic/babel/babel.def
 File: babel.def 2008/07/06 v3.8l Babel common definitions
-\babel@savecnt=\count108
-\U@D=\dimen119
+\babel@savecnt=\count104
+\U@D=\dimen117
 )
 \l@austrian = a dialect from \language\l@german 
 Package babel Info: Making " an active character on input line 102.
@@ -208,18 +188,18 @@ Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
 
 (/usr/share/texmf-texlive/tex/latex/tools/array.sty
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
-\col@sep=\dimen120
-\extrarowheight=\dimen121
+\col@sep=\dimen118
+\extrarowheight=\dimen119
 \NC@list=\toks22
-\extratabsurround=\skip55
-\backup@length=\skip56
+\extratabsurround=\skip49
+\backup@length=\skip50
 )
-\TX@col@width=\dimen122
-\TX@old@table=\dimen123
-\TX@old@col=\dimen124
-\TX@target=\dimen125
-\TX@delta=\dimen126
-\TX@cols=\count109
+\TX@col@width=\dimen120
+\TX@old@table=\dimen121
+\TX@old@col=\dimen122
+\TX@target=\dimen123
+\TX@delta=\dimen124
+\TX@cols=\count105
 \TX@ftn=\toks23
 )
 (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
@@ -251,9 +231,9 @@ O)
 (/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty
 Package: xcolor-patch 2009/10/02 xcolor patch
 ))
-\@linkdim=\dimen127
-\Hy@linkcounter=\count110
-\Hy@pagecounter=\count111
+\@linkdim=\dimen125
+\Hy@linkcounter=\count106
+\Hy@pagecounter=\count107
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2009/10/09 v6.79a Hyperref: PDFDocEncoding definition (HO)
@@ -321,9 +301,9 @@ Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 )))
-\Fld@menulength=\count112
-\Field@Width=\dimen128
-\Fld@charsize=\dimen129
+\Fld@menulength=\count108
+\Field@Width=\dimen126
+\Fld@charsize=\dimen127
 \Field@toks=\toks24
 Package hyperref Info: Hyper figures OFF on input line 4377.
 Package hyperref Info: Link nesting OFF on input line 4382.
@@ -336,62 +316,66 @@ Package hyperref Info: PDF/A mode OFF on input line 4407.
 (/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty
 Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
 )
-\Hy@abspage=\count113
-\c@Item=\count114
+\Hy@abspage=\count109
+\c@Item=\count110
 )
 *hyperref using driver hpdftex*
 (/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
-\Fld@listcount=\count115
+\Fld@listcount=\count111
 )
 (/usr/share/texmf-texlive/tex/latex/fancyhdr/fancyhdr.sty
-\fancy@headwidth=\skip57
-\f@ncyO@elh=\skip58
-\f@ncyO@erh=\skip59
-\f@ncyO@olh=\skip60
-\f@ncyO@orh=\skip61
-\f@ncyO@elf=\skip62
-\f@ncyO@erf=\skip63
-\f@ncyO@olf=\skip64
-\f@ncyO@orf=\skip65
+\fancy@headwidth=\skip51
+\f@ncyO@elh=\skip52
+\f@ncyO@erh=\skip53
+\f@ncyO@olh=\skip54
+\f@ncyO@orh=\skip55
+\f@ncyO@elf=\skip56
+\f@ncyO@erf=\skip57
+\f@ncyO@olf=\skip58
+\f@ncyO@orf=\skip59
 )
 (/usr/share/texmf-texlive/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2008/02/07
 
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)
-\FV@CodeLineNo=\count116
+\FV@CodeLineNo=\count112
 \FV@InFile=\read1
 \FV@TabBox=\box28
-\c@FancyVerbLine=\count117
-\FV@StepNumber=\count118
+\c@FancyVerbLine=\count113
+\FV@StepNumber=\count114
 \FV@OutFile=\write3
 ) (/usr/share/texmf-texlive/tex/latex/caption/caption.sty
 Package: caption 2009/10/09 v3.1k Customizing captions (AR)
 
 (/usr/share/texmf-texlive/tex/latex/caption/caption3.sty
 Package: caption3 2009/10/09 v3.1k caption3 kernel (AR)
-\captionmargin=\dimen130
-\captionmargin@=\dimen131
-\captionwidth=\dimen132
-\caption@indent=\dimen133
-\caption@parindent=\dimen134
-\caption@hangindent=\dimen135
+\captionmargin=\dimen128
+\captionmargin@=\dimen129
+\captionwidth=\dimen130
+\caption@indent=\dimen131
+\caption@parindent=\dimen132
+\caption@hangindent=\dimen133
 )
-\c@ContinuedFloat=\count119
+\c@ContinuedFloat=\count115
 Package caption Info: hyperref package is loaded.
-Package caption Info: subfigure package is loaded.
+)
+(/usr/share/texmf-texlive/tex/latex/caption/subcaption.sty
+Package: subcaption 2008/08/31 v1.0b Adding subcaptions (AR)
+\c@subfigure=\count116
+\c@subtable=\count117
 )
 (/usr/share/texmf-texlive/tex/latex/ltxmisc/ulem.sty
 \UL@box=\box29
 \UL@hyphenbox=\box30
-\UL@skip=\skip66
+\UL@skip=\skip60
 \UL@hook=\toks25
-\UL@pe=\count120
-\UL@pixel=\dimen136
+\UL@pe=\count118
+\UL@pixel=\dimen134
 \ULC@box=\box31
 Package: ulem 2000/05/26
-\ULdepth=\dimen137
+\ULdepth=\dimen135
 )
 (/usr/share/texmf-texlive/tex/latex/moreverb/moreverb.sty
 Package: moreverb 2008/06/03 v2.3 `more' verbatim facilities
@@ -403,28 +387,28 @@ Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
 \verbatim@in@stream=\read2
 )
 \verbatim@out=\write4
-\tab@position=\count121
-\tab@size=\count122
-\listing@line=\count123
+\tab@position=\count119
+\tab@size=\count120
+\listing@line=\count121
 )
 (/usr/share/texmf-texlive/tex/latex/listings/listings.sty
-\lst@mode=\count124
+\lst@mode=\count122
 \lst@gtempboxa=\box32
 \lst@token=\toks28
-\lst@length=\count125
-\lst@currlwidth=\dimen138
-\lst@column=\count126
-\lst@pos=\count127
-\lst@lostspace=\dimen139
-\lst@width=\dimen140
-\lst@newlines=\count128
-\lst@lineno=\count129
-\lst@maxwidth=\dimen141
+\lst@length=\count123
+\lst@currlwidth=\dimen136
+\lst@column=\count124
+\lst@pos=\count125
+\lst@lostspace=\dimen137
+\lst@width=\dimen138
+\lst@newlines=\count126
+\lst@lineno=\count127
+\lst@maxwidth=\dimen139
 
 (/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
-\c@lstnumber=\count130
-\lst@skipnumbers=\count131
+\c@lstnumber=\count128
+\lst@skipnumbers=\count129
 \lst@framebox=\box33
 )
 (/usr/share/texmf-texlive/tex/latex/listings/listings.cfg
@@ -442,44 +426,44 @@ LaTeX Warning: Unused global option(s):
 (./thesis.aux)
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
  (/usr/share/texmf/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count132
-\scratchdimen=\dimen142
+\scratchcounter=\count130
+\scratchdimen=\dimen140
 \scratchbox=\box34
-\nofMPsegments=\count133
-\nofMParguments=\count134
+\nofMPsegments=\count131
+\nofMParguments=\count132
 \everyMPshowfont=\toks29
-\MPscratchCnt=\count135
-\MPscratchDim=\dimen143
-\MPnumerator=\count136
+\MPscratchCnt=\count133
+\MPscratchDim=\dimen141
+\MPnumerator=\count134
 \everyMPtoPDFconversion=\toks30
 )
-Package hyperref Info: Link coloring ON on input line 90.
+Package hyperref Info: Link coloring ON on input line 92.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
 Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
-\c@section@level=\count137
+\c@section@level=\count135
 )
-LaTeX Info: Redefining \ref on input line 90.
-LaTeX Info: Redefining \pageref on input line 90.
+LaTeX Info: Redefining \ref on input line 92.
+LaTeX Info: Redefining \pageref on input line 92.
  (./thesis.out)
 (./thesis.out)
 \@outlinefile=\write5
@@ -489,19 +473,19 @@ LaTeX Info: Redefining \pageref on input line 90.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count138
- <FULogo.jpg, id=155, 199.2243pt x 53.2389pt>
+\c@lstlisting=\count136
+ <FULogo.jpg, id=183, 199.2243pt x 53.2389pt>
 File: FULogo.jpg Graphic file (type jpg)
  <use FULogo.jpg>
-Underfull \hbox (badness 10000) in paragraph at lines 100--100
+Underfull \hbox (badness 10000) in paragraph at lines 102--102
 
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 115.
+LaTeX Font Info:    Try loading font information for U+msa on input line 117.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 115.
+LaTeX Font Info:    Try loading font information for U+msb on input line 117.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -514,133 +498,187 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
  [2]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 149.
+(hyperref)                removing `math shift' on input line 151.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<def>-command' on input line 149.
+(hyperref)                removing `\<def>-command' on input line 151.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@tempa' on input line 149.
+(hyperref)                removing `\@tempa' on input line 151.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<def>-command' on input line 149.
+(hyperref)                removing `\<def>-command' on input line 151.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@tempb' on input line 149.
+(hyperref)                removing `\@tempb' on input line 151.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\pi' on input line 149.
+(hyperref)                removing `\pi' on input line 151.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 149.
+(hyperref)                removing `math shift' on input line 151.
 
 [3] [4] [5] [6] [7]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 418.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 420.
 
  (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 418.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 420.
 
 [8]
-LaTeX Font Info:    Try loading font information for U+euf on input line 464.
+LaTeX Font Info:    Try loading font information for U+euf on input line 466.
  (/usr/share/texmf-texlive/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2009/06/22 v3.00 Euler Fraktur
 ) [9] [10] [11]
-Overfull \hbox (5.87999pt too wide) in paragraph at lines 563--563
+Overfull \hbox (5.87999pt too wide) in paragraph at lines 565--565
 [] 
  []
 
-[12]
-
-LaTeX Warning: Citation `ox-nmr' on page 13 undefined on input line 605.
-
-
-LaTeX Warning: Citation `ox-nmr' on page 13 undefined on input line 651.
-
-[13] [14]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 795.
+[12] [13] [14]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 797.
 
  (/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-) [15] [16]
-[17]
-Overfull \hbox (9.35588pt too wide) in paragraph at lines 868--869
-\T1/cmr/m/n/12 code in his MAT-LAB client. With the Par-al-lel Com-put-ing Tool
--box' com-mand [] \T1/cmtt/m/n/12 matlabpool open
+) [15]
+Overfull \hbox (3.1427pt too wide) in paragraph at lines 817--818
+[][]\T1/cmtt/m/n/12 function fid = jlh_outsourced_pulse_acquire(...) \T1/cmr/m/
+n/12 --- which run on each sin-gle node
  []
 
-[18]
+
+Overfull \hbox (35.43062pt too wide) in paragraph at lines 818--819
+[][]\T1/cmtt/m/n/12 function jlh_sum_results(..) \T1/cmr/m/n/12 --- fi-nally ru
+ns af-ter all []\T1/cmtt/m/n/12 jlh_outsourced_pulse_acquire(...)
+ []
+
+[16] <so-graphs/so_computation_time_fit.png, id=472, 32.16016pt x 24.27068pt>
+File: so-graphs/so_computation_time_fit.png Graphic file (type png)
+
+<use so-graphs/so_computation_time_fit.png>
+<so-graphs/mem_usage_fit.png, id=473, 33.84645pt x 24.27068pt>
+File: so-graphs/mem_usage_fit.png Graphic file (type png)
+
+<use so-graphs/mem_usage_fit.png>
+<so-graphs/input_file_size.png, id=474, 38.48378pt x 28.06485pt>
+File: so-graphs/input_file_size.png Graphic file (type png)
+
+<use so-graphs/input_file_size.png>
+<so-graphs/expansion.png, id=475, 33.84645pt x 24.27068pt>
+File: so-graphs/expansion.png Graphic file (type png)
+
+<use so-graphs/expansion.png>
+<2ppn-graphs/small_scale_runtime.png, id=477, 33.84645pt x 24.27068pt>
+File: 2ppn-graphs/small_scale_runtime.png Graphic file (type png)
+
+<use 2ppn-graphs/small_scale_runtime.png>
+<9ppn-graphs/small_scale_runtime.png, id=478, 33.84645pt x 24.27068pt>
+File: 9ppn-graphs/small_scale_runtime.png Graphic file (type png)
+
+<use 9ppn-graphs/small_scale_runtime.png>
+<runtime-graphs/small_scale_runtime.png, id=479, 30.23296pt x 24.27068pt>
+File: runtime-graphs/small_scale_runtime.png Graphic file (type png)
+
+<use runtime-graphs/small_scale_runtime.png>
+<runtime-graphs/parallel_mixed.png, id=480, 30.23296pt x 24.27068pt>
+File: runtime-graphs/parallel_mixed.png Graphic file (type png)
+
+<use runtime-graphs/parallel_mixed.png> [17] [18 <./so-graphs/so_computation_ti
+me_fit.png (PNG copy)> <./so-graphs/mem_usage_fit.png (PNG copy)> <./so-graphs/
+input_file_size.png (PNG copy)> <./so-graphs/expansion.png (PNG copy)> <./2ppn-
+graphs/small_scale_runtime.png (PNG copy)> <./9ppn-graphs/small_scale_runtime.p
+ng (PNG copy)>] [19 <./runtime-graphs/small_scale_runtime.png (PNG copy)> <./ru
+ntime-graphs/parallel_mixed.png (PNG copy)>] [20] [21]
+<matlab-parallelization.jpg, id=550, 344.28625pt x 211.79124pt>
+File: matlab-parallelization.jpg Graphic file (type jpg)
+
+<use matlab-parallelization.jpg>
+LaTeX Font Info:    Font shape `T1/cmtt/bx/it' in size <8> not available
+(Font)              Font shape `T1/cmtt/m/it' tried instead on input line 1024.
+
+ [22 <./matlab-parallelization.jpg>] [23]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 923.
- [19] [20]
-Overfull \hbox (13.95525pt too wide) in paragraph at lines 1044--1045
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1091.
+
+
+[24] [25]
+Overfull \hbox (13.95525pt too wide) in paragraph at lines 1213--1214
 \T1/cmr/m/n/12 tion, and sim-i-larly the ob-serv-able to be de-tected is du-pli
 -cated $[]$
  []
 
-[21] <spin_system_simplified.jpg, id=573, 823.878pt x 2023.56pt>
+[26]
+Overfull \hbox (64.39758pt too wide) in paragraph at lines 1254--1255
+\T1/cmr/m/n/12 then uses []\T1/cmtt/m/n/12 jlh_submit_job(...) \T1/cmr/m/n/12 r
+e-peatetly to cre-ate $\OML/cmm/m/it/12 n$ \T1/cmr/m/n/12 in-stances of \T1/cmt
+t/m/n/12 jlh_outsourced_pulse_acquire(...)\T1/cmr/m/n/12 ,
+ []
+
+
+Overfull \hbox (41.51114pt too wide) in paragraph at lines 1267--1268
+[]\T1/cmr/m/n/12 When load-ing the Li-ou-vil-lian and other data from the .mat 
+file pre-pared by []\T1/cmtt/m/n/12 jlh_master_pulse_acquire
+ []
+
+[27] [28] <spin_system_simplified.jpg, id=750, 823.878pt x 2023.56pt>
 File: spin_system_simplified.jpg Graphic file (type jpg)
 
 <use spin_system_simplified.jpg>
 
-LaTeX Warning: Float too large for page by 35.47664pt on input line 1078.
+LaTeX Warning: Float too large for page by 54.97662pt on input line 1381.
 
-[22] [23 <./spin_system_simplified.jpg>] [24] (./thesis.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+[29] [30 <./spin_system_simplified.jpg>] [31] (./thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 10625 strings out of 495021
- 148546 string characters out of 1181035
- 466511 words of memory out of 3000000
- 13307 multiletter control sequences out of 15000+50000
- 27642 words of font info for 77 fonts, out of 3000000 for 9000
+ 10791 strings out of 495021
+ 152196 string characters out of 1181035
+ 557638 words of memory out of 3000000
+ 13337 multiletter control sequences out of 15000+50000
+ 28650 words of font info for 79 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,10n,43p,1191b,1824s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-
-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fon
-ts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texmf-texlive/fonts/type1/pub
-lic/amsfonts/cm/cmbx6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
-/cm/cmbx8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.p
-fb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sh
-are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-t
-exlive/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts
-/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
-m/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/t
-exmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/
-fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/p
-ublic/amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy6.
-pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sh
-are/texmf-texlive/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/share/texm
-f-texlive/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/font
-s/type1/public/cm-super/sfbx0800.pfb></usr/share/texmf/fonts/type1/public/cm-su
-per/sfbx0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></u
-sr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts
-/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-sup
-er/sfrm0500.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></us
-r/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/
-type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-supe
-r/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr
-/share/texmf/fonts/type1/public/cm-super/sfsl1000.pfb></usr/share/texmf/fonts/t
-ype1/public/cm-super/sfti0800.pfb></usr/share/texmf/fonts/type1/public/cm-super
-/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/
-share/texmf/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texmf/fonts/ty
-pe1/public/cm-super/sftt1200.pfb>
-Output written on thesis.pdf (24 pages, 1584253 bytes).
+ 38i,10n,43p,1179b,1669s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf
+/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-texlive/fonts/type1
+/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
+fonts/cm/cmbx5.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmb
+x6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr
+/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texm
+f-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/f
+onts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/
+public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmmi7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi8
+.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/s
+hare/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+mr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/f
+onts/type1/public/amsfonts/euler/eufm10.pfb></usr/share/texmf-texlive/fonts/typ
+e1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-s
+uper/sfbi0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></
+usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/font
+s/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-su
+per/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfit0800.pfb></u
+sr/share/texmf/fonts/type1/public/cm-super/sfrm0500.pfb></usr/share/texmf/fonts
+/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/public/cm-sup
+er/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb></us
+r/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/
+type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-supe
+r/sfsl1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0800.pfb></usr
+/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf/fonts/t
+ype1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-super
+/sftt0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on thesis.pdf (31 pages, 7163161 bytes).
 PDF statistics:
- 786 PDF objects out of 1000 (max. 8388607)
- 307 named destinations out of 1000 (max. 500000)
- 315 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1019 PDF objects out of 1200 (max. 8388607)
+ 433 named destinations out of 1000 (max. 500000)
+ 416 words of extra memory for PDF output out of 10000 (max. 10000000)
 

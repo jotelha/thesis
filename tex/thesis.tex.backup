@@ -14,7 +14,7 @@
 \usepackage{graphicx} % inclusion des figures
 \usepackage{amsmath} % collection de symboles math�matiques
 \usepackage{amssymb} % collection de symboles math�matiques
-\usepackage{subfigure} % 2 Bilder nebeneinander
+%\usepackage{subfigure} % 2 Bilder nebeneinander
 \usepackage{placeins} %FloatBarrier
 \usepackage{mathtools} % align in matrix
 
@@ -41,6 +41,8 @@ hyperindex=true, hyperfigures=false]{hyperref} % fichiers pdf 'intelligents', av
 
 \usepackage[center]{caption}
 
+\usepackage{graphicx}
+\usepackage{subcaption}
 
 %\pagestyle{fancy} %manuelle Wahl der Kopf- und Fu�zeile
 %\fancyhead[L]{\scriptsize \textsc{Electrical properties of a Carbon Nanotube device under extreme conditions}}
@@ -602,7 +604,7 @@ transforms to the rotating Hamiltonian
 & = -\gamma \left( (B_0 + \frac{\omega_1}{\gamma}) \mathbf{J_z} + B_1 \mathbf{J_x} \right)  \quad \text{with} \quad \omega_2 = \omega_1\\
   & = - \gamma B_1 \mathbf{J_x} \quad \text{with} \quad \omega_1 = - \gamma B_0 
 \end{align}
-In case of using a linearly polarized instead of a circularly polarized pulse, it may be argued that the rotating Hamiltonian still looks the same, since a linearly polarized field may be decomposed into two circularly polarized components, rotating in opposite directions. In the rotating frame , one of those components just behaves like the $B_1$ field above, the other one oscillates so rapidly at $2\omega_2$, that the spins experience only the fluctuating field's average value of zero\footnote{this is argued in \cite[chap. 4.2.2 The resonant frequency field, p.111f]{ox-nmr}}. From the classical point of view, in the rotating frame the spins now precess around $B_1 \hat{x}'$ as they do around $B_0 \hat{z}$ in the resting frame. From the quantum mechanical point of view, spins are now inclined to undergoe quantized transitions from states aligned around $B_0$ into states aligned around $B_1$.
+In case of using a linearly polarized instead of a circularly polarized pulse, it may be argued that the rotating Hamiltonian still looks the same, since a linearly polarized field may be decomposed into two circularly polarized components, rotating in opposite directions. In the rotating frame , one of those components just behaves like the $B_1$ field above, the other one oscillates so rapidly at $2\omega_2$, that the spins experience only the fluctuating field's average value of zero\footnote{this is argued in \cite[chap. 4.2.2 The resonant frequency field, p.111f]{nmr-ox}}. From the classical point of view, in the rotating frame the spins now precess around $B_1 \hat{x}'$ as they do around $B_0 \hat{z}$ in the resting frame. From the quantum mechanical point of view, spins are now inclined to undergoe quantized transitions from states aligned around $B_0$ into states aligned around $B_1$.
 
 If the pulse is applied for a duration $\Delta t$ such that $\omega_1 \Delta t = \tfrac{\pi}{2}$, the spin system aligned along the z-axis will be reorientated along the y'-axis of the rotating frame. After the pulse, the system will evolve in time and relax into its equilibrium under the spin Hamiltonian's interactions. 
 
@@ -648,7 +650,7 @@ and if we express the density matrix in a rotating frame of velocity $\omega$
 \begin{equation}
  \rho \propto \mathbf{J_y} \cos (\omega_1-\omega) t + \mathbf{J_x} \sin (\omega_1-\omega) t
 \end{equation}
-If we are able to evaluate $\mathbf{J_+} = \mathbf{J_x} + i \mathbf{J_y}$ as a ``complex observable'' in the rotating frame, it would yield\footnote{where the last line just reflects the relation between spin and magnetization in a sample of $N$ spin systems, see \cite[chap. 4.3.1 Free precession and Faraday detection, p. 125]{ox-nmr}}
+If we are able to evaluate $\mathbf{J_+} = \mathbf{J_x} + i \mathbf{J_y}$ as a ``complex observable'' in the rotating frame, it would yield\footnote{where the last line just reflects the relation between spin and magnetization in a sample of $N$ spin systems, see \cite[chap. 4.3.1 Free precession and Faraday detection, p. 125]{nmr-ox}}
 \begin{align}
  Tr( \mathbf{J_+} \rho' ) & \propto i\ Tr(\mathbf{J_y}^2) \cos (\omega_1-\omega) t + Tr(\mathbf{J_x}^2) \sin (\omega_1-\omega) t \\
 & \propto i ( \cos (\omega_1-\omega) t - i \sin (\omega_1-\omega) t ) \quad \text{since} \quad Tr(\mathbf{J_y}^2) = Tr(\mathbf{J_x}^2) \\
@@ -792,16 +794,211 @@ A spin system consisting of an unpaired electron ($S=\tfrac{1}{2}$) and a nitrog
 
 \section{Parallelization of Spinach}
 
-The Matlab library \emph{Spinach}\footnote{written by Theoretical Spin Dynamics Group, University of Southampton, \url{www.spindynamics.org}, for an architectural overview see \verb$docs/developer_notes/architecture_overview$} supplies efficient methods for large-scale spin dynamics simulations. It consists of the \emph{kernel} with the implementation of general spin dynamics simulation techniques and the \emph{user-land} with a collection of different experiements to perform. Basically, the user prepares the description of a spin system, which is then translated by the kernel into the most efficient basis sets, superoperators, etc. The user-land decides how to deal with those objects, whether to apply a pre-established experiment, or whether to perform the kernel's simulation procedures manually. Though Spinach is able to simulate numerous kinds of experiments, in this work we are going to restrict ourselves to the standard $\tfrac{\pi}{2}$-pulsed EPR experiments, for which the user-land readily provides the method \verb|pulse_acquire|. 
+The Matlab library \emph{Spinach}\footnote{written by Theoretical Spin Dynamics Group, University of Southampton, \url{www.spindynamics.org}, for an architectural overview see \verb$docs/developer_notes/architecture_overview$} supplies efficient methods for large-scale spin dynamics simulations. It consists of the \emph{kernel} with implementations of general spin dynamics simulation techniques and the \emph{user-land} with a collection of different experiements to perform. Basically, the user prepares the description of a spin system, which is then translated by the kernel into basis set, Liouvillian superoperator, etc. The user-land decides how to deal with those objects, whether to apply a pre-established experiment, or whether to perform the kernel's simulation procedures manually. Though Spinach is able to simulate numerous kinds of experiments, in this work we are going to restrict ourselves to the standard $\tfrac{\pi}{2}$-pulsed EPR experiments, for which the user-land readily provides the method \verb|pulse_acquire|. 
 
 Since the code parallelization is highly platform dependable, we will discuss the available technologies and their constraints first.
-\subsection{Clusters and platforms}
-Most supercomputers nowadays are so called \emph{clusters}: Several \emph{nodes} with several \emph{cores (CPUs)} each are connected in a fast network. One single node's \emph{memory (RAM)} may be shared by all its cores, but every CPU usually has its own range of RAM, to which access is fastest. Access on another node's RAM via network is slowest. The advantage of computer clusters is obvious: The hardware does not differ significantly from standard desktop computers and purchase and maintainance costs are reasonably low. 
-The architecture of a cluster requires efficient resource management. For this purpose, several \emph{job scheduler} platforms exist. Everyone, who wishes to run a parrallel job on the cluster, has to \emph{submit} the job with the job scheduler. The job scheduler then asseses the job's potential resource usage upon the user's estimation and \emph{enqueues} the job with a certain priority for execution. Hence the user shall estimate well: Too generous estimations of memory usage and runtime will cause the job to be enqueued way too long, too tight estimations though will cause the job to be terminated by the scheduler when it exceeds its claimed resources by far. 
+\subsection{MATLAB on Clusters}
 
-Both clusters available for testing run on Linux, but they use different job schedulers. Here a short introduction to 
+
+%image source
+%http://www.mathworks.com/support/product/DM/installation/images/interaction_new1.gif
+\subsubsection{MATLAB licences}
+\begin{figure}
+  \centering
+ \includegraphics[width=0.6\textwidth]{matlab-parallelization.jpg}
+  \caption{The paralleization model of MATLAB}
+  \label{fig-matlab-parallelization}
+  \captionsetup{font={footnotesize,bf,it}}
+  \caption*{source:  \url{http://www.mathworks.com/support/product/DM/installation/images/interaction_new1.gif}}
+\end{figure}
+MATLAB has a rather dedicated licence model, and for a parallelized computation several licenses are necessary:
+\begin{itemize}
+ \item A \emph{MATLAB client}, the standard MATLAB distribution to be checked out for the user's work station when starting MATLAB
+\item A \emph{Parallel Computing Toolbox}, likewise to be checked out for the client to enable parallel code features
+\item A \emph{Distributed Computing Server} on the cluster to open \emph{MATLAB workers} when requested by a client. The number of workers per node and per cluster is limited depending on the actual server licence.
+\end{itemize}
+The very idea of parallelization in Matlab visualized in figure (\ref{fig-matlab-parallelization}) then works as follows: A user wants to run parallel code in their MATLAB client. With the Parallel Computing Toolbox' command \verb$ matlabpool open$ \emph{poolsize} they may send a request to the cluster's Distributed Computing Server to allocate a number \emph{poolsize} of workers -- remote MATLAB processes without GUI. Granted that enough worker licences are available, the connection between client and cluster will be established and the user is then free to run their code. Afterwards he is to release the worker licences by calling \verb$ matlabpool close$.
+
+This approach does not prove very handy in the case of our Spinach simulations for several reasons. Firstly, if the connection between client and cluster is lost, it is problematic to reconnect and receive any results from the ``workers without leader''. Secondly, in general work stations do not necessarily have the Parallel Computing Toolbox equipped. Thirdly, a smooth communication between Distributed Computing Server and job scheduler is required, which is rather fancy to configure. Hence we will ``work around'' the client-cluster problem by evoking a ``silent'' MATLAB client on one cluster node with minimal resource usage, which serves as a \emph{master process} by acting as the ``user within the cluster'', calling more MATLAB processes, opening the MATLAB pool and delegating tasks to the allocated workers automatically.
+
+\subsubsection{Matlab - Linux interaction}
+MATLAB offers one important command to evoke shell commands from within a MATLAB client:
+\begin{lstlisting}
+[status,stdout] = unix('any_command');
+\end{lstlisting}
+With its help it will be possible for us to create a function \verb$jlh_submit_job(...)$ submitting jobs on the cluster dynamically during MATLAB execution by calling \verb$qsub$ or \verb$sbatch$. Furthermore, we can extract the returned job identifier, track the job throughout its execution and create subsequent dependent jobs, all from within MATLAB. \verb$jlh_submit_job(...)$ can perform cluster-specific job submission by creating job-files such as mentioned above. Thereby we keep cluster-dependency away from Spinach. %\verb$jlh_submit_job(...)$ is discussed in appendix (\ref{sec-jlh-submit-job}).
+
+One should notice that each MATLAB job executed directly via a jobfile checks out another MATLAB client and Parallel Computing Toolbox licence, while jobs indirectly scheduled via the \verb$matlabpool$ command stay inside one Parallel Computing Toolbox, but check out numerous worker licences. The aim will be to make maximum use of the available combination of client and worker licences.
+
+\subsubsection{Parallel code elements}
+The \emph{Parallel Computing Toolbox} offers several parallelization concepts, of which only the \verb$parfor$-loop will be important for us:
+\begin{lstlisting}
+parfor i=int_a:int_b
+  ...code...
+end
+\end{lstlisting}
+
+The parfor-loop just works like a normal for-loop, with the difference that single loop iterations are distributed to all workers of the current MATLAB pool. The loop iterations are then only executed on the workers, but not on the calling MATLAB client process. Consequently, the parfor-loop may not be applied to replace for-loops where the computation results depend on the ordered sequence of execution. Since we are only averaging over many orientations of an EPR powder sample, the parfor-loop may well be used in our case. 
+
+Variables used inside a parfor-loop have to be initialized explicitely in the preceding code segment, in order to inform MATLAB about which workspace information to transfer to the workers. Furthermore, arrays indexed inside the parfor-body by the iteration variable \verb$i$ will be identified as ``sliced'' by MATLAB, and only the relevant parts of the array will be transferred to the worker. Those facts will turn out relevant lateron. % when loading variables into workspace from a file.
+
+
+
+\subsection{Spinach modification}
+The implementation of a Spinach $\tfrac{\pi}{2}$-pulsed EPR simulation based on the theoretical concepts derived above is introduced in appendix (\ref{sec-spinach-computation}) and may be referred to for better understanding of the following. The key modifications done to parallelize the code may be found in appendix (\ref{sec-spinach-mod-code}).
+\subsubsection{Implementation}
+The simplemost form of parallelization applicable to Spinach will be to subdivide the amount of orientations into smaller packages and distribute them onto parallel tasks, depending on the number of nodes $n$ and the number of cores per node $p$ available. If we assume the restriction that MATLAB may only run parallel locally on one node, we may distribute a number $N$ of orientations as follows:
+\begin{enumerate}
+ \item Subdivide the orientations into $n$ packages of $N/n$ orientations each. If $n$ is not divisor of $N$, then every package gets $\lfloor N/n \rfloor$ orientations and the remaining orientations $N\ \text{mod}\ n$ are distributed equally over the first $N\ \text{mod}\ n$ packages.
+ \item Evoke one MATLAB process on each node, hand them their orientation package and let them open a MATLAB pool with $p$ workers.
+ \item { \begin{enumerate}
+          \item Execute a \verb$parfor-loop$ for each orientation in the package of $\lfloor N/n \rfloor$ or $\lfloor N/n \rfloor + 1$ orientations, in the following referred to as the ``parallel'' case. 
+	  \item Just as above, subdivide the orientation package again into $p$ smaller packages for each core and distribute remaining orientations equally, then run a \verb$parfor$-loop $p$ times and let every core evaluate his package of orientations at once, in the following referred to as the ``mixed'' case, since it combines serial and parallel execution.
+         \end{enumerate} }
+\end{enumerate}
+
+The two methods (a) and (b) of paralleization are both implemented. For case (a) we expect more communication between client and workers, but lower peak memory usage. For case (b) we expect to be able to reduce communication between client and workers and thereby safe time. Yet, since all orientations are propagated at once, we expect much higher peak memory usage. We are going to investigate this hypthesis lateron.
+
+We will split the tasks performed by \verb$pulse_acquire(...)$ into three different functions, which are scheduled as distinct jobs and run subsequently, each one processing the they input data prepared by the previous:
+\begin{itemize}
+ \item \verb$function jlh_master_pulse_acquire(...)$ --- runs first, prepares the Liouvillian, and evokes several instances of... 
+  \item \verb$function fid = jlh_outsourced_pulse_acquire(...)$ --- which run on each single node and do the actual propagation, producing every orientation package's FID.
+  \item \verb$function jlh_sum_results(..)$ --- finally runs after all \verb$jlh_outsourced_pulse_acquire(...)$ have finished, collects their results, finalizes them and outputs the total FID.          
+\end{itemize}
+Furthermore we will make use of the helper functions
+\begin{itemize}
+ \item \verb$function job_scheduler = jlh_which_job_scheduler()$ --- determines the job scheduler equipped on the current platform and returns \verb$torque$ or \verb$'SLURM'$. 
+  \item \verb$function [job_identifier status stdout] = jlh_submit_job(... )$ --- submits a job executing command \verb$cmd$ on TORQUE or SLURM.
+  \item \verb$function [ pmem, walltime, queue ] = jlh_estimate_resources(...)$ --- a stub to be adapted to a specific cluster configuration. Shall be expanded to estimate the maximum CPU time and memory usage of a Spinach job depending on its parameters.
+\end{itemize}
+
+\subsection{Benchmarking}
+There are three  major technical factors, which limit the scalabitlity of our parallelization:
+\begin{enumerate}
+ \item \underline{execution time} -- a simulation exceeding several days of runtime is not considered economical, in addition clusters usually limit the maximum execution time.
+ \item \underline{memory} -- depending on the spin system's dimensions the Liouvillian grows exponentialy. When several orientations are propagated simultaneously, many copies of the Liouvillian may reside in the system simultaneously, easily exceeding the cluster's hardware limitations.
+  \item \underline{communication between threads} -- our parallelization relies on transferring the prepared Liouvillian in form of a local file, which might easily reach gigabyte dimensions. What is more, MATLAB internally limits the amount of data transferred to every \verb$parfor$-iteration. 
+\end{enumerate}
+Reducing the amount of simultaneously used memory by serialization means increasing the runtime and vice versa. More cores involved mean more memory occupied at the same time. In the following we want to examine how far we may exhaust those limitations and which of them will prove most restrictive. The following benchmarking has been performed on Soroban and evaluates only \verb$jlh_outsourced_pulse_acquire(...)$ instances, thus not accounting for the resources required to build the Liouvillian.
+ 
+\subsubsection{Single orientation}
+To start with, we examine the scaling of Spinach for evaluating single orientations of 2- to 20-spin systems without involving any parallelization. We use the complete basis ESR-2 and the reduced basis ESR-1 and measure \underline{evaluation time}, \underline{peak virtual memory consumption}\footnote{virtual memory combines active RAM and inactive memory such as swap files} and \underline{file size} of the common input file storing the Liouvillian in dependence on the spin systems complexity. The semi-logarithmic graphs and their exponential fits in figure (\ref{fig-so-runtime}), (\ref{fig-so-memory}) and (\ref{fig-so-file-size}) clearly reflect exponential scaling in all three cases, except for deviations in very small systems. In those regimes technical side-effects may influence the scaling.
+
+\begin{figure}
+        \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{so-graphs/so_computation_time_fit.png}
+                \caption{execution time in dependence on spin system complexity}
+                \label{fig-so-runtime}
+        \end{subfigure}
+        ~ 
+        \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{so-graphs/mem_usage_fit.png}
+                \caption{peak virtual memory usage in dependence on spin system complexity}
+                \label{fig-so-memory}
+        \end{subfigure}
+        \\
+        \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{so-graphs/input_file_size.png}
+                \caption{Liouvillian file size in dependence on spin system complexity}
+                \label{fig-so-file-size}
+        \end{subfigure}
+	~ 
+	\begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{so-graphs/expansion.png}
+                \caption{virtual memory usage in dependence on Liouvillian file size}
+                \label{fig-so-expansion}
+        \end{subfigure}
+        \caption{Spinach execution statistics for one single orientation}
+	\label{fig-so-stats}
+\end{figure}
+
+For the complete basis EPR-2 memory usage clearly is the limiting factor. While one orientation may be computed within minutes, the memory costs blow up into gigabytes and exceed Soroban's limit for a 12-spin system. The incomplete basis EPR-1 reaches such memory dimensions only for spin systems larger than 20. Consequently, we were able to benchmark spin systems up to size 11 for ESR-2 and up to size 20 for ESR-1. 
+
+The scaling of the Liouvillian determines the scaling of memory usage for a single orientation linearly, as may be found in graph (\ref{fig-so-expansion}). Both the ESR-1 and ESR-2 case show the Liouvillian in file form expanding into a simulation of 20- to 22-fold size on the node's virtual memory.
+
+\subsubsection{Single core computaion}
+If only one core is available, the parfor-loop reduces to a serial for-loop in ``parallel'' mode, while the ``serial'' mode will propagate all orientations at one shot. Clearly, MATLAB's vector calculus optimization will somehow serialize the matrix calculations internally. In this section we will find out the resource usage of explicit serial calculation and of MATLAB matrix operations.
+
+\subsubsection{Small scale spin systems}
+\begin{figure}
+        \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{2ppn-graphs/small_scale_runtime.png}
+                \caption{two-core parallelization}
+                \label{fig-2ppn-sc-runtime}
+        \end{subfigure}
+        ~ 
+        \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{9ppn-graphs/small_scale_runtime.png}
+                \caption{nine-core parallelization}
+                \label{fig-9ppn-sc-memory}
+        \end{subfigure}
+	\caption{execution time in dependence on spin system complexity for small scale spin systems}
+	\label{fig-sc-runtime}
+\end{figure}
+
+\begin{figure}
+        \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{runtime-graphs/small_scale_runtime.png}
+                \caption{two-core and nine-core parallelization runtime}
+                \label{fig-total-sc-runtime}
+        \end{subfigure}
+        ~ 
+        \begin{subfigure}[b]{0.45\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{runtime-graphs/parallel_mixed.png}
+                \caption{runtime relation between mixed mode and parallel mode}
+                \label{fig-parallel-mixed-runtime}
+        \end{subfigure}
+	\caption{}
+	\label{fig-sc-runtime-2}
+\end{figure}
+The previous section leads to the assumption that we are dealing with two different scaling regimes: For spin systems with less than seven spins, the ``serial'' mode proves faster, whereas it does not bear any advantages, neither in runtime, nor in memory usage, for larger systems.
+
+\subsubsection{Large scale spin systems}
+From now on we examine the scaling behaviour for spin systems with more than six or seven spins in parallel mode. Technical side-effects diminish in comparison to the exponential scaling and by benchmarking simulations for several spin-core configurations we try to build a sclaing model for large spin systems on Soroban and extrapolate it to even more complex spin systems to be able to predict whether and on what cluster configuration a certain large scale EPR simulation may run. 
+
+\subsubsection{Scaling model}
+Since the dimensions of the Liouvillian increase exponentially with the scale of the spin system $x$, we expect likewise exponential growth in runtime $r$ and memory requirements $m$ of form
+\begin{equation}
+ r_y(x), m_y(x) \propto a + b \cdot e^{\alpha x}
+\end{equation}
+Furthermore, we assume that CPU time is distributed equally among the cores $y$, such that
+\begin{equation}
+ r_x(y) \propto c + \frac{d}{y}
+\end{equation}
+whereas more cores $y$ will occupy more memory $m$ simultaneously, hence
+\begin{equation}
+ m_x(y) \propto c + d \cdot y
+\end{equation}
+Based on this background we will try to fit our benchmark results to the model
+\begin{align}
+ r(x,y)  & = \left( a_r + b_r \cdot e^{\alpha_r x} \right) \left(c_r + \frac{d_r}{y} \right) \\
+ m(x,y)  & = \left( a_m + b_m \cdot e^{\alpha_m x} \right) \left(c_m + d_m \cdot y\right)
+\end{align}
+
+
+
+
+\section{Conclusion and outlook}
+
+\section{Appendix}
+
+\subsection{Clusters}
+\label{sec-clusters}
+Most supercomputers nowadays are so called \emph{clusters}: Many \emph{nodes} with several \emph{cores (CPUs)} each are connected via fast network. One single node's \emph{memory (RAM)} may be shared by all its cores, but every CPU usually has its own range of RAM, to which access is fastest. Access on another node's RAM via network is slowest. The advantage of computer clusters is obvious: hardware does not differ significantly from standard desktop computers, keeping purchase and maintainance costs reasonably low. 
+The architecture of a cluster requires efficient resource management. For this purpose, several \emph{job scheduler} platforms exist. Everyone, who wishes to run a parrallel job on the cluster, has to \emph{submit} the job via the job scheduler. The job scheduler then asseses the job's potential resource usage upon the user's estimation and \emph{enqueues} the job with a certain priority for execution. Hence the user shall estimate well: Too generous estimations of memory usage and runtime will cause the job to be enqueued for days, too tight estimations though will cause the job to be terminated by the scheduler when it exceeds its claimed resources by far. 
+
+Both clusters available for testing run on Linux, but they use different job schedulers. Here follows a short introduction to their handling. 
 \subsubsection{Sheldon}
-Sheldon is a linux computer cluster of the Freie Universit\"at Berlin physics department and posseses nodes of different specifications, reaching from 68 eight core nodes with 2 to 4 GB RAM per core (n042-n109) over 32 twelve core nodes with 8GB RAM per core (n010-n041) up to two 32 core nodes with 2GB RAM per core (n110-n111)\footnote{see \url{https://wiki.physik.fu-berlin.de/it/doku.php?id=services:cluster:start} for detailed specifications}. A process running exclusively on one node can thus make use of 96GB RAM at maximum on the twelve core nodes. \emph{TORQUE Resource Manager}\footnote{maintained by \emph{Adaptive Computing}, \url{http://www.adaptivecomputing.com/products/open-source/torque/}} is Sheldon's job scheduler, and here is a summary of the most important commands:
+\label{sec-sheldon}
+Sheldon is a linux computer cluster of the Freie Universit\"at Berlin physics department and posseses nodes of different specifications, reaching from 68 eight core nodes with 2 to 4 GB RAM per core (n042-n109) over 32 twelve core nodes with 8GB RAM per core (n010-n041) up to two 32 core nodes with 2GB RAM per core (n110-n111)\footnote{see \url{https://wiki.physik.fu-berlin.de/it/doku.php?id=services:cluster:start} for detailed specifications}. A process running exclusively on one node can thus make use of 96GB RAM at maximum on the twelve core nodes. \emph{TORQUE Resource Manager}\footnote{maintained by \emph{Adaptive Computing}, \url{http://www.adaptivecomputing.com/products/open-source/torque/}} serves as Sheldon's job scheduler, and here is a summary of the most important commands:
 \begin{itemize}
  \item \verb$qsub$ \emph{jobfile-name} -- submits a job for execution and returns a five digit job identifier
   \item \verb$showstart$ \emph{job-id} -- yields the expectated start time of a certain job's execution
@@ -827,8 +1024,11 @@ matlab -nodesktop -nosplash -r "generic_matlab_function(...); quit;" &> testjob_
 \end{lstlisting}
 All \verb$#PBS$-lines are options to be read by TORQUE, they determine from top to bottom the job's name \verb$testjob$, the queue, the number of requested nodes and processors per node (ppn), the requested RAM per core, the maximum execution time, an email address to send status messages to, a filename for the error logfile, a filename for the standard output logfile, and a dependency list for jobs to be finished successfully before executing this job. Sheldon possesses two queues \verb$batch$ and \verb$highmem$, which enqueue for execution on the eight core nodes or on the twelve core nodes respectively. \verb#cd $PBS_O_WORKDIR# changes to the directory from which \verb$qsub$ was called, usually somewhere in the user's home directory. After \verb$testjob$ is finished, the TORQUE error and output can be found in this directory as \verb$testjob_torque_error.e$ and \verb$testjob_torque_output.o$, while Matlab's error and output will be located in \verb$testjob_matlab.log$.
 
+For the time of writing Sheldon had a trial version of the MATLAB Distributed Computing Server available. Thus it was possible to conduct many-node parallel simulations there.
+
 \subsubsection{Soroban}
-Soroban is a linux computer cluster of the Freie Universit\"at Berlin consisting of 112 nodes with twelve cores and 2GB RAM per core each\footnote{see \url{http://www.zedat.fu-berlin.de/Compute/Soroban} for detailed specifications}. A process running exclusively on one node can thus make use of 24GB RAM at maximum. SLURM\footnote{maintained by Lawrence Livermore National Laboratory 7000 East Avenue, Livermore, CA 94550, USA, \url{https://computing.llnl.gov/linux/slurm/slurm.html}} is Soroban's job scheduler, and here is a summary of its most important commands:
+\label{sec-soroban}
+Soroban is a linux computer cluster of the Freie Universit\"at Berlin ZEDAT consisting of 112 nodes with twelve cores and 2GB RAM per core each\footnote{see \url{http://www.zedat.fu-berlin.de/Compute/Soroban} for detailed specifications}. A process running exclusively on one node can thus make use of 24GB RAM at maximum. SLURM\footnote{maintained by Lawrence Livermore National Laboratory 7000 East Avenue, Livermore, CA 94550, USA, \url{https://computing.llnl.gov/linux/slurm/slurm.html}} is Soroban's job scheduler, and here is a summary of its most important commands:
 \begin{itemize}
  \item \verb$sbatch$ \emph{jobfile-name} -- submits a job for execution and returns a five digit job identifier
   \item \verb$scancel$ \emph{job-id} -- removes a certain job from the queue or aborts its execution
@@ -855,29 +1055,11 @@ matlab -nodesktop -nosplash -r "generic_matlab_function(...); quit;" &> testjob_
 \end{lstlisting}
 The meaning of all paramters goes in analogy with the TORQUE parameters described above. For Soroban it is not necessary to specify a certain queue, since the nodes do not differ much in hardware, but there still exist the queues (or ``partitions'') \verb$main$, \verb$test$ and \verb$gpu$.
 
-\subsection{MATLAB parallel computing toolbox}
-%image source
-%http://www.mathworks.com/support/product/DM/installation/images/interaction_new1.gif
-\subsubsection{MATLAB licences}
-MATLAB has a rather dedicated licence model, and for a parallelized computation several licenses are necessary:
-\begin{itemize}
- \item A \emph{MATLAB client}, the standard MATLAB distribution to be checked out for the user's work station when starting MATLAB
-\item A \emph{Parallel Computing Toolbox}, likewise to be checked out for the client to enable parallel code features
-\item A \emph{Distributed Computing Server} on the cluster to open \emph{MATLAB workers} when requested by a client. The number of workers per node and per cluster is limited depending on the actual Server licence.
-\end{itemize}
-The actual idea of parallelization in Matlab then works as follows: A user wants to run parallel code in his MATLAB client. With the Parallel Computing Toolbox' command \verb$ matlabpool open$ \emph{poolsize} he may send a request to the cluster's Distributed Computing Server to allocate a number \emph{poolsize} of workers -- remote MATLAB processes without GUI. Granted that enough worker licences are available, the connection between client and cluster will be established and the user is then free to run his code. Afterwards he is to free the worker licences with \verb$ matlabpool close$.
+On Soroban there are five MATLAB client licenses and two Parallel Computing Toolbox licenses available at the time of writing. Further restrictions apply: one MATLAB process can only open a MATLAB pool within one node with a maximum of INSERT workers. For our parallelization this means at most two multiple-core MATLAB processes with at most eight INSERT cores each, resulting a maximum of 16 parallel threads. 
 
-This approach does not prove very handy in the case of our Spinach simulations for several reasons. Firstly, if the connection between client and cluster is lost, it is problematic to reconnect and receive any results from the ``workers without leader''. Secondly, in general work stations do not necessarily have the Parallel Computing Toolbox equipped. Hence we will ``work around'' the client-cluster problem by evoking a ``silent'' MATLAB client on one cluster node with minimal resource use, which serves as a \emph{master process} by acting as the ``user within the cluster'', calling more MATLAB processes, opening the MATLAB pool and delegating tasks to the allocated workers automatically.
-
-\subsubsection{Matlab - Linux interaction}
-MATLAB offers one important command to evoke shell commands from within a MATLAB client:
-\begin{lstlisting}
-[status,stdout] = unix('any_command');
-\end{lstlisting}
-With its help it will be possible for us to create functions submitting jobs on the cluster dynamically during MATLAB execution by calling \verb$qsub$ or \verb$sbatch$. Furthermore, we can extract the returned job identifier, track the job throughout its execution and create subsequent dependent jobs, all from within MATLAB. 
-\subsubsection{Parallel code elements}
 
 \subsection{A Spinach EPR Simulation}
+\label{sec-spinach-computation}
 %Cerf S.20
 Using the theoretical basis introduced above, the procedure of an EPR simulation comes down to the following key steps:
 \begin{enumerate}
@@ -890,6 +1072,7 @@ Using the theoretical basis introduced above, the procedure of an EPR simulation
 In the following the preparation of input data and computation flow are summarized for a simple system consisting of an electron spin $\tfrac{1}{2}$, a nitrogen spin $1$ and a proton spin $\tfrac{1}{2}$.%, such that the idea where to implement parallelization becomes obvious.
 
 \subsubsection{Typical input file}
+\label{sec-input-file}
 This Matlab file prepares a typical spin system and conducts a $\tfrac{\pi}{2}$-pulsed EPR experiment on it. The data structure \verb$sys$ contains information about the spin system and the experimental setup, \verb$inter$ represents the linear and bilinear interactions of the spins, \verb$bas$ specifies the basis set to be used and \verb$parameters$ specifies the enquired simulation results. 
 \begin{lstlisting}
 function jlh_3spins()
@@ -955,6 +1138,7 @@ Line 31 finally performs Fast Fourier Transform to generate the frequency domain
 %Insert graphics about the effect of fft, zero filling and shifting
 
 \subsubsection{pulse\_acquire}
+\label{sec-pulse-acquire}
 
 \begin{lstlisting}
 function fid=pulse_acquire(spin_system,parameters,L,rho)
@@ -1047,23 +1231,157 @@ Generally, \verb$step(spin_system,L,rho,dt)$ propagates the density matrix \verb
 in analogy to equation (\ref{eq-z-rotation}). This just rotates all spins into the x-y-plane, just as a $\tfrac{\pi}{2}$-pulse will do. 
 Sequently, \verb$evolution$ can be regarded as a sequence of \verb$npoints$ \verb$step$-functions propagating the density matrix through the whole time interval by steps of duration \verb$timestep$ by applying the Liouvillian \verb$L$. In addition, the observable \verb$coil$ is evaluated for every single step, recording the time resolved FID with magnetization in x-direction as its real part and magnetization in y-direction as its imaginary part. 
 
-\subsection{Spinach modification}
-The simplemost form of parallelization applicable to Spinach will be to subdevide the amount of orientations into smaller packages and distribute them to parallel tasks. 
+\subsection{Spinach modification code}
+\label{sec-spinach-mod-code}
+
 \subsubsection{Master process}
+The enhanced call
+\begin{lstlisting}
+function jlh_master_pulse_acquire(spin_system,parameters,L,rho)
+\end{lstlisting}
+compared with the original call
+\begin{lstlisting}
+function fid=pulse_acquire(spin_system,parameters,L,rho)
+\end{lstlisting}
+does not return any results. Hence it should be the last call in the input file\footnote{discussed in appendix (\ref{sec-input-file})}. In addition to the standard parameters it expects \verb$parameters.nodes$ and \verb$parameters.ppn$ to decide how many nodes and cores to distribute the orientations onto. \verb$jlh_master_pulse_acquire$ constructs the rotational basis set and the Liouvillian in the rotational basis by standard Spinach means, writes a file \verb$input_file_name$ 
+\begin{lstlisting}
+save(input_file_name, 'spin_system','Iso', 'Q', 'Ly', 'rho', 'phi', 'theta', 'weight',...);
+\end{lstlisting}
+where the stored information includes
+\begin{itemize}
+ \item \verb$Iso$ and \verb$Q$ --- the isotropic and anisotropic Liouvillian,
+  \item \verb$Ly$ --- the rotation operator to tilt the spins around the y-axis,
+  \item \verb$rho$ --- the density matrix in equilibrium,
+  \item \verb$phi$, \verb$theta$ and \verb$weight$ --- the orientations and weights of the chosen Lebedev grid,
+  \item ... and further technical parameters,
+\end{itemize}
+then uses \verb$jlh_submit_job(...)$ repeatetly to create $n$ instances of \texttt{jlh\_outsourced\_pulse\_acquire(...)}, which all read their data from the same input file \verb$input_file_name$, but write there output to instance-specific output files. Since different orientations apparently take differing time intervals to be treated, the orientation packages are assembled such that every package contains only every $n$'th orientation, starting with offsets from $1,2,...$ to $n$. Thereby a better spatial distribution of the orientations among the packages is guaranteed.
+
+Eventually, one instance of \verb$jlh_sum_results(...)$ is queued to run after the successful execution of all \texttt{jlh\_outsourced\_pulse\_acquire(...)} instances, collecting and adding up all parial FIDs.
+
 \subsubsection{Child processes}
+The essence of the simulation is packed in
+\begin{lstlisting}
+function fid=jlh_outsourced_pulse_acquire(orientation_start, orientation_step, orientation_end, input_file_name, output_file_name)
+    orientations = orientation_start:orientation_step:orientation_end;
+    orientation_count = length(orientations);
+\end{lstlisting}
+which is able to calculate the accumulated FID over an arbitrary range of orientations specified by its parameters \verb$orientation_start$, \verb$orientation_step$ and \verb$orientation_end$. 
+
+When loading the Liouvillian and other data from the .mat file prepared by \verb$jlh_master_pulse_acquire$ we have to initialize the variables explicitly to make them available inside a parfor-body
+\begin{lstlisting}
+tmp = load(input_file_name);
+spin_system = tmp.spin_system;
+Iso = tmp.Iso;
+Q = tmp.Q;
+Ly = tmp.Ly;
+rho = tmp.rho;
+phi = tmp.phi;
+theta = tmp.theta;
+weight = tmp.weight;
+\end{lstlisting}
+
+The function offers ``parallel'', ``mixed'' and ``serial'' mode. In parallel mode, the orientations are treated according to case (a) of above's enumeration: 
+\begin{lstlisting}
+% Get the detection state            
+coil = state(spin_system,'L+',parameters.spins);
+
+parfor i=1:orientation_count
+    n = orientations(i);
+
+    % Get the current orientation
+    L=Iso+orientation(Q,[phi(n) theta(n) 0]);
+
+    % Apply the pulse
+    rho_pulsed=step(spin_system,Ly,rho,pi/2);
+
+    % Run the simulation
+    fid=fid+weight(n)*evolution(spin_system,L,coil,rho_pulsed,1/parameters.sweep,parameters.npoints-1,'observable'); 
+end
+\end{lstlisting}
+For every orientation in the package the parfor-body is executed ones, causing MATLAB to distribute the parfor-iterations among the available cores and applying the evolution operator once to every single orientation.
+
+In mixed mode, the orientations are treated according to case (b):
+\begin{lstlisting}
+phi_set = cell(1,parameters.ppn);
+theta_set = cell(1,parameters.ppn);
+weight_set = cell(1,parameters.ppn);
+
+for i=1:parameters.ppn
+    set = orientations(i:parameters.ppn:orientation_count);
+    phi_set{i} = phi(set);
+    theta_set{i} = theta(set);
+    weight_set{i} = weight(set); 
+end
+
+parfor i=1:parameters.ppn
+    L_aniso=orientation(Q,[phi_set{i} theta_set{i} zeros(size(theta_set{i}))]);
+    L=blkdiag(L_aniso{:})+kron(speye(length(theta_set{i})),Iso);
+    L=clean_up(spin_system,L,spin_system.tols.liouv_zero);
+
+    % Get the initial and the detection states
+    current_rho=kron(ones(length(theta_set{i}),1),rho);
+    current_coil=kron(weight_set{i},state(spin_system,'L+',parameters.spins));
+
+    % Apply the pulse
+    current_rho=step(spin_system,kron(speye(length(theta_set{i})),Ly),current_rho,pi/2);
+    
+    fid=fid+evolution(spin_system,L,current_coil,current_rho,1/parameters.sweep,parameters.npoints-1,'observable');
+end
+\end{lstlisting}
+First of all, again smaller sets of orientations are ``sliced'' into the cell arrays \verb$phi_set$, \verb$theta_set$ and \verb$weight_set$. Since the packages can differ in length, we use cell arrays to allow for differing dimensions in each column. Then, very much like the standard serial computation\footnote{discussed in appendix (\ref{sec-pulse-acquire})}, each orientation package is propagated at once in one parfor-iteration. Since we have exactly $p$ iterations, every available core will evaluate one parfor-body and hence propagate one subset of orientations. 
+
+The serial mode treats all orientations at once locally.
+
+Eventually the FID is written to an instance-specific output file.
+
 \subsubsection{Finalization process}
+Reads every single output file listed in \verb$output_file_name$, adds up the partial FIDs and performs all finalization tasks like apodization and Fourier transform originally done in the end of the Spinach input file\footnote{discussed in appendix (\ref{sec-input-file})}.
 
-\subsection{Benchmarking}
+\begin{lstlisting}
+function jlh_sum_results(input_file_name)
+    load(input_file_name,'spin_system','parameters','output_file_name','spectrum_file_name', 'debug_file_name');
 
-\section{Conclusion and outlook}
+    %preallocating fid array
+    fid=zeros(parameters.npoints,1);
+    
+    for i=1:parameters.nodes
+        %checking, whether each process wrote ouput file correctly
+        if exist(output_file_name{i}, 'file')
+            tmp = load( output_file_name{i}, 'fid');
+            fid = fid + tmp.fid;
+        else
+           %reporting errror otherwise
+           report(spin_system, [sprintf('jlh_sum_results: Error: jlh_outsourced_pulse_acquire instance %d did not write output file "', i) output_file_name{i} '"!']);
+        end
+    end   
 
-\section{Appendix}
+    % Apodization
+    fid=apodization(fid,'crisp-1d');
+
+    % Perform Fourier transform
+    spectrum=fftshift(fft(fid,parameters.zerofill));
+
+    %Compute the derivative if necessary
+    if isfield(parameters,'derivative')
+        spectrum=fft(ifft(spectrum).*fftdiff(parameters.derivative,length(spectrum),1)');
+    end
+
+    ax=axis_1d(spin_system,parameters);
+    data = cat(2, transpose(ax), real(spectrum));
+    save(spectrum_file_name,'data', '-ASCII');
+end
+\end{lstlisting}
+
+
 \subsection{Figures}
 
 \begin{figure}
   \centering
  \includegraphics[width=0.6\textwidth]{spin_system_simplified.jpg}
   \caption{The Spinach spin-system data structure filled with attributes of an electron-nitrogen-proton spin system.}
+  \captionsetup{font={footnotesize,bf,it}}
+  \caption*{edited extract from \url{http://spindynamics.org/documents/spinach_1.2.1217.zip}}
 \end{figure}
 
 

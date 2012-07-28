@@ -19,21 +19,28 @@
 \contentsline {subsubsection}{\numberline {1.4.5}Averaging over Lebedev grids}{14}{subsubsection.1.4.5}
 \contentsline {subsection}{\numberline {1.5}Essence}{15}{subsection.1.5}
 \contentsline {section}{\numberline {2}Parallelization of Spinach}{15}{section.2}
-\contentsline {subsection}{\numberline {2.1}Clusters and platforms}{16}{subsection.2.1}
-\contentsline {subsubsection}{\numberline {2.1.1}Sheldon}{16}{subsubsection.2.1.1}
-\contentsline {subsubsection}{\numberline {2.1.2}Soroban}{17}{subsubsection.2.1.2}
-\contentsline {subsection}{\numberline {2.2}MATLAB parallel computing toolbox}{17}{subsection.2.2}
-\contentsline {subsubsection}{\numberline {2.2.1}MATLAB licences}{17}{subsubsection.2.2.1}
-\contentsline {subsubsection}{\numberline {2.2.2}Matlab - Linux interaction}{18}{subsubsection.2.2.2}
-\contentsline {subsubsection}{\numberline {2.2.3}Parallel code elements}{18}{subsubsection.2.2.3}
-\contentsline {subsection}{\numberline {2.3}A Spinach EPR Simulation}{19}{subsection.2.3}
-\contentsline {subsubsection}{\numberline {2.3.1}Typical input file}{19}{subsubsection.2.3.1}
-\contentsline {subsubsection}{\numberline {2.3.2}pulse\_acquire}{20}{subsubsection.2.3.2}
-\contentsline {subsection}{\numberline {2.4}Spinach modification}{22}{subsection.2.4}
-\contentsline {subsubsection}{\numberline {2.4.1}Master process}{22}{subsubsection.2.4.1}
-\contentsline {subsubsection}{\numberline {2.4.2}Child processes}{22}{subsubsection.2.4.2}
-\contentsline {subsubsection}{\numberline {2.4.3}Finalization process}{22}{subsubsection.2.4.3}
-\contentsline {subsection}{\numberline {2.5}Benchmarking}{22}{subsection.2.5}
-\contentsline {section}{\numberline {3}Conclusion and outlook}{22}{section.3}
-\contentsline {section}{\numberline {4}Appendix}{22}{section.4}
-\contentsline {subsection}{\numberline {4.1}Figures}{22}{subsection.4.1}
+\contentsline {subsection}{\numberline {2.1}Spinach modification}{16}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Implementation}{16}{subsubsection.2.1.1}
+\contentsline {subsection}{\numberline {2.2}Benchmarking}{17}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Single orientation}{17}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Single core computaion}{17}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Small scale spin systems}{17}{subsubsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.4}Large scale spin systems}{19}{subsubsection.2.2.4}
+\contentsline {subsubsection}{\numberline {2.2.5}Scaling model}{19}{subsubsection.2.2.5}
+\contentsline {section}{\numberline {3}Conclusion and outlook}{20}{section.3}
+\contentsline {section}{\numberline {4}Appendix}{20}{section.4}
+\contentsline {subsection}{\numberline {4.1}Clusters}{20}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Sheldon}{20}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}Soroban}{21}{subsubsection.4.1.2}
+\contentsline {subsection}{\numberline {4.2}MATLAB on Clusters}{22}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}MATLAB licences}{22}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Matlab - Linux interaction}{23}{subsubsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.3}Parallel code elements}{23}{subsubsection.4.2.3}
+\contentsline {subsection}{\numberline {4.3}A Spinach EPR Simulation}{23}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Typical input file}{24}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}pulse\_acquire}{25}{subsubsection.4.3.2}
+\contentsline {subsection}{\numberline {4.4}Spinach modification code}{27}{subsection.4.4}
+\contentsline {subsubsection}{\numberline {4.4.1}Master process}{27}{subsubsection.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.2}Child processes}{27}{subsubsection.4.4.2}
+\contentsline {subsubsection}{\numberline {4.4.3}Finalization process}{29}{subsubsection.4.4.3}
+\contentsline {subsection}{\numberline {4.5}Figures}{29}{subsection.4.5}
