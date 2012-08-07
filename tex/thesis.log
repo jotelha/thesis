@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.23)  28 JUL 2012 22:10
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.23)  7 AUG 2012 14:25
 entering extended mode
  %&-line parsing enabled.
 **thesis.tex
@@ -489,160 +489,170 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 117.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) (./thesis.toc [1
+)
+<graphs/19-spins-sheldon.png, id=184, 1103.12125pt x 681.54625pt>
+File: graphs/19-spins-sheldon.png Graphic file (type png)
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./FULogo.jpg>])
+<use graphs/19-spins-sheldon.png> [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./FULogo.jpg> <./graphs/19
+-spins-sheldon.png (PNG copy)>]
+(./thesis.toc)
 \tf@toc=\write6
 \openout6 = `thesis.toc'.
 
  [2]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 151.
+(hyperref)                removing `math shift' on input line 157.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<def>-command' on input line 151.
+(hyperref)                removing `\<def>-command' on input line 157.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@tempa' on input line 151.
+(hyperref)                removing `\@tempa' on input line 157.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\<def>-command' on input line 151.
+(hyperref)                removing `\<def>-command' on input line 157.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@tempb' on input line 151.
+(hyperref)                removing `\@tempb' on input line 157.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\pi' on input line 151.
+(hyperref)                removing `\pi' on input line 157.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 151.
+(hyperref)                removing `math shift' on input line 157.
 
 [3] [4] [5] [6] [7]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 420.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 426.
 
  (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 420.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 426.
 
 [8]
-LaTeX Font Info:    Try loading font information for U+euf on input line 466.
+LaTeX Font Info:    Try loading font information for U+euf on input line 472.
  (/usr/share/texmf-texlive/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2009/06/22 v3.00 Euler Fraktur
 ) [9] [10] [11]
-Overfull \hbox (5.87999pt too wide) in paragraph at lines 565--565
+Overfull \hbox (5.87999pt too wide) in paragraph at lines 571--571
 [] 
  []
 
-[12] [13] [14]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 797.
+[12] [13] <graphs/real-imag-fid.png, id=439, 644.4075pt x 401.5pt>
+File: graphs/real-imag-fid.png Graphic file (type png)
 
- (/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
+<use graphs/real-imag-fid.png>
+<graphs/real-imag-spectrum.png, id=442, 728.7225pt x 464.73625pt>
+File: graphs/real-imag-spectrum.png Graphic file (type png)
+
+<use graphs/real-imag-spectrum.png> [14 <./graphs/real-imag-fid.png (PNG copy)>
+] [15 <./graphs/real-imag-spectrum.png (PNG copy)>]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 820.
+
+
+(/usr/share/texmf-texlive/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-) [15]
-Overfull \hbox (3.1427pt too wide) in paragraph at lines 817--818
+) [16]
+Overfull \hbox (3.1427pt too wide) in paragraph at lines 840--841
 [][]\T1/cmtt/m/n/12 function fid = jlh_outsourced_pulse_acquire(...) \T1/cmr/m/
 n/12 --- which run on each sin-gle node
  []
 
 
-Overfull \hbox (35.43062pt too wide) in paragraph at lines 818--819
+Overfull \hbox (35.43062pt too wide) in paragraph at lines 841--842
 [][]\T1/cmtt/m/n/12 function jlh_sum_results(..) \T1/cmr/m/n/12 --- fi-nally ru
 ns af-ter all []\T1/cmtt/m/n/12 jlh_outsourced_pulse_acquire(...)
  []
 
-[16] <so-graphs/so_computation_time_fit.png, id=472, 32.16016pt x 24.27068pt>
+[17] <so-graphs/so_computation_time_fit.png, id=486, 32.16016pt x 24.27068pt>
 File: so-graphs/so_computation_time_fit.png Graphic file (type png)
 
 <use so-graphs/so_computation_time_fit.png>
-<so-graphs/mem_usage_fit.png, id=473, 33.84645pt x 24.27068pt>
+<so-graphs/mem_usage_fit.png, id=487, 33.84645pt x 24.27068pt>
 File: so-graphs/mem_usage_fit.png Graphic file (type png)
 
 <use so-graphs/mem_usage_fit.png>
-<so-graphs/input_file_size.png, id=474, 38.48378pt x 28.06485pt>
+<so-graphs/input_file_size.png, id=488, 38.48378pt x 28.06485pt>
 File: so-graphs/input_file_size.png Graphic file (type png)
 
 <use so-graphs/input_file_size.png>
-<so-graphs/expansion.png, id=475, 33.84645pt x 24.27068pt>
+<so-graphs/expansion.png, id=489, 33.84645pt x 24.27068pt>
 File: so-graphs/expansion.png Graphic file (type png)
 
 <use so-graphs/expansion.png>
-<2ppn-graphs/small_scale_runtime.png, id=477, 33.84645pt x 24.27068pt>
-File: 2ppn-graphs/small_scale_runtime.png Graphic file (type png)
+<graphs/1ppn-runtime-log.png, id=491, 537.00626pt x 271.0125pt>
+File: graphs/1ppn-runtime-log.png Graphic file (type png)
 
-<use 2ppn-graphs/small_scale_runtime.png>
-<9ppn-graphs/small_scale_runtime.png, id=478, 33.84645pt x 24.27068pt>
-File: 9ppn-graphs/small_scale_runtime.png Graphic file (type png)
+<use graphs/1ppn-runtime-log.png>
+<graphs/1ppn-memory-log.png, id=492, 515.9275pt x 250.9375pt>
+File: graphs/1ppn-memory-log.png Graphic file (type png)
 
-<use 9ppn-graphs/small_scale_runtime.png>
-<runtime-graphs/small_scale_runtime.png, id=479, 30.23296pt x 24.27068pt>
+<use graphs/1ppn-memory-log.png> [18] [19 <./so-graphs/so_computation_time_fit.
+png (PNG copy)> <./so-graphs/mem_usage_fit.png (PNG copy)> <./so-graphs/input_f
+ile_size.png (PNG copy)> <./so-graphs/expansion.png (PNG copy)> <./graphs/1ppn-
+runtime-log.png (PNG copy)> <./graphs/1ppn-memory-log.png (PNG copy)>]
+<runtime-graphs/small_scale_runtime.png, id=510, 30.23296pt x 24.27068pt>
 File: runtime-graphs/small_scale_runtime.png Graphic file (type png)
 
-<use runtime-graphs/small_scale_runtime.png>
-<runtime-graphs/parallel_mixed.png, id=480, 30.23296pt x 24.27068pt>
-File: runtime-graphs/parallel_mixed.png Graphic file (type png)
-
-<use runtime-graphs/parallel_mixed.png> [17] [18 <./so-graphs/so_computation_ti
-me_fit.png (PNG copy)> <./so-graphs/mem_usage_fit.png (PNG copy)> <./so-graphs/
-input_file_size.png (PNG copy)> <./so-graphs/expansion.png (PNG copy)> <./2ppn-
-graphs/small_scale_runtime.png (PNG copy)> <./9ppn-graphs/small_scale_runtime.p
-ng (PNG copy)>] [19 <./runtime-graphs/small_scale_runtime.png (PNG copy)> <./ru
-ntime-graphs/parallel_mixed.png (PNG copy)>] [20] [21]
-<matlab-parallelization.jpg, id=550, 344.28625pt x 211.79124pt>
+<use runtime-graphs/small_scale_runtime.png> [20 <./runtime-graphs/small_scale_
+runtime.png (PNG copy)>] [21] [22]
+<matlab-parallelization.jpg, id=567, 344.28625pt x 211.79124pt>
 File: matlab-parallelization.jpg Graphic file (type jpg)
 
 <use matlab-parallelization.jpg>
 LaTeX Font Info:    Font shape `T1/cmtt/bx/it' in size <8> not available
-(Font)              Font shape `T1/cmtt/m/it' tried instead on input line 1024.
+(Font)              Font shape `T1/cmtt/m/it' tried instead on input line 1069.
 
- [22 <./matlab-parallelization.jpg>] [23]
+ [23 <./matlab-parallelization.jpg>] [24]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1091.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1136.
 
 
-[24] [25]
-Overfull \hbox (13.95525pt too wide) in paragraph at lines 1213--1214
+[25] [26]
+Overfull \hbox (13.95525pt too wide) in paragraph at lines 1258--1259
 \T1/cmr/m/n/12 tion, and sim-i-larly the ob-serv-able to be de-tected is du-pli
 -cated $[]$
  []
 
-[26]
-Overfull \hbox (64.39758pt too wide) in paragraph at lines 1254--1255
+[27]
+Overfull \hbox (64.39758pt too wide) in paragraph at lines 1299--1300
 \T1/cmr/m/n/12 then uses []\T1/cmtt/m/n/12 jlh_submit_job(...) \T1/cmr/m/n/12 r
 e-peatetly to cre-ate $\OML/cmm/m/it/12 n$ \T1/cmr/m/n/12 in-stances of \T1/cmt
 t/m/n/12 jlh_outsourced_pulse_acquire(...)\T1/cmr/m/n/12 ,
  []
 
-
-Overfull \hbox (41.51114pt too wide) in paragraph at lines 1267--1268
+[28]
+Overfull \hbox (41.51114pt too wide) in paragraph at lines 1312--1313
 []\T1/cmr/m/n/12 When load-ing the Li-ou-vil-lian and other data from the .mat 
 file pre-pared by []\T1/cmtt/m/n/12 jlh_master_pulse_acquire
  []
 
-[27] [28] <spin_system_simplified.jpg, id=750, 823.878pt x 2023.56pt>
+[29] <spin_system_simplified.jpg, id=764, 823.878pt x 2023.56pt>
 File: spin_system_simplified.jpg Graphic file (type jpg)
 
 <use spin_system_simplified.jpg>
 
-LaTeX Warning: Float too large for page by 54.97662pt on input line 1381.
+LaTeX Warning: Float too large for page by 54.97662pt on input line 1426.
 
-[29] [30 <./spin_system_simplified.jpg>] [31] (./thesis.aux) ) 
+[30] [31 <./spin_system_simplified.jpg>] [32] (./thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 10791 strings out of 495021
- 152196 string characters out of 1181035
- 557638 words of memory out of 3000000
- 13337 multiletter control sequences out of 15000+50000
+ 10806 strings out of 495021
+ 152406 string characters out of 1181035
+ 610638 words of memory out of 3000000
+ 13345 multiletter control sequences out of 15000+50000
  28650 words of font info for 79 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,10n,43p,1179b,1669s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,10n,43p,1178b,2373s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf
 /fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf-texlive/fonts/type1
 /public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
@@ -676,9 +686,9 @@ r/sfsl1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0800.pfb></usr
 /share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf/fonts/t
 ype1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-super
 /sftt0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on thesis.pdf (31 pages, 7163161 bytes).
+Output written on thesis.pdf (32 pages, 5297332 bytes).
 PDF statistics:
- 1019 PDF objects out of 1200 (max. 8388607)
- 433 named destinations out of 1000 (max. 500000)
- 416 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1036 PDF objects out of 1200 (max. 8388607)
+ 437 named destinations out of 1000 (max. 500000)
+ 426 words of extra memory for PDF output out of 10000 (max. 10000000)
 

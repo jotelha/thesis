@@ -4,7 +4,7 @@
 \BOOKMARK [3][-]{subsubsection.1.2.1}{Spin system Hamiltonian}{subsection.1.2}
 \BOOKMARK [3][-]{subsubsection.1.2.2}{g-tensor and A-tensor}{subsection.1.2}
 \BOOKMARK [2][-]{subsection.1.3}{Spin formalism}{section.1}
-\BOOKMARK [3][-]{subsubsection.1.3.1}{Quantum states and measurments done on them}{subsection.1.3}
+\BOOKMARK [3][-]{subsubsection.1.3.1}{Quantum states and measurements done on them}{subsection.1.3}
 \BOOKMARK [3][-]{subsubsection.1.3.2}{Evolution operator and time propagation}{subsection.1.3}
 \BOOKMARK [3][-]{subsubsection.1.3.3}{Density operator and spin ensembles}{subsection.1.3}
 \BOOKMARK [3][-]{subsubsection.1.3.4}{Liouville equation}{subsection.1.3}
@@ -22,7 +22,7 @@
 \BOOKMARK [3][-]{subsubsection.2.1.1}{Implementation}{subsection.2.1}
 \BOOKMARK [2][-]{subsection.2.2}{Benchmarking}{section.2}
 \BOOKMARK [3][-]{subsubsection.2.2.1}{Single orientation}{subsection.2.2}
-\BOOKMARK [3][-]{subsubsection.2.2.2}{Single core computaion}{subsection.2.2}
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Single core computation}{subsection.2.2}
 \BOOKMARK [3][-]{subsubsection.2.2.3}{Small scale spin systems}{subsection.2.2}
 \BOOKMARK [3][-]{subsubsection.2.2.4}{Large scale spin systems}{subsection.2.2}
 \BOOKMARK [3][-]{subsubsection.2.2.5}{Scaling model}{subsection.2.2}
